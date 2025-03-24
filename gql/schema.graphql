@@ -393,74 +393,6 @@ type User implements Node {
   password: String
   date: Datetime
 
-  """Reads and enables pagination through a set of `UserDevice`."""
-  userDevicesByUserId(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `UserDevice`."""
-    orderBy: [UserDevicesOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: UserDeviceCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: UserDeviceFilter
-  ): UserDevicesConnection!
-
-  """Reads and enables pagination through a set of `Transaction`."""
-  transactionsByUserId(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `Transaction`."""
-    orderBy: [TransactionsOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: TransactionCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: TransactionFilter
-  ): TransactionsConnection!
-
   """Reads and enables pagination through a set of `Budget`."""
   budgetsByUserId(
     """Only read the first `n` values of the set."""
@@ -494,6 +426,40 @@ type User implements Node {
     """
     filter: BudgetFilter
   ): BudgetsConnection!
+
+  """Reads and enables pagination through a set of `OtpVerification`."""
+  otpVerificationsByUserId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `OtpVerification`."""
+    orderBy: [OtpVerificationsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: OtpVerificationCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: OtpVerificationFilter
+  ): OtpVerificationsConnection!
 
   """Reads and enables pagination through a set of `Report`."""
   reportsByUserId(
@@ -529,8 +495,8 @@ type User implements Node {
     filter: ReportFilter
   ): ReportsConnection!
 
-  """Reads and enables pagination through a set of `OtpVerification`."""
-  otpVerificationsByUserId(
+  """Reads and enables pagination through a set of `Transaction`."""
+  transactionsByUserId(
     """Only read the first `n` values of the set."""
     first: Int
 
@@ -549,19 +515,53 @@ type User implements Node {
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
-    """The method to use when ordering `OtpVerification`."""
-    orderBy: [OtpVerificationsOrderBy!] = [PRIMARY_KEY_ASC]
+    """The method to use when ordering `Transaction`."""
+    orderBy: [TransactionsOrderBy!] = [PRIMARY_KEY_ASC]
 
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: OtpVerificationCondition
+    condition: TransactionCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: OtpVerificationFilter
-  ): OtpVerificationsConnection!
+    filter: TransactionFilter
+  ): TransactionsConnection!
+
+  """Reads and enables pagination through a set of `UserDevice`."""
+  userDevicesByUserId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `UserDevice`."""
+    orderBy: [UserDevicesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserDeviceCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: UserDeviceFilter
+  ): UserDevicesConnection!
 }
 
 enum UserGender {
@@ -569,175 +569,93 @@ enum UserGender {
   FEMALE
 }
 
-"""A connection to a list of `UserDevice` values."""
-type UserDevicesConnection {
-  """A list of `UserDevice` objects."""
-  nodes: [UserDevice!]!
-
-  """
-  A list of edges which contains the `UserDevice` and cursor to aid in pagination.
-  """
-  edges: [UserDevicesEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `UserDevice` you could get from the connection."""
-  totalCount: Int!
-
-  """
-  Aggregates across the matching connection (ignoring before/after/first/last/offset)
-  """
-  aggregates: UserDeviceAggregates
-
-  """
-  Grouped aggregates across the matching connection (ignoring before/after/first/last/offset)
-  """
-  groupedAggregates(
-    """The method to use when grouping `UserDevice` for these aggregates."""
-    groupBy: [UserDeviceGroupBy!]!
-
-    """Conditions on the grouped aggregates."""
-    having: UserDeviceHavingInput
-  ): [UserDeviceAggregates!]
-}
-
-type UserDevice implements Node {
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  nodeId: ID!
-  userId: String!
-  token: String!
-  ua: JSON
-
-  """Reads a single `User` that is related to this `UserDevice`."""
-  user: User
-}
-
-"""
-The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSON
-
-"""A `UserDevice` edge in the connection."""
-type UserDevicesEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `UserDevice` at the end of the edge."""
-  node: UserDevice!
-}
-
 """A location in a connection that can be used for resuming pagination."""
 scalar Cursor
 
-"""Information about pagination in a connection."""
-type PageInfo {
-  """When paginating forwards, are there more items?"""
-  hasNextPage: Boolean!
-
-  """When paginating backwards, are there more items?"""
-  hasPreviousPage: Boolean!
-
-  """When paginating backwards, the cursor to continue."""
-  startCursor: Cursor
-
-  """When paginating forwards, the cursor to continue."""
-  endCursor: Cursor
-}
-
-type UserDeviceAggregates {
-  keys: [String!]
-
-  """
-  Distinct count aggregates across the matching connection (ignoring before/after/first/last/offset)
-  """
-  distinctCount: UserDeviceDistinctCountAggregates
-}
-
-type UserDeviceDistinctCountAggregates {
-  """Distinct count of userId across the matching connection"""
-  userId: BigInt
-
-  """Distinct count of token across the matching connection"""
-  token: BigInt
-
-  """Distinct count of ua across the matching connection"""
-  ua: BigInt
-}
-
-"""
-A signed eight-byte integer. The upper big integer values are greater than the
-max value for a JavaScript number. Therefore all big integers will be output as
-strings and not numbers.
-"""
-scalar BigInt
-
-"""Grouping methods for `UserDevice` for usage during aggregation."""
-enum UserDeviceGroupBy {
-  USER_ID
-  UA
-}
-
-"""Conditions for `UserDevice` aggregates."""
-input UserDeviceHavingInput {
-  AND: [UserDeviceHavingInput!]
-  OR: [UserDeviceHavingInput!]
-}
-
-"""Methods to use when ordering `UserDevice`."""
-enum UserDevicesOrderBy {
+"""Methods to use when ordering `Budget`."""
+enum BudgetsOrderBy {
   NATURAL
+  BUDGET_ID_ASC
+  BUDGET_ID_DESC
   USER_ID_ASC
   USER_ID_DESC
-  TOKEN_ASC
-  TOKEN_DESC
-  UA_ASC
-  UA_DESC
+  CATEGORY_ID_ASC
+  CATEGORY_ID_DESC
+  AMOUNT_ASC
+  AMOUNT_DESC
+  MONTH_ASC
+  MONTH_DESC
+  ALERT_THRESHOLD_ASC
+  ALERT_THRESHOLD_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
 }
 
 """
-A condition to be used against `UserDevice` object types. All fields are tested
-for equality and combined with a logical ‘and.’
+A condition to be used against `Budget` object types. All fields are tested for equality and combined with a logical ‘and.’
 """
-input UserDeviceCondition {
+input BudgetCondition {
+  """Checks for equality with the object’s `budgetId` field."""
+  budgetId: String
+
   """Checks for equality with the object’s `userId` field."""
   userId: String
 
-  """Checks for equality with the object’s `token` field."""
-  token: String
+  """Checks for equality with the object’s `categoryId` field."""
+  categoryId: String
 
-  """Checks for equality with the object’s `ua` field."""
-  ua: JSON
+  """Checks for equality with the object’s `amount` field."""
+  amount: Float
+
+  """Checks for equality with the object’s `month` field."""
+  month: Datetime
+
+  """Checks for equality with the object’s `alertThreshold` field."""
+  alertThreshold: Int
 }
 
 """
-A filter to be used against `UserDevice` object types. All fields are combined with a logical ‘and.’
+A filter to be used against `Budget` object types. All fields are combined with a logical ‘and.’
 """
-input UserDeviceFilter {
+input BudgetFilter {
+  """Filter by the object’s `budgetId` field."""
+  budgetId: StringFilter
+
   """Filter by the object’s `userId` field."""
   userId: StringFilter
 
-  """Filter by the object’s `token` field."""
-  token: StringFilter
+  """Filter by the object’s `categoryId` field."""
+  categoryId: StringFilter
 
-  """Filter by the object’s `ua` field."""
-  ua: JSONFilter
+  """Filter by the object’s `amount` field."""
+  amount: FloatFilter
+
+  """Filter by the object’s `month` field."""
+  month: DatetimeFilter
+
+  """Filter by the object’s `alertThreshold` field."""
+  alertThreshold: IntFilter
 
   """Filter by the object’s `user` relation."""
   user: UserFilter
 
+  """A related `user` exists."""
+  userExists: Boolean
+
+  """Filter by the object’s `category` relation."""
+  category: CategoryFilter
+
+  """A related `category` exists."""
+  categoryExists: Boolean
+
   """Checks for all expressions in this list."""
-  and: [UserDeviceFilter!]
+  and: [BudgetFilter!]
 
   """Checks for any expressions in this list."""
-  or: [UserDeviceFilter!]
+  or: [BudgetFilter!]
 
   """Negates the expression."""
-  not: UserDeviceFilter
+  not: BudgetFilter
 }
 
 """
@@ -873,60 +791,129 @@ input StringFilter {
 }
 
 """
-A filter to be used against JSON fields. All fields are combined with a logical ‘and.’
+A filter to be used against Float fields. All fields are combined with a logical ‘and.’
 """
-input JSONFilter {
+input FloatFilter {
   """
   Is null (if `true` is specified) or is not null (if `false` is specified).
   """
   isNull: Boolean
 
   """Equal to the specified value."""
-  equalTo: JSON
+  equalTo: Float
 
   """Not equal to the specified value."""
-  notEqualTo: JSON
+  notEqualTo: Float
 
   """
   Not equal to the specified value, treating null like an ordinary value.
   """
-  distinctFrom: JSON
+  distinctFrom: Float
 
   """Equal to the specified value, treating null like an ordinary value."""
-  notDistinctFrom: JSON
+  notDistinctFrom: Float
 
   """Included in the specified list."""
-  in: [JSON!]
+  in: [Float!]
 
   """Not included in the specified list."""
-  notIn: [JSON!]
+  notIn: [Float!]
 
   """Less than the specified value."""
-  lessThan: JSON
+  lessThan: Float
 
   """Less than or equal to the specified value."""
-  lessThanOrEqualTo: JSON
+  lessThanOrEqualTo: Float
 
   """Greater than the specified value."""
-  greaterThan: JSON
+  greaterThan: Float
 
   """Greater than or equal to the specified value."""
-  greaterThanOrEqualTo: JSON
+  greaterThanOrEqualTo: Float
+}
 
-  """Contains the specified JSON."""
-  contains: JSON
+"""
+A filter to be used against Datetime fields. All fields are combined with a logical ‘and.’
+"""
+input DatetimeFilter {
+  """
+  Is null (if `true` is specified) or is not null (if `false` is specified).
+  """
+  isNull: Boolean
 
-  """Contains the specified key."""
-  containsKey: String
+  """Equal to the specified value."""
+  equalTo: Datetime
 
-  """Contains all of the specified keys."""
-  containsAllKeys: [String!]
+  """Not equal to the specified value."""
+  notEqualTo: Datetime
 
-  """Contains any of the specified keys."""
-  containsAnyKeys: [String!]
+  """
+  Not equal to the specified value, treating null like an ordinary value.
+  """
+  distinctFrom: Datetime
 
-  """Contained by the specified JSON."""
-  containedBy: JSON
+  """Equal to the specified value, treating null like an ordinary value."""
+  notDistinctFrom: Datetime
+
+  """Included in the specified list."""
+  in: [Datetime!]
+
+  """Not included in the specified list."""
+  notIn: [Datetime!]
+
+  """Less than the specified value."""
+  lessThan: Datetime
+
+  """Less than or equal to the specified value."""
+  lessThanOrEqualTo: Datetime
+
+  """Greater than the specified value."""
+  greaterThan: Datetime
+
+  """Greater than or equal to the specified value."""
+  greaterThanOrEqualTo: Datetime
+}
+
+"""
+A filter to be used against Int fields. All fields are combined with a logical ‘and.’
+"""
+input IntFilter {
+  """
+  Is null (if `true` is specified) or is not null (if `false` is specified).
+  """
+  isNull: Boolean
+
+  """Equal to the specified value."""
+  equalTo: Int
+
+  """Not equal to the specified value."""
+  notEqualTo: Int
+
+  """
+  Not equal to the specified value, treating null like an ordinary value.
+  """
+  distinctFrom: Int
+
+  """Equal to the specified value, treating null like an ordinary value."""
+  notDistinctFrom: Int
+
+  """Included in the specified list."""
+  in: [Int!]
+
+  """Not included in the specified list."""
+  notIn: [Int!]
+
+  """Less than the specified value."""
+  lessThan: Int
+
+  """Less than or equal to the specified value."""
+  lessThanOrEqualTo: Int
+
+  """Greater than the specified value."""
+  greaterThan: Int
+
+  """Greater than or equal to the specified value."""
+  greaterThanOrEqualTo: Int
 }
 
 """
@@ -960,23 +947,17 @@ input UserFilter {
   """Filter by the object’s `date` field."""
   date: DatetimeFilter
 
-  """Filter by the object’s `userDevicesByUserId` relation."""
-  userDevicesByUserId: UserToManyUserDeviceFilter
-
-  """Some related `userDevicesByUserId` exist."""
-  userDevicesByUserIdExist: Boolean
-
-  """Filter by the object’s `transactionsByUserId` relation."""
-  transactionsByUserId: UserToManyTransactionFilter
-
-  """Some related `transactionsByUserId` exist."""
-  transactionsByUserIdExist: Boolean
-
   """Filter by the object’s `budgetsByUserId` relation."""
   budgetsByUserId: UserToManyBudgetFilter
 
   """Some related `budgetsByUserId` exist."""
   budgetsByUserIdExist: Boolean
+
+  """Filter by the object’s `otpVerificationsByUserId` relation."""
+  otpVerificationsByUserId: UserToManyOtpVerificationFilter
+
+  """Some related `otpVerificationsByUserId` exist."""
+  otpVerificationsByUserIdExist: Boolean
 
   """Filter by the object’s `reportsByUserId` relation."""
   reportsByUserId: UserToManyReportFilter
@@ -984,11 +965,17 @@ input UserFilter {
   """Some related `reportsByUserId` exist."""
   reportsByUserIdExist: Boolean
 
-  """Filter by the object’s `otpVerificationsByUserId` relation."""
-  otpVerificationsByUserId: UserToManyOtpVerificationFilter
+  """Filter by the object’s `transactionsByUserId` relation."""
+  transactionsByUserId: UserToManyTransactionFilter
 
-  """Some related `otpVerificationsByUserId` exist."""
-  otpVerificationsByUserIdExist: Boolean
+  """Some related `transactionsByUserId` exist."""
+  transactionsByUserIdExist: Boolean
+
+  """Filter by the object’s `userDevicesByUserId` relation."""
+  userDevicesByUserId: UserToManyUserDeviceFilter
+
+  """Some related `userDevicesByUserId` exist."""
+  userDevicesByUserIdExist: Boolean
 
   """Checks for all expressions in this list."""
   and: [UserFilter!]
@@ -1043,85 +1030,68 @@ input UserGenderFilter {
 }
 
 """
-A filter to be used against Datetime fields. All fields are combined with a logical ‘and.’
+A filter to be used against many `Budget` object types. All fields are combined with a logical ‘and.’
 """
-input DatetimeFilter {
+input UserToManyBudgetFilter {
   """
-  Is null (if `true` is specified) or is not null (if `false` is specified).
+  Every related `Budget` matches the filter criteria. All fields are combined with a logical ‘and.’
   """
-  isNull: Boolean
-
-  """Equal to the specified value."""
-  equalTo: Datetime
-
-  """Not equal to the specified value."""
-  notEqualTo: Datetime
+  every: BudgetFilter
 
   """
-  Not equal to the specified value, treating null like an ordinary value.
+  Some related `Budget` matches the filter criteria. All fields are combined with a logical ‘and.’
   """
-  distinctFrom: Datetime
+  some: BudgetFilter
 
-  """Equal to the specified value, treating null like an ordinary value."""
-  notDistinctFrom: Datetime
+  """
+  No related `Budget` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: BudgetFilter
 
-  """Included in the specified list."""
-  in: [Datetime!]
-
-  """Not included in the specified list."""
-  notIn: [Datetime!]
-
-  """Less than the specified value."""
-  lessThan: Datetime
-
-  """Less than or equal to the specified value."""
-  lessThanOrEqualTo: Datetime
-
-  """Greater than the specified value."""
-  greaterThan: Datetime
-
-  """Greater than or equal to the specified value."""
-  greaterThanOrEqualTo: Datetime
+  """Aggregates across related `Budget` match the filter criteria."""
+  aggregates: BudgetAggregatesFilter
 }
 
-"""
-A filter to be used against many `UserDevice` object types. All fields are combined with a logical ‘and.’
-"""
-input UserToManyUserDeviceFilter {
+"""A filter to be used against aggregates of `Budget` object types."""
+input BudgetAggregatesFilter {
   """
-  Every related `UserDevice` matches the filter criteria. All fields are combined with a logical ‘and.’
+  A filter that must pass for the relevant `Budget` object to be included within the aggregate.
   """
-  every: UserDeviceFilter
+  filter: BudgetFilter
+
+  """Sum aggregate over matching `Budget` objects."""
+  sum: BudgetSumAggregateFilter
+
+  """Distinct count aggregate over matching `Budget` objects."""
+  distinctCount: BudgetDistinctCountAggregateFilter
+
+  """Minimum aggregate over matching `Budget` objects."""
+  min: BudgetMinAggregateFilter
+
+  """Maximum aggregate over matching `Budget` objects."""
+  max: BudgetMaxAggregateFilter
+
+  """Mean average aggregate over matching `Budget` objects."""
+  average: BudgetAverageAggregateFilter
+
+  """Sample standard deviation aggregate over matching `Budget` objects."""
+  stddevSample: BudgetStddevSampleAggregateFilter
 
   """
-  Some related `UserDevice` matches the filter criteria. All fields are combined with a logical ‘and.’
+  Population standard deviation aggregate over matching `Budget` objects.
   """
-  some: UserDeviceFilter
+  stddevPopulation: BudgetStddevPopulationAggregateFilter
 
-  """
-  No related `UserDevice` matches the filter criteria. All fields are combined with a logical ‘and.’
-  """
-  none: UserDeviceFilter
+  """Sample variance aggregate over matching `Budget` objects."""
+  varianceSample: BudgetVarianceSampleAggregateFilter
 
-  """Aggregates across related `UserDevice` match the filter criteria."""
-  aggregates: UserDeviceAggregatesFilter
+  """Population variance aggregate over matching `Budget` objects."""
+  variancePopulation: BudgetVariancePopulationAggregateFilter
 }
 
-"""A filter to be used against aggregates of `UserDevice` object types."""
-input UserDeviceAggregatesFilter {
-  """
-  A filter that must pass for the relevant `UserDevice` object to be included within the aggregate.
-  """
-  filter: UserDeviceFilter
-
-  """Distinct count aggregate over matching `UserDevice` objects."""
-  distinctCount: UserDeviceDistinctCountAggregateFilter
-}
-
-input UserDeviceDistinctCountAggregateFilter {
-  userId: BigIntFilter
-  token: BigIntFilter
-  ua: BigIntFilter
+input BudgetSumAggregateFilter {
+  amount: FloatFilter
+  alertThreshold: BigIntFilter
 }
 
 """
@@ -1164,6 +1134,257 @@ input BigIntFilter {
 
   """Greater than or equal to the specified value."""
   greaterThanOrEqualTo: BigInt
+}
+
+"""
+A signed eight-byte integer. The upper big integer values are greater than the
+max value for a JavaScript number. Therefore all big integers will be output as
+strings and not numbers.
+"""
+scalar BigInt
+
+input BudgetDistinctCountAggregateFilter {
+  budgetId: BigIntFilter
+  userId: BigIntFilter
+  categoryId: BigIntFilter
+  amount: BigIntFilter
+  month: BigIntFilter
+  alertThreshold: BigIntFilter
+}
+
+input BudgetMinAggregateFilter {
+  amount: FloatFilter
+  alertThreshold: IntFilter
+}
+
+input BudgetMaxAggregateFilter {
+  amount: FloatFilter
+  alertThreshold: IntFilter
+}
+
+input BudgetAverageAggregateFilter {
+  amount: FloatFilter
+  alertThreshold: BigFloatFilter
+}
+
+"""
+A filter to be used against BigFloat fields. All fields are combined with a logical ‘and.’
+"""
+input BigFloatFilter {
+  """
+  Is null (if `true` is specified) or is not null (if `false` is specified).
+  """
+  isNull: Boolean
+
+  """Equal to the specified value."""
+  equalTo: BigFloat
+
+  """Not equal to the specified value."""
+  notEqualTo: BigFloat
+
+  """
+  Not equal to the specified value, treating null like an ordinary value.
+  """
+  distinctFrom: BigFloat
+
+  """Equal to the specified value, treating null like an ordinary value."""
+  notDistinctFrom: BigFloat
+
+  """Included in the specified list."""
+  in: [BigFloat!]
+
+  """Not included in the specified list."""
+  notIn: [BigFloat!]
+
+  """Less than the specified value."""
+  lessThan: BigFloat
+
+  """Less than or equal to the specified value."""
+  lessThanOrEqualTo: BigFloat
+
+  """Greater than the specified value."""
+  greaterThan: BigFloat
+
+  """Greater than or equal to the specified value."""
+  greaterThanOrEqualTo: BigFloat
+}
+
+"""
+A floating point number that requires more precision than IEEE 754 binary 64
+"""
+scalar BigFloat
+
+input BudgetStddevSampleAggregateFilter {
+  amount: FloatFilter
+  alertThreshold: BigFloatFilter
+}
+
+input BudgetStddevPopulationAggregateFilter {
+  amount: FloatFilter
+  alertThreshold: BigFloatFilter
+}
+
+input BudgetVarianceSampleAggregateFilter {
+  amount: FloatFilter
+  alertThreshold: BigFloatFilter
+}
+
+input BudgetVariancePopulationAggregateFilter {
+  amount: FloatFilter
+  alertThreshold: BigFloatFilter
+}
+
+"""
+A filter to be used against many `OtpVerification` object types. All fields are combined with a logical ‘and.’
+"""
+input UserToManyOtpVerificationFilter {
+  """
+  Every related `OtpVerification` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: OtpVerificationFilter
+
+  """
+  Some related `OtpVerification` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: OtpVerificationFilter
+
+  """
+  No related `OtpVerification` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: OtpVerificationFilter
+
+  """Aggregates across related `OtpVerification` match the filter criteria."""
+  aggregates: OtpVerificationAggregatesFilter
+}
+
+"""
+A filter to be used against `OtpVerification` object types. All fields are combined with a logical ‘and.’
+"""
+input OtpVerificationFilter {
+  """Filter by the object’s `id` field."""
+  id: StringFilter
+
+  """Filter by the object’s `userId` field."""
+  userId: StringFilter
+
+  """Filter by the object’s `otp` field."""
+  otp: StringFilter
+
+  """Filter by the object’s `expiresAt` field."""
+  expiresAt: DatetimeFilter
+
+  """Filter by the object’s `createdAt` field."""
+  createdAt: DatetimeFilter
+
+  """Filter by the object’s `email` field."""
+  email: StringFilter
+
+  """Filter by the object’s `user` relation."""
+  user: UserFilter
+
+  """Checks for all expressions in this list."""
+  and: [OtpVerificationFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [OtpVerificationFilter!]
+
+  """Negates the expression."""
+  not: OtpVerificationFilter
+}
+
+"""
+A filter to be used against aggregates of `OtpVerification` object types.
+"""
+input OtpVerificationAggregatesFilter {
+  """
+  A filter that must pass for the relevant `OtpVerification` object to be included within the aggregate.
+  """
+  filter: OtpVerificationFilter
+
+  """Distinct count aggregate over matching `OtpVerification` objects."""
+  distinctCount: OtpVerificationDistinctCountAggregateFilter
+}
+
+input OtpVerificationDistinctCountAggregateFilter {
+  id: BigIntFilter
+  userId: BigIntFilter
+  otp: BigIntFilter
+  expiresAt: BigIntFilter
+  createdAt: BigIntFilter
+  email: BigIntFilter
+}
+
+"""
+A filter to be used against many `Report` object types. All fields are combined with a logical ‘and.’
+"""
+input UserToManyReportFilter {
+  """
+  Every related `Report` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: ReportFilter
+
+  """
+  Some related `Report` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: ReportFilter
+
+  """
+  No related `Report` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: ReportFilter
+
+  """Aggregates across related `Report` match the filter criteria."""
+  aggregates: ReportAggregatesFilter
+}
+
+"""
+A filter to be used against `Report` object types. All fields are combined with a logical ‘and.’
+"""
+input ReportFilter {
+  """Filter by the object’s `reportId` field."""
+  reportId: StringFilter
+
+  """Filter by the object’s `userId` field."""
+  userId: StringFilter
+
+  """Filter by the object’s `createdAt` field."""
+  createdAt: StringFilter
+
+  """Filter by the object’s `filePath` field."""
+  filePath: StringFilter
+
+  """Filter by the object’s `user` relation."""
+  user: UserFilter
+
+  """A related `user` exists."""
+  userExists: Boolean
+
+  """Checks for all expressions in this list."""
+  and: [ReportFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [ReportFilter!]
+
+  """Negates the expression."""
+  not: ReportFilter
+}
+
+"""A filter to be used against aggregates of `Report` object types."""
+input ReportAggregatesFilter {
+  """
+  A filter that must pass for the relevant `Report` object to be included within the aggregate.
+  """
+  filter: ReportFilter
+
+  """Distinct count aggregate over matching `Report` objects."""
+  distinctCount: ReportDistinctCountAggregateFilter
+}
+
+input ReportDistinctCountAggregateFilter {
+  reportId: BigIntFilter
+  userId: BigIntFilter
+  createdAt: BigIntFilter
+  filePath: BigIntFilter
 }
 
 """
@@ -1237,48 +1458,6 @@ input TransactionFilter {
 }
 
 """
-A filter to be used against Float fields. All fields are combined with a logical ‘and.’
-"""
-input FloatFilter {
-  """
-  Is null (if `true` is specified) or is not null (if `false` is specified).
-  """
-  isNull: Boolean
-
-  """Equal to the specified value."""
-  equalTo: Float
-
-  """Not equal to the specified value."""
-  notEqualTo: Float
-
-  """
-  Not equal to the specified value, treating null like an ordinary value.
-  """
-  distinctFrom: Float
-
-  """Equal to the specified value, treating null like an ordinary value."""
-  notDistinctFrom: Float
-
-  """Included in the specified list."""
-  in: [Float!]
-
-  """Not included in the specified list."""
-  notIn: [Float!]
-
-  """Less than the specified value."""
-  lessThan: Float
-
-  """Less than or equal to the specified value."""
-  lessThanOrEqualTo: Float
-
-  """Greater than the specified value."""
-  greaterThan: Float
-
-  """Greater than or equal to the specified value."""
-  greaterThanOrEqualTo: Float
-}
-
-"""
 A filter to be used against Typetransaction fields. All fields are combined with a logical ‘and.’
 """
 input TypetransactionFilter {
@@ -1335,17 +1514,17 @@ input CategoryFilter {
   """Filter by the object’s `name` field."""
   name: StringFilter
 
-  """Filter by the object’s `transactionsByCategoryId` relation."""
-  transactionsByCategoryId: CategoryToManyTransactionFilter
-
-  """Some related `transactionsByCategoryId` exist."""
-  transactionsByCategoryIdExist: Boolean
-
   """Filter by the object’s `budgetsByCategoryId` relation."""
   budgetsByCategoryId: CategoryToManyBudgetFilter
 
   """Some related `budgetsByCategoryId` exist."""
   budgetsByCategoryIdExist: Boolean
+
+  """Filter by the object’s `transactionsByCategoryId` relation."""
+  transactionsByCategoryId: CategoryToManyTransactionFilter
+
+  """Some related `transactionsByCategoryId` exist."""
+  transactionsByCategoryIdExist: Boolean
 
   """Checks for all expressions in this list."""
   and: [CategoryFilter!]
@@ -1355,6 +1534,29 @@ input CategoryFilter {
 
   """Negates the expression."""
   not: CategoryFilter
+}
+
+"""
+A filter to be used against many `Budget` object types. All fields are combined with a logical ‘and.’
+"""
+input CategoryToManyBudgetFilter {
+  """
+  Every related `Budget` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: BudgetFilter
+
+  """
+  Some related `Budget` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: BudgetFilter
+
+  """
+  No related `Budget` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: BudgetFilter
+
+  """Aggregates across related `Budget` match the filter criteria."""
+  aggregates: BudgetAggregatesFilter
 }
 
 """
@@ -1462,421 +1664,486 @@ input TransactionVariancePopulationAggregateFilter {
 }
 
 """
-A filter to be used against many `Budget` object types. All fields are combined with a logical ‘and.’
+A filter to be used against many `UserDevice` object types. All fields are combined with a logical ‘and.’
 """
-input CategoryToManyBudgetFilter {
+input UserToManyUserDeviceFilter {
   """
-  Every related `Budget` matches the filter criteria. All fields are combined with a logical ‘and.’
+  Every related `UserDevice` matches the filter criteria. All fields are combined with a logical ‘and.’
   """
-  every: BudgetFilter
+  every: UserDeviceFilter
 
   """
-  Some related `Budget` matches the filter criteria. All fields are combined with a logical ‘and.’
+  Some related `UserDevice` matches the filter criteria. All fields are combined with a logical ‘and.’
   """
-  some: BudgetFilter
+  some: UserDeviceFilter
 
   """
-  No related `Budget` matches the filter criteria. All fields are combined with a logical ‘and.’
+  No related `UserDevice` matches the filter criteria. All fields are combined with a logical ‘and.’
   """
-  none: BudgetFilter
+  none: UserDeviceFilter
 
-  """Aggregates across related `Budget` match the filter criteria."""
-  aggregates: BudgetAggregatesFilter
+  """Aggregates across related `UserDevice` match the filter criteria."""
+  aggregates: UserDeviceAggregatesFilter
 }
 
 """
-A filter to be used against `Budget` object types. All fields are combined with a logical ‘and.’
+A filter to be used against `UserDevice` object types. All fields are combined with a logical ‘and.’
 """
-input BudgetFilter {
-  """Filter by the object’s `budgetId` field."""
-  budgetId: StringFilter
-
+input UserDeviceFilter {
   """Filter by the object’s `userId` field."""
   userId: StringFilter
 
-  """Filter by the object’s `categoryId` field."""
-  categoryId: StringFilter
+  """Filter by the object’s `token` field."""
+  token: StringFilter
 
-  """Filter by the object’s `amount` field."""
-  amount: FloatFilter
-
-  """Filter by the object’s `month` field."""
-  month: DatetimeFilter
-
-  """Filter by the object’s `alertThreshold` field."""
-  alertThreshold: IntFilter
+  """Filter by the object’s `ua` field."""
+  ua: JSONFilter
 
   """Filter by the object’s `user` relation."""
   user: UserFilter
 
-  """A related `user` exists."""
-  userExists: Boolean
-
-  """Filter by the object’s `category` relation."""
-  category: CategoryFilter
-
-  """A related `category` exists."""
-  categoryExists: Boolean
-
   """Checks for all expressions in this list."""
-  and: [BudgetFilter!]
+  and: [UserDeviceFilter!]
 
   """Checks for any expressions in this list."""
-  or: [BudgetFilter!]
+  or: [UserDeviceFilter!]
 
   """Negates the expression."""
-  not: BudgetFilter
+  not: UserDeviceFilter
 }
 
 """
-A filter to be used against Int fields. All fields are combined with a logical ‘and.’
+A filter to be used against JSON fields. All fields are combined with a logical ‘and.’
 """
-input IntFilter {
+input JSONFilter {
   """
   Is null (if `true` is specified) or is not null (if `false` is specified).
   """
   isNull: Boolean
 
   """Equal to the specified value."""
-  equalTo: Int
+  equalTo: JSON
 
   """Not equal to the specified value."""
-  notEqualTo: Int
+  notEqualTo: JSON
 
   """
   Not equal to the specified value, treating null like an ordinary value.
   """
-  distinctFrom: Int
+  distinctFrom: JSON
 
   """Equal to the specified value, treating null like an ordinary value."""
-  notDistinctFrom: Int
+  notDistinctFrom: JSON
 
   """Included in the specified list."""
-  in: [Int!]
+  in: [JSON!]
 
   """Not included in the specified list."""
-  notIn: [Int!]
+  notIn: [JSON!]
 
   """Less than the specified value."""
-  lessThan: Int
+  lessThan: JSON
 
   """Less than or equal to the specified value."""
-  lessThanOrEqualTo: Int
+  lessThanOrEqualTo: JSON
 
   """Greater than the specified value."""
-  greaterThan: Int
+  greaterThan: JSON
 
   """Greater than or equal to the specified value."""
-  greaterThanOrEqualTo: Int
+  greaterThanOrEqualTo: JSON
+
+  """Contains the specified JSON."""
+  contains: JSON
+
+  """Contains the specified key."""
+  containsKey: String
+
+  """Contains all of the specified keys."""
+  containsAllKeys: [String!]
+
+  """Contains any of the specified keys."""
+  containsAnyKeys: [String!]
+
+  """Contained by the specified JSON."""
+  containedBy: JSON
 }
 
-"""A filter to be used against aggregates of `Budget` object types."""
-input BudgetAggregatesFilter {
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""A filter to be used against aggregates of `UserDevice` object types."""
+input UserDeviceAggregatesFilter {
   """
-  A filter that must pass for the relevant `Budget` object to be included within the aggregate.
+  A filter that must pass for the relevant `UserDevice` object to be included within the aggregate.
   """
-  filter: BudgetFilter
+  filter: UserDeviceFilter
 
-  """Sum aggregate over matching `Budget` objects."""
-  sum: BudgetSumAggregateFilter
-
-  """Distinct count aggregate over matching `Budget` objects."""
-  distinctCount: BudgetDistinctCountAggregateFilter
-
-  """Minimum aggregate over matching `Budget` objects."""
-  min: BudgetMinAggregateFilter
-
-  """Maximum aggregate over matching `Budget` objects."""
-  max: BudgetMaxAggregateFilter
-
-  """Mean average aggregate over matching `Budget` objects."""
-  average: BudgetAverageAggregateFilter
-
-  """Sample standard deviation aggregate over matching `Budget` objects."""
-  stddevSample: BudgetStddevSampleAggregateFilter
-
-  """
-  Population standard deviation aggregate over matching `Budget` objects.
-  """
-  stddevPopulation: BudgetStddevPopulationAggregateFilter
-
-  """Sample variance aggregate over matching `Budget` objects."""
-  varianceSample: BudgetVarianceSampleAggregateFilter
-
-  """Population variance aggregate over matching `Budget` objects."""
-  variancePopulation: BudgetVariancePopulationAggregateFilter
+  """Distinct count aggregate over matching `UserDevice` objects."""
+  distinctCount: UserDeviceDistinctCountAggregateFilter
 }
 
-input BudgetSumAggregateFilter {
-  amount: FloatFilter
-  alertThreshold: BigIntFilter
-}
-
-input BudgetDistinctCountAggregateFilter {
-  budgetId: BigIntFilter
+input UserDeviceDistinctCountAggregateFilter {
   userId: BigIntFilter
-  categoryId: BigIntFilter
-  amount: BigIntFilter
-  month: BigIntFilter
-  alertThreshold: BigIntFilter
+  token: BigIntFilter
+  ua: BigIntFilter
 }
 
-input BudgetMinAggregateFilter {
-  amount: FloatFilter
-  alertThreshold: IntFilter
+"""A connection to a list of `OtpVerification` values."""
+type OtpVerificationsConnection {
+  """A list of `OtpVerification` objects."""
+  nodes: [OtpVerification!]!
+
+  """
+  A list of edges which contains the `OtpVerification` and cursor to aid in pagination.
+  """
+  edges: [OtpVerificationsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `OtpVerification` you could get from the connection.
+  """
+  totalCount: Int!
+
+  """
+  Aggregates across the matching connection (ignoring before/after/first/last/offset)
+  """
+  aggregates: OtpVerificationAggregates
+
+  """
+  Grouped aggregates across the matching connection (ignoring before/after/first/last/offset)
+  """
+  groupedAggregates(
+    """
+    The method to use when grouping `OtpVerification` for these aggregates.
+    """
+    groupBy: [OtpVerificationGroupBy!]!
+
+    """Conditions on the grouped aggregates."""
+    having: OtpVerificationHavingInput
+  ): [OtpVerificationAggregates!]
 }
 
-input BudgetMaxAggregateFilter {
-  amount: FloatFilter
-  alertThreshold: IntFilter
+type OtpVerification implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: String!
+  userId: String!
+  otp: String!
+  expiresAt: Datetime!
+  createdAt: Datetime!
+  email: String
+
+  """Reads a single `User` that is related to this `OtpVerification`."""
+  user: User
 }
 
-input BudgetAverageAggregateFilter {
-  amount: FloatFilter
-  alertThreshold: BigFloatFilter
+"""A `OtpVerification` edge in the connection."""
+type OtpVerificationsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `OtpVerification` at the end of the edge."""
+  node: OtpVerification!
 }
 
-"""
-A filter to be used against BigFloat fields. All fields are combined with a logical ‘and.’
-"""
-input BigFloatFilter {
-  """
-  Is null (if `true` is specified) or is not null (if `false` is specified).
-  """
-  isNull: Boolean
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
 
-  """Equal to the specified value."""
-  equalTo: BigFloat
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
 
-  """Not equal to the specified value."""
-  notEqualTo: BigFloat
+  """When paginating backwards, the cursor to continue."""
+  startCursor: Cursor
 
-  """
-  Not equal to the specified value, treating null like an ordinary value.
-  """
-  distinctFrom: BigFloat
-
-  """Equal to the specified value, treating null like an ordinary value."""
-  notDistinctFrom: BigFloat
-
-  """Included in the specified list."""
-  in: [BigFloat!]
-
-  """Not included in the specified list."""
-  notIn: [BigFloat!]
-
-  """Less than the specified value."""
-  lessThan: BigFloat
-
-  """Less than or equal to the specified value."""
-  lessThanOrEqualTo: BigFloat
-
-  """Greater than the specified value."""
-  greaterThan: BigFloat
-
-  """Greater than or equal to the specified value."""
-  greaterThanOrEqualTo: BigFloat
+  """When paginating forwards, the cursor to continue."""
+  endCursor: Cursor
 }
 
-"""
-A floating point number that requires more precision than IEEE 754 binary 64
-"""
-scalar BigFloat
+type OtpVerificationAggregates {
+  keys: [String!]
 
-input BudgetStddevSampleAggregateFilter {
-  amount: FloatFilter
-  alertThreshold: BigFloatFilter
+  """
+  Distinct count aggregates across the matching connection (ignoring before/after/first/last/offset)
+  """
+  distinctCount: OtpVerificationDistinctCountAggregates
 }
 
-input BudgetStddevPopulationAggregateFilter {
-  amount: FloatFilter
-  alertThreshold: BigFloatFilter
+type OtpVerificationDistinctCountAggregates {
+  """Distinct count of id across the matching connection"""
+  id: BigInt
+
+  """Distinct count of userId across the matching connection"""
+  userId: BigInt
+
+  """Distinct count of otp across the matching connection"""
+  otp: BigInt
+
+  """Distinct count of expiresAt across the matching connection"""
+  expiresAt: BigInt
+
+  """Distinct count of createdAt across the matching connection"""
+  createdAt: BigInt
+
+  """Distinct count of email across the matching connection"""
+  email: BigInt
 }
 
-input BudgetVarianceSampleAggregateFilter {
-  amount: FloatFilter
-  alertThreshold: BigFloatFilter
+"""Grouping methods for `OtpVerification` for usage during aggregation."""
+enum OtpVerificationGroupBy {
+  USER_ID
+  OTP
+  EXPIRES_AT
+  EXPIRES_AT_TRUNCATED_TO_HOUR
+  EXPIRES_AT_TRUNCATED_TO_DAY
+  CREATED_AT
+  CREATED_AT_TRUNCATED_TO_HOUR
+  CREATED_AT_TRUNCATED_TO_DAY
+  EMAIL
 }
 
-input BudgetVariancePopulationAggregateFilter {
-  amount: FloatFilter
-  alertThreshold: BigFloatFilter
+"""Conditions for `OtpVerification` aggregates."""
+input OtpVerificationHavingInput {
+  AND: [OtpVerificationHavingInput!]
+  OR: [OtpVerificationHavingInput!]
+  sum: OtpVerificationHavingSumInput
+  distinctCount: OtpVerificationHavingDistinctCountInput
+  min: OtpVerificationHavingMinInput
+  max: OtpVerificationHavingMaxInput
+  average: OtpVerificationHavingAverageInput
+  stddevSample: OtpVerificationHavingStddevSampleInput
+  stddevPopulation: OtpVerificationHavingStddevPopulationInput
+  varianceSample: OtpVerificationHavingVarianceSampleInput
+  variancePopulation: OtpVerificationHavingVariancePopulationInput
 }
 
-"""
-A filter to be used against many `Budget` object types. All fields are combined with a logical ‘and.’
-"""
-input UserToManyBudgetFilter {
-  """
-  Every related `Budget` matches the filter criteria. All fields are combined with a logical ‘and.’
-  """
-  every: BudgetFilter
-
-  """
-  Some related `Budget` matches the filter criteria. All fields are combined with a logical ‘and.’
-  """
-  some: BudgetFilter
-
-  """
-  No related `Budget` matches the filter criteria. All fields are combined with a logical ‘and.’
-  """
-  none: BudgetFilter
-
-  """Aggregates across related `Budget` match the filter criteria."""
-  aggregates: BudgetAggregatesFilter
+input OtpVerificationHavingSumInput {
+  expiresAt: HavingDatetimeFilter
+  createdAt: HavingDatetimeFilter
 }
 
-"""
-A filter to be used against many `Report` object types. All fields are combined with a logical ‘and.’
-"""
-input UserToManyReportFilter {
-  """
-  Every related `Report` matches the filter criteria. All fields are combined with a logical ‘and.’
-  """
-  every: ReportFilter
-
-  """
-  Some related `Report` matches the filter criteria. All fields are combined with a logical ‘and.’
-  """
-  some: ReportFilter
-
-  """
-  No related `Report` matches the filter criteria. All fields are combined with a logical ‘and.’
-  """
-  none: ReportFilter
-
-  """Aggregates across related `Report` match the filter criteria."""
-  aggregates: ReportAggregatesFilter
+input HavingDatetimeFilter {
+  equalTo: Datetime
+  notEqualTo: Datetime
+  greaterThan: Datetime
+  greaterThanOrEqualTo: Datetime
+  lessThan: Datetime
+  lessThanOrEqualTo: Datetime
 }
 
-"""
-A filter to be used against `Report` object types. All fields are combined with a logical ‘and.’
-"""
-input ReportFilter {
-  """Filter by the object’s `reportId` field."""
-  reportId: StringFilter
-
-  """Filter by the object’s `userId` field."""
-  userId: StringFilter
-
-  """Filter by the object’s `createdAt` field."""
-  createdAt: StringFilter
-
-  """Filter by the object’s `filePath` field."""
-  filePath: StringFilter
-
-  """Filter by the object’s `user` relation."""
-  user: UserFilter
-
-  """A related `user` exists."""
-  userExists: Boolean
-
-  """Checks for all expressions in this list."""
-  and: [ReportFilter!]
-
-  """Checks for any expressions in this list."""
-  or: [ReportFilter!]
-
-  """Negates the expression."""
-  not: ReportFilter
+input OtpVerificationHavingDistinctCountInput {
+  expiresAt: HavingDatetimeFilter
+  createdAt: HavingDatetimeFilter
 }
 
-"""A filter to be used against aggregates of `Report` object types."""
-input ReportAggregatesFilter {
-  """
-  A filter that must pass for the relevant `Report` object to be included within the aggregate.
-  """
-  filter: ReportFilter
-
-  """Distinct count aggregate over matching `Report` objects."""
-  distinctCount: ReportDistinctCountAggregateFilter
+input OtpVerificationHavingMinInput {
+  expiresAt: HavingDatetimeFilter
+  createdAt: HavingDatetimeFilter
 }
 
-input ReportDistinctCountAggregateFilter {
-  reportId: BigIntFilter
-  userId: BigIntFilter
-  createdAt: BigIntFilter
-  filePath: BigIntFilter
+input OtpVerificationHavingMaxInput {
+  expiresAt: HavingDatetimeFilter
+  createdAt: HavingDatetimeFilter
 }
 
-"""
-A filter to be used against many `OtpVerification` object types. All fields are combined with a logical ‘and.’
-"""
-input UserToManyOtpVerificationFilter {
-  """
-  Every related `OtpVerification` matches the filter criteria. All fields are combined with a logical ‘and.’
-  """
-  every: OtpVerificationFilter
-
-  """
-  Some related `OtpVerification` matches the filter criteria. All fields are combined with a logical ‘and.’
-  """
-  some: OtpVerificationFilter
-
-  """
-  No related `OtpVerification` matches the filter criteria. All fields are combined with a logical ‘and.’
-  """
-  none: OtpVerificationFilter
-
-  """Aggregates across related `OtpVerification` match the filter criteria."""
-  aggregates: OtpVerificationAggregatesFilter
+input OtpVerificationHavingAverageInput {
+  expiresAt: HavingDatetimeFilter
+  createdAt: HavingDatetimeFilter
 }
 
-"""
-A filter to be used against `OtpVerification` object types. All fields are combined with a logical ‘and.’
-"""
-input OtpVerificationFilter {
-  """Filter by the object’s `id` field."""
-  id: StringFilter
+input OtpVerificationHavingStddevSampleInput {
+  expiresAt: HavingDatetimeFilter
+  createdAt: HavingDatetimeFilter
+}
 
-  """Filter by the object’s `userId` field."""
-  userId: StringFilter
+input OtpVerificationHavingStddevPopulationInput {
+  expiresAt: HavingDatetimeFilter
+  createdAt: HavingDatetimeFilter
+}
 
-  """Filter by the object’s `otp` field."""
-  otp: StringFilter
+input OtpVerificationHavingVarianceSampleInput {
+  expiresAt: HavingDatetimeFilter
+  createdAt: HavingDatetimeFilter
+}
 
-  """Filter by the object’s `expiresAt` field."""
-  expiresAt: DatetimeFilter
+input OtpVerificationHavingVariancePopulationInput {
+  expiresAt: HavingDatetimeFilter
+  createdAt: HavingDatetimeFilter
+}
 
-  """Filter by the object’s `createdAt` field."""
-  createdAt: DatetimeFilter
-
-  """Filter by the object’s `email` field."""
-  email: StringFilter
-
-  """Filter by the object’s `user` relation."""
-  user: UserFilter
-
-  """Checks for all expressions in this list."""
-  and: [OtpVerificationFilter!]
-
-  """Checks for any expressions in this list."""
-  or: [OtpVerificationFilter!]
-
-  """Negates the expression."""
-  not: OtpVerificationFilter
+"""Methods to use when ordering `OtpVerification`."""
+enum OtpVerificationsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  USER_ID_ASC
+  USER_ID_DESC
+  OTP_ASC
+  OTP_DESC
+  EXPIRES_AT_ASC
+  EXPIRES_AT_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  EMAIL_ASC
+  EMAIL_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
 }
 
 """
-A filter to be used against aggregates of `OtpVerification` object types.
+A condition to be used against `OtpVerification` object types. All fields are
+tested for equality and combined with a logical ‘and.’
 """
-input OtpVerificationAggregatesFilter {
-  """
-  A filter that must pass for the relevant `OtpVerification` object to be included within the aggregate.
-  """
-  filter: OtpVerificationFilter
+input OtpVerificationCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: String
 
-  """Distinct count aggregate over matching `OtpVerification` objects."""
-  distinctCount: OtpVerificationDistinctCountAggregateFilter
+  """Checks for equality with the object’s `userId` field."""
+  userId: String
+
+  """Checks for equality with the object’s `otp` field."""
+  otp: String
+
+  """Checks for equality with the object’s `expiresAt` field."""
+  expiresAt: Datetime
+
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+
+  """Checks for equality with the object’s `email` field."""
+  email: String
 }
 
-input OtpVerificationDistinctCountAggregateFilter {
-  id: BigIntFilter
-  userId: BigIntFilter
-  otp: BigIntFilter
-  expiresAt: BigIntFilter
-  createdAt: BigIntFilter
-  email: BigIntFilter
+"""A connection to a list of `Report` values."""
+type ReportsConnection {
+  """A list of `Report` objects."""
+  nodes: [Report!]!
+
+  """
+  A list of edges which contains the `Report` and cursor to aid in pagination.
+  """
+  edges: [ReportsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Report` you could get from the connection."""
+  totalCount: Int!
+
+  """
+  Aggregates across the matching connection (ignoring before/after/first/last/offset)
+  """
+  aggregates: ReportAggregates
+
+  """
+  Grouped aggregates across the matching connection (ignoring before/after/first/last/offset)
+  """
+  groupedAggregates(
+    """The method to use when grouping `Report` for these aggregates."""
+    groupBy: [ReportGroupBy!]!
+
+    """Conditions on the grouped aggregates."""
+    having: ReportHavingInput
+  ): [ReportAggregates!]
+}
+
+type Report implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  reportId: String!
+  userId: String
+  createdAt: String
+  filePath: String
+
+  """Reads a single `User` that is related to this `Report`."""
+  user: User
+}
+
+"""A `Report` edge in the connection."""
+type ReportsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Report` at the end of the edge."""
+  node: Report!
+}
+
+type ReportAggregates {
+  keys: [String!]
+
+  """
+  Distinct count aggregates across the matching connection (ignoring before/after/first/last/offset)
+  """
+  distinctCount: ReportDistinctCountAggregates
+}
+
+type ReportDistinctCountAggregates {
+  """Distinct count of reportId across the matching connection"""
+  reportId: BigInt
+
+  """Distinct count of userId across the matching connection"""
+  userId: BigInt
+
+  """Distinct count of createdAt across the matching connection"""
+  createdAt: BigInt
+
+  """Distinct count of filePath across the matching connection"""
+  filePath: BigInt
+}
+
+"""Grouping methods for `Report` for usage during aggregation."""
+enum ReportGroupBy {
+  USER_ID
+  CREATED_AT
+  FILE_PATH
+}
+
+"""Conditions for `Report` aggregates."""
+input ReportHavingInput {
+  AND: [ReportHavingInput!]
+  OR: [ReportHavingInput!]
+}
+
+"""Methods to use when ordering `Report`."""
+enum ReportsOrderBy {
+  NATURAL
+  REPORT_ID_ASC
+  REPORT_ID_DESC
+  USER_ID_ASC
+  USER_ID_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  FILE_PATH_ASC
+  FILE_PATH_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `Report` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input ReportCondition {
+  """Checks for equality with the object’s `reportId` field."""
+  reportId: String
+
+  """Checks for equality with the object’s `userId` field."""
+  userId: String
+
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: String
+
+  """Checks for equality with the object’s `filePath` field."""
+  filePath: String
 }
 
 """A connection to a list of `Transaction` values."""
@@ -1940,40 +2207,6 @@ type Category implements Node {
   id: String!
   name: String!
 
-  """Reads and enables pagination through a set of `Transaction`."""
-  transactionsByCategoryId(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `Transaction`."""
-    orderBy: [TransactionsOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: TransactionCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: TransactionFilter
-  ): TransactionsConnection!
-
   """Reads and enables pagination through a set of `Budget`."""
   budgetsByCategoryId(
     """Only read the first `n` values of the set."""
@@ -2007,6 +2240,40 @@ type Category implements Node {
     """
     filter: BudgetFilter
   ): BudgetsConnection!
+
+  """Reads and enables pagination through a set of `Transaction`."""
+  transactionsByCategoryId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Transaction`."""
+    orderBy: [TransactionsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: TransactionCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: TransactionFilter
+  ): TransactionsConnection!
 }
 
 """Methods to use when ordering `Transaction`."""
@@ -2055,48 +2322,6 @@ input TransactionCondition {
 
   """Checks for equality with the object’s `type` field."""
   type: Typetransaction
-}
-
-"""Methods to use when ordering `Budget`."""
-enum BudgetsOrderBy {
-  NATURAL
-  BUDGET_ID_ASC
-  BUDGET_ID_DESC
-  USER_ID_ASC
-  USER_ID_DESC
-  CATEGORY_ID_ASC
-  CATEGORY_ID_DESC
-  AMOUNT_ASC
-  AMOUNT_DESC
-  MONTH_ASC
-  MONTH_DESC
-  ALERT_THRESHOLD_ASC
-  ALERT_THRESHOLD_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-}
-
-"""
-A condition to be used against `Budget` object types. All fields are tested for equality and combined with a logical ‘and.’
-"""
-input BudgetCondition {
-  """Checks for equality with the object’s `budgetId` field."""
-  budgetId: String
-
-  """Checks for equality with the object’s `userId` field."""
-  userId: String
-
-  """Checks for equality with the object’s `categoryId` field."""
-  categoryId: String
-
-  """Checks for equality with the object’s `amount` field."""
-  amount: Float
-
-  """Checks for equality with the object’s `month` field."""
-  month: Datetime
-
-  """Checks for equality with the object’s `alertThreshold` field."""
-  alertThreshold: Int
 }
 
 """A `Transaction` edge in the connection."""
@@ -2261,15 +2486,6 @@ input HavingFloatFilter {
   lessThanOrEqualTo: Float
 }
 
-input HavingDatetimeFilter {
-  equalTo: Datetime
-  notEqualTo: Datetime
-  greaterThan: Datetime
-  greaterThanOrEqualTo: Datetime
-  lessThan: Datetime
-  lessThanOrEqualTo: Datetime
-}
-
 input TransactionHavingDistinctCountInput {
   amount: HavingFloatFilter
   date: HavingDatetimeFilter
@@ -2310,335 +2526,119 @@ input TransactionHavingVariancePopulationInput {
   date: HavingDatetimeFilter
 }
 
-"""A connection to a list of `Report` values."""
-type ReportsConnection {
-  """A list of `Report` objects."""
-  nodes: [Report!]!
+"""A connection to a list of `UserDevice` values."""
+type UserDevicesConnection {
+  """A list of `UserDevice` objects."""
+  nodes: [UserDevice!]!
 
   """
-  A list of edges which contains the `Report` and cursor to aid in pagination.
+  A list of edges which contains the `UserDevice` and cursor to aid in pagination.
   """
-  edges: [ReportsEdge!]!
+  edges: [UserDevicesEdge!]!
 
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  """The count of *all* `Report` you could get from the connection."""
+  """The count of *all* `UserDevice` you could get from the connection."""
   totalCount: Int!
 
   """
   Aggregates across the matching connection (ignoring before/after/first/last/offset)
   """
-  aggregates: ReportAggregates
+  aggregates: UserDeviceAggregates
 
   """
   Grouped aggregates across the matching connection (ignoring before/after/first/last/offset)
   """
   groupedAggregates(
-    """The method to use when grouping `Report` for these aggregates."""
-    groupBy: [ReportGroupBy!]!
+    """The method to use when grouping `UserDevice` for these aggregates."""
+    groupBy: [UserDeviceGroupBy!]!
 
     """Conditions on the grouped aggregates."""
-    having: ReportHavingInput
-  ): [ReportAggregates!]
+    having: UserDeviceHavingInput
+  ): [UserDeviceAggregates!]
 }
 
-type Report implements Node {
+type UserDevice implements Node {
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   nodeId: ID!
-  reportId: String!
-  userId: String
-  createdAt: String
-  filePath: String
-
-  """Reads a single `User` that is related to this `Report`."""
-  user: User
-}
-
-"""A `Report` edge in the connection."""
-type ReportsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `Report` at the end of the edge."""
-  node: Report!
-}
-
-type ReportAggregates {
-  keys: [String!]
-
-  """
-  Distinct count aggregates across the matching connection (ignoring before/after/first/last/offset)
-  """
-  distinctCount: ReportDistinctCountAggregates
-}
-
-type ReportDistinctCountAggregates {
-  """Distinct count of reportId across the matching connection"""
-  reportId: BigInt
-
-  """Distinct count of userId across the matching connection"""
-  userId: BigInt
-
-  """Distinct count of createdAt across the matching connection"""
-  createdAt: BigInt
-
-  """Distinct count of filePath across the matching connection"""
-  filePath: BigInt
-}
-
-"""Grouping methods for `Report` for usage during aggregation."""
-enum ReportGroupBy {
-  USER_ID
-  CREATED_AT
-  FILE_PATH
-}
-
-"""Conditions for `Report` aggregates."""
-input ReportHavingInput {
-  AND: [ReportHavingInput!]
-  OR: [ReportHavingInput!]
-}
-
-"""Methods to use when ordering `Report`."""
-enum ReportsOrderBy {
-  NATURAL
-  REPORT_ID_ASC
-  REPORT_ID_DESC
-  USER_ID_ASC
-  USER_ID_DESC
-  CREATED_AT_ASC
-  CREATED_AT_DESC
-  FILE_PATH_ASC
-  FILE_PATH_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-}
-
-"""
-A condition to be used against `Report` object types. All fields are tested for equality and combined with a logical ‘and.’
-"""
-input ReportCondition {
-  """Checks for equality with the object’s `reportId` field."""
-  reportId: String
-
-  """Checks for equality with the object’s `userId` field."""
-  userId: String
-
-  """Checks for equality with the object’s `createdAt` field."""
-  createdAt: String
-
-  """Checks for equality with the object’s `filePath` field."""
-  filePath: String
-}
-
-"""A connection to a list of `OtpVerification` values."""
-type OtpVerificationsConnection {
-  """A list of `OtpVerification` objects."""
-  nodes: [OtpVerification!]!
-
-  """
-  A list of edges which contains the `OtpVerification` and cursor to aid in pagination.
-  """
-  edges: [OtpVerificationsEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """
-  The count of *all* `OtpVerification` you could get from the connection.
-  """
-  totalCount: Int!
-
-  """
-  Aggregates across the matching connection (ignoring before/after/first/last/offset)
-  """
-  aggregates: OtpVerificationAggregates
-
-  """
-  Grouped aggregates across the matching connection (ignoring before/after/first/last/offset)
-  """
-  groupedAggregates(
-    """
-    The method to use when grouping `OtpVerification` for these aggregates.
-    """
-    groupBy: [OtpVerificationGroupBy!]!
-
-    """Conditions on the grouped aggregates."""
-    having: OtpVerificationHavingInput
-  ): [OtpVerificationAggregates!]
-}
-
-type OtpVerification implements Node {
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  nodeId: ID!
-  id: String!
   userId: String!
-  otp: String!
-  expiresAt: Datetime!
-  createdAt: Datetime!
-  email: String
+  token: String!
+  ua: JSON
 
-  """Reads a single `User` that is related to this `OtpVerification`."""
+  """Reads a single `User` that is related to this `UserDevice`."""
   user: User
 }
 
-"""A `OtpVerification` edge in the connection."""
-type OtpVerificationsEdge {
+"""A `UserDevice` edge in the connection."""
+type UserDevicesEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """The `OtpVerification` at the end of the edge."""
-  node: OtpVerification!
+  """The `UserDevice` at the end of the edge."""
+  node: UserDevice!
 }
 
-type OtpVerificationAggregates {
+type UserDeviceAggregates {
   keys: [String!]
 
   """
   Distinct count aggregates across the matching connection (ignoring before/after/first/last/offset)
   """
-  distinctCount: OtpVerificationDistinctCountAggregates
+  distinctCount: UserDeviceDistinctCountAggregates
 }
 
-type OtpVerificationDistinctCountAggregates {
-  """Distinct count of id across the matching connection"""
-  id: BigInt
-
+type UserDeviceDistinctCountAggregates {
   """Distinct count of userId across the matching connection"""
   userId: BigInt
 
-  """Distinct count of otp across the matching connection"""
-  otp: BigInt
+  """Distinct count of token across the matching connection"""
+  token: BigInt
 
-  """Distinct count of expiresAt across the matching connection"""
-  expiresAt: BigInt
-
-  """Distinct count of createdAt across the matching connection"""
-  createdAt: BigInt
-
-  """Distinct count of email across the matching connection"""
-  email: BigInt
+  """Distinct count of ua across the matching connection"""
+  ua: BigInt
 }
 
-"""Grouping methods for `OtpVerification` for usage during aggregation."""
-enum OtpVerificationGroupBy {
+"""Grouping methods for `UserDevice` for usage during aggregation."""
+enum UserDeviceGroupBy {
   USER_ID
-  OTP
-  EXPIRES_AT
-  EXPIRES_AT_TRUNCATED_TO_HOUR
-  EXPIRES_AT_TRUNCATED_TO_DAY
-  CREATED_AT
-  CREATED_AT_TRUNCATED_TO_HOUR
-  CREATED_AT_TRUNCATED_TO_DAY
-  EMAIL
+  UA
 }
 
-"""Conditions for `OtpVerification` aggregates."""
-input OtpVerificationHavingInput {
-  AND: [OtpVerificationHavingInput!]
-  OR: [OtpVerificationHavingInput!]
-  sum: OtpVerificationHavingSumInput
-  distinctCount: OtpVerificationHavingDistinctCountInput
-  min: OtpVerificationHavingMinInput
-  max: OtpVerificationHavingMaxInput
-  average: OtpVerificationHavingAverageInput
-  stddevSample: OtpVerificationHavingStddevSampleInput
-  stddevPopulation: OtpVerificationHavingStddevPopulationInput
-  varianceSample: OtpVerificationHavingVarianceSampleInput
-  variancePopulation: OtpVerificationHavingVariancePopulationInput
+"""Conditions for `UserDevice` aggregates."""
+input UserDeviceHavingInput {
+  AND: [UserDeviceHavingInput!]
+  OR: [UserDeviceHavingInput!]
 }
 
-input OtpVerificationHavingSumInput {
-  expiresAt: HavingDatetimeFilter
-  createdAt: HavingDatetimeFilter
-}
-
-input OtpVerificationHavingDistinctCountInput {
-  expiresAt: HavingDatetimeFilter
-  createdAt: HavingDatetimeFilter
-}
-
-input OtpVerificationHavingMinInput {
-  expiresAt: HavingDatetimeFilter
-  createdAt: HavingDatetimeFilter
-}
-
-input OtpVerificationHavingMaxInput {
-  expiresAt: HavingDatetimeFilter
-  createdAt: HavingDatetimeFilter
-}
-
-input OtpVerificationHavingAverageInput {
-  expiresAt: HavingDatetimeFilter
-  createdAt: HavingDatetimeFilter
-}
-
-input OtpVerificationHavingStddevSampleInput {
-  expiresAt: HavingDatetimeFilter
-  createdAt: HavingDatetimeFilter
-}
-
-input OtpVerificationHavingStddevPopulationInput {
-  expiresAt: HavingDatetimeFilter
-  createdAt: HavingDatetimeFilter
-}
-
-input OtpVerificationHavingVarianceSampleInput {
-  expiresAt: HavingDatetimeFilter
-  createdAt: HavingDatetimeFilter
-}
-
-input OtpVerificationHavingVariancePopulationInput {
-  expiresAt: HavingDatetimeFilter
-  createdAt: HavingDatetimeFilter
-}
-
-"""Methods to use when ordering `OtpVerification`."""
-enum OtpVerificationsOrderBy {
+"""Methods to use when ordering `UserDevice`."""
+enum UserDevicesOrderBy {
   NATURAL
-  ID_ASC
-  ID_DESC
   USER_ID_ASC
   USER_ID_DESC
-  OTP_ASC
-  OTP_DESC
-  EXPIRES_AT_ASC
-  EXPIRES_AT_DESC
-  CREATED_AT_ASC
-  CREATED_AT_DESC
-  EMAIL_ASC
-  EMAIL_DESC
+  TOKEN_ASC
+  TOKEN_DESC
+  UA_ASC
+  UA_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
 }
 
 """
-A condition to be used against `OtpVerification` object types. All fields are
-tested for equality and combined with a logical ‘and.’
+A condition to be used against `UserDevice` object types. All fields are tested
+for equality and combined with a logical ‘and.’
 """
-input OtpVerificationCondition {
-  """Checks for equality with the object’s `id` field."""
-  id: String
-
+input UserDeviceCondition {
   """Checks for equality with the object’s `userId` field."""
   userId: String
 
-  """Checks for equality with the object’s `otp` field."""
-  otp: String
+  """Checks for equality with the object’s `token` field."""
+  token: String
 
-  """Checks for equality with the object’s `expiresAt` field."""
-  expiresAt: Datetime
-
-  """Checks for equality with the object’s `createdAt` field."""
-  createdAt: Datetime
-
-  """Checks for equality with the object’s `email` field."""
-  email: String
+  """Checks for equality with the object’s `ua` field."""
+  ua: JSON
 }
 
 """A `Budget` edge in the connection."""
@@ -2955,6 +2955,116 @@ enum CategoriesOrderBy {
   NAME_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
+  BUDGETS_BY_CATEGORY_ID_COUNT_ASC
+  BUDGETS_BY_CATEGORY_ID_COUNT_DESC
+  BUDGETS_BY_CATEGORY_ID_SUM_BUDGET_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_SUM_BUDGET_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_SUM_USER_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_SUM_USER_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_SUM_CATEGORY_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_SUM_CATEGORY_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_SUM_AMOUNT_ASC
+  BUDGETS_BY_CATEGORY_ID_SUM_AMOUNT_DESC
+  BUDGETS_BY_CATEGORY_ID_SUM_MONTH_ASC
+  BUDGETS_BY_CATEGORY_ID_SUM_MONTH_DESC
+  BUDGETS_BY_CATEGORY_ID_SUM_ALERT_THRESHOLD_ASC
+  BUDGETS_BY_CATEGORY_ID_SUM_ALERT_THRESHOLD_DESC
+  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_BUDGET_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_BUDGET_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_USER_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_USER_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_CATEGORY_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_CATEGORY_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_AMOUNT_ASC
+  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_AMOUNT_DESC
+  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_MONTH_ASC
+  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_MONTH_DESC
+  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_ALERT_THRESHOLD_ASC
+  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_ALERT_THRESHOLD_DESC
+  BUDGETS_BY_CATEGORY_ID_MIN_BUDGET_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_MIN_BUDGET_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_MIN_USER_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_MIN_USER_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_MIN_CATEGORY_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_MIN_CATEGORY_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_MIN_AMOUNT_ASC
+  BUDGETS_BY_CATEGORY_ID_MIN_AMOUNT_DESC
+  BUDGETS_BY_CATEGORY_ID_MIN_MONTH_ASC
+  BUDGETS_BY_CATEGORY_ID_MIN_MONTH_DESC
+  BUDGETS_BY_CATEGORY_ID_MIN_ALERT_THRESHOLD_ASC
+  BUDGETS_BY_CATEGORY_ID_MIN_ALERT_THRESHOLD_DESC
+  BUDGETS_BY_CATEGORY_ID_MAX_BUDGET_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_MAX_BUDGET_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_MAX_USER_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_MAX_USER_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_MAX_CATEGORY_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_MAX_CATEGORY_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_MAX_AMOUNT_ASC
+  BUDGETS_BY_CATEGORY_ID_MAX_AMOUNT_DESC
+  BUDGETS_BY_CATEGORY_ID_MAX_MONTH_ASC
+  BUDGETS_BY_CATEGORY_ID_MAX_MONTH_DESC
+  BUDGETS_BY_CATEGORY_ID_MAX_ALERT_THRESHOLD_ASC
+  BUDGETS_BY_CATEGORY_ID_MAX_ALERT_THRESHOLD_DESC
+  BUDGETS_BY_CATEGORY_ID_AVERAGE_BUDGET_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_AVERAGE_BUDGET_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_AVERAGE_USER_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_AVERAGE_USER_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_AVERAGE_CATEGORY_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_AVERAGE_CATEGORY_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_AVERAGE_AMOUNT_ASC
+  BUDGETS_BY_CATEGORY_ID_AVERAGE_AMOUNT_DESC
+  BUDGETS_BY_CATEGORY_ID_AVERAGE_MONTH_ASC
+  BUDGETS_BY_CATEGORY_ID_AVERAGE_MONTH_DESC
+  BUDGETS_BY_CATEGORY_ID_AVERAGE_ALERT_THRESHOLD_ASC
+  BUDGETS_BY_CATEGORY_ID_AVERAGE_ALERT_THRESHOLD_DESC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_BUDGET_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_BUDGET_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_USER_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_USER_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_CATEGORY_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_CATEGORY_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_AMOUNT_ASC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_AMOUNT_DESC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_MONTH_ASC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_MONTH_DESC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_ALERT_THRESHOLD_ASC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_ALERT_THRESHOLD_DESC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_BUDGET_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_BUDGET_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_USER_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_USER_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_CATEGORY_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_CATEGORY_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_AMOUNT_ASC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_AMOUNT_DESC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_MONTH_ASC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_MONTH_DESC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_ALERT_THRESHOLD_ASC
+  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_ALERT_THRESHOLD_DESC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_BUDGET_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_BUDGET_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_USER_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_USER_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_CATEGORY_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_CATEGORY_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_AMOUNT_ASC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_AMOUNT_DESC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_MONTH_ASC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_MONTH_DESC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_ALERT_THRESHOLD_ASC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_ALERT_THRESHOLD_DESC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_BUDGET_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_BUDGET_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_USER_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_USER_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_CATEGORY_ID_ASC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_CATEGORY_ID_DESC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_AMOUNT_ASC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_AMOUNT_DESC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_MONTH_ASC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_MONTH_DESC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_ALERT_THRESHOLD_ASC
+  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_ALERT_THRESHOLD_DESC
   TRANSACTIONS_BY_CATEGORY_ID_COUNT_ASC
   TRANSACTIONS_BY_CATEGORY_ID_COUNT_DESC
   TRANSACTIONS_BY_CATEGORY_ID_SUM_TRANSACTION_ID_ASC
@@ -3083,116 +3193,6 @@ enum CategoriesOrderBy {
   TRANSACTIONS_BY_CATEGORY_ID_VARIANCE_POPULATION_DESCRIPTION_DESC
   TRANSACTIONS_BY_CATEGORY_ID_VARIANCE_POPULATION_TYPE_ASC
   TRANSACTIONS_BY_CATEGORY_ID_VARIANCE_POPULATION_TYPE_DESC
-  BUDGETS_BY_CATEGORY_ID_COUNT_ASC
-  BUDGETS_BY_CATEGORY_ID_COUNT_DESC
-  BUDGETS_BY_CATEGORY_ID_SUM_BUDGET_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_SUM_BUDGET_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_SUM_USER_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_SUM_USER_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_SUM_CATEGORY_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_SUM_CATEGORY_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_SUM_AMOUNT_ASC
-  BUDGETS_BY_CATEGORY_ID_SUM_AMOUNT_DESC
-  BUDGETS_BY_CATEGORY_ID_SUM_MONTH_ASC
-  BUDGETS_BY_CATEGORY_ID_SUM_MONTH_DESC
-  BUDGETS_BY_CATEGORY_ID_SUM_ALERT_THRESHOLD_ASC
-  BUDGETS_BY_CATEGORY_ID_SUM_ALERT_THRESHOLD_DESC
-  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_BUDGET_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_BUDGET_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_USER_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_USER_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_CATEGORY_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_CATEGORY_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_AMOUNT_ASC
-  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_AMOUNT_DESC
-  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_MONTH_ASC
-  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_MONTH_DESC
-  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_ALERT_THRESHOLD_ASC
-  BUDGETS_BY_CATEGORY_ID_DISTINCT_COUNT_ALERT_THRESHOLD_DESC
-  BUDGETS_BY_CATEGORY_ID_MIN_BUDGET_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_MIN_BUDGET_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_MIN_USER_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_MIN_USER_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_MIN_CATEGORY_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_MIN_CATEGORY_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_MIN_AMOUNT_ASC
-  BUDGETS_BY_CATEGORY_ID_MIN_AMOUNT_DESC
-  BUDGETS_BY_CATEGORY_ID_MIN_MONTH_ASC
-  BUDGETS_BY_CATEGORY_ID_MIN_MONTH_DESC
-  BUDGETS_BY_CATEGORY_ID_MIN_ALERT_THRESHOLD_ASC
-  BUDGETS_BY_CATEGORY_ID_MIN_ALERT_THRESHOLD_DESC
-  BUDGETS_BY_CATEGORY_ID_MAX_BUDGET_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_MAX_BUDGET_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_MAX_USER_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_MAX_USER_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_MAX_CATEGORY_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_MAX_CATEGORY_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_MAX_AMOUNT_ASC
-  BUDGETS_BY_CATEGORY_ID_MAX_AMOUNT_DESC
-  BUDGETS_BY_CATEGORY_ID_MAX_MONTH_ASC
-  BUDGETS_BY_CATEGORY_ID_MAX_MONTH_DESC
-  BUDGETS_BY_CATEGORY_ID_MAX_ALERT_THRESHOLD_ASC
-  BUDGETS_BY_CATEGORY_ID_MAX_ALERT_THRESHOLD_DESC
-  BUDGETS_BY_CATEGORY_ID_AVERAGE_BUDGET_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_AVERAGE_BUDGET_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_AVERAGE_USER_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_AVERAGE_USER_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_AVERAGE_CATEGORY_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_AVERAGE_CATEGORY_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_AVERAGE_AMOUNT_ASC
-  BUDGETS_BY_CATEGORY_ID_AVERAGE_AMOUNT_DESC
-  BUDGETS_BY_CATEGORY_ID_AVERAGE_MONTH_ASC
-  BUDGETS_BY_CATEGORY_ID_AVERAGE_MONTH_DESC
-  BUDGETS_BY_CATEGORY_ID_AVERAGE_ALERT_THRESHOLD_ASC
-  BUDGETS_BY_CATEGORY_ID_AVERAGE_ALERT_THRESHOLD_DESC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_BUDGET_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_BUDGET_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_USER_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_USER_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_CATEGORY_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_CATEGORY_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_AMOUNT_ASC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_AMOUNT_DESC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_MONTH_ASC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_MONTH_DESC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_ALERT_THRESHOLD_ASC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_SAMPLE_ALERT_THRESHOLD_DESC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_BUDGET_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_BUDGET_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_USER_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_USER_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_CATEGORY_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_CATEGORY_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_AMOUNT_ASC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_AMOUNT_DESC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_MONTH_ASC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_MONTH_DESC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_ALERT_THRESHOLD_ASC
-  BUDGETS_BY_CATEGORY_ID_STDDEV_POPULATION_ALERT_THRESHOLD_DESC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_BUDGET_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_BUDGET_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_USER_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_USER_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_CATEGORY_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_CATEGORY_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_AMOUNT_ASC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_AMOUNT_DESC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_MONTH_ASC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_MONTH_DESC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_ALERT_THRESHOLD_ASC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_SAMPLE_ALERT_THRESHOLD_DESC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_BUDGET_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_BUDGET_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_USER_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_USER_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_CATEGORY_ID_ASC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_CATEGORY_ID_DESC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_AMOUNT_ASC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_AMOUNT_DESC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_MONTH_ASC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_MONTH_DESC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_ALERT_THRESHOLD_ASC
-  BUDGETS_BY_CATEGORY_ID_VARIANCE_POPULATION_ALERT_THRESHOLD_DESC
 }
 
 """
@@ -3375,62 +3375,300 @@ enum UsersOrderBy {
   DATE_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
-  USER_DEVICES_BY_USER_ID_COUNT_ASC
-  USER_DEVICES_BY_USER_ID_COUNT_DESC
-  USER_DEVICES_BY_USER_ID_SUM_USER_ID_ASC
-  USER_DEVICES_BY_USER_ID_SUM_USER_ID_DESC
-  USER_DEVICES_BY_USER_ID_SUM_TOKEN_ASC
-  USER_DEVICES_BY_USER_ID_SUM_TOKEN_DESC
-  USER_DEVICES_BY_USER_ID_SUM_UA_ASC
-  USER_DEVICES_BY_USER_ID_SUM_UA_DESC
-  USER_DEVICES_BY_USER_ID_DISTINCT_COUNT_USER_ID_ASC
-  USER_DEVICES_BY_USER_ID_DISTINCT_COUNT_USER_ID_DESC
-  USER_DEVICES_BY_USER_ID_DISTINCT_COUNT_TOKEN_ASC
-  USER_DEVICES_BY_USER_ID_DISTINCT_COUNT_TOKEN_DESC
-  USER_DEVICES_BY_USER_ID_DISTINCT_COUNT_UA_ASC
-  USER_DEVICES_BY_USER_ID_DISTINCT_COUNT_UA_DESC
-  USER_DEVICES_BY_USER_ID_MIN_USER_ID_ASC
-  USER_DEVICES_BY_USER_ID_MIN_USER_ID_DESC
-  USER_DEVICES_BY_USER_ID_MIN_TOKEN_ASC
-  USER_DEVICES_BY_USER_ID_MIN_TOKEN_DESC
-  USER_DEVICES_BY_USER_ID_MIN_UA_ASC
-  USER_DEVICES_BY_USER_ID_MIN_UA_DESC
-  USER_DEVICES_BY_USER_ID_MAX_USER_ID_ASC
-  USER_DEVICES_BY_USER_ID_MAX_USER_ID_DESC
-  USER_DEVICES_BY_USER_ID_MAX_TOKEN_ASC
-  USER_DEVICES_BY_USER_ID_MAX_TOKEN_DESC
-  USER_DEVICES_BY_USER_ID_MAX_UA_ASC
-  USER_DEVICES_BY_USER_ID_MAX_UA_DESC
-  USER_DEVICES_BY_USER_ID_AVERAGE_USER_ID_ASC
-  USER_DEVICES_BY_USER_ID_AVERAGE_USER_ID_DESC
-  USER_DEVICES_BY_USER_ID_AVERAGE_TOKEN_ASC
-  USER_DEVICES_BY_USER_ID_AVERAGE_TOKEN_DESC
-  USER_DEVICES_BY_USER_ID_AVERAGE_UA_ASC
-  USER_DEVICES_BY_USER_ID_AVERAGE_UA_DESC
-  USER_DEVICES_BY_USER_ID_STDDEV_SAMPLE_USER_ID_ASC
-  USER_DEVICES_BY_USER_ID_STDDEV_SAMPLE_USER_ID_DESC
-  USER_DEVICES_BY_USER_ID_STDDEV_SAMPLE_TOKEN_ASC
-  USER_DEVICES_BY_USER_ID_STDDEV_SAMPLE_TOKEN_DESC
-  USER_DEVICES_BY_USER_ID_STDDEV_SAMPLE_UA_ASC
-  USER_DEVICES_BY_USER_ID_STDDEV_SAMPLE_UA_DESC
-  USER_DEVICES_BY_USER_ID_STDDEV_POPULATION_USER_ID_ASC
-  USER_DEVICES_BY_USER_ID_STDDEV_POPULATION_USER_ID_DESC
-  USER_DEVICES_BY_USER_ID_STDDEV_POPULATION_TOKEN_ASC
-  USER_DEVICES_BY_USER_ID_STDDEV_POPULATION_TOKEN_DESC
-  USER_DEVICES_BY_USER_ID_STDDEV_POPULATION_UA_ASC
-  USER_DEVICES_BY_USER_ID_STDDEV_POPULATION_UA_DESC
-  USER_DEVICES_BY_USER_ID_VARIANCE_SAMPLE_USER_ID_ASC
-  USER_DEVICES_BY_USER_ID_VARIANCE_SAMPLE_USER_ID_DESC
-  USER_DEVICES_BY_USER_ID_VARIANCE_SAMPLE_TOKEN_ASC
-  USER_DEVICES_BY_USER_ID_VARIANCE_SAMPLE_TOKEN_DESC
-  USER_DEVICES_BY_USER_ID_VARIANCE_SAMPLE_UA_ASC
-  USER_DEVICES_BY_USER_ID_VARIANCE_SAMPLE_UA_DESC
-  USER_DEVICES_BY_USER_ID_VARIANCE_POPULATION_USER_ID_ASC
-  USER_DEVICES_BY_USER_ID_VARIANCE_POPULATION_USER_ID_DESC
-  USER_DEVICES_BY_USER_ID_VARIANCE_POPULATION_TOKEN_ASC
-  USER_DEVICES_BY_USER_ID_VARIANCE_POPULATION_TOKEN_DESC
-  USER_DEVICES_BY_USER_ID_VARIANCE_POPULATION_UA_ASC
-  USER_DEVICES_BY_USER_ID_VARIANCE_POPULATION_UA_DESC
+  BUDGETS_BY_USER_ID_COUNT_ASC
+  BUDGETS_BY_USER_ID_COUNT_DESC
+  BUDGETS_BY_USER_ID_SUM_BUDGET_ID_ASC
+  BUDGETS_BY_USER_ID_SUM_BUDGET_ID_DESC
+  BUDGETS_BY_USER_ID_SUM_USER_ID_ASC
+  BUDGETS_BY_USER_ID_SUM_USER_ID_DESC
+  BUDGETS_BY_USER_ID_SUM_CATEGORY_ID_ASC
+  BUDGETS_BY_USER_ID_SUM_CATEGORY_ID_DESC
+  BUDGETS_BY_USER_ID_SUM_AMOUNT_ASC
+  BUDGETS_BY_USER_ID_SUM_AMOUNT_DESC
+  BUDGETS_BY_USER_ID_SUM_MONTH_ASC
+  BUDGETS_BY_USER_ID_SUM_MONTH_DESC
+  BUDGETS_BY_USER_ID_SUM_ALERT_THRESHOLD_ASC
+  BUDGETS_BY_USER_ID_SUM_ALERT_THRESHOLD_DESC
+  BUDGETS_BY_USER_ID_DISTINCT_COUNT_BUDGET_ID_ASC
+  BUDGETS_BY_USER_ID_DISTINCT_COUNT_BUDGET_ID_DESC
+  BUDGETS_BY_USER_ID_DISTINCT_COUNT_USER_ID_ASC
+  BUDGETS_BY_USER_ID_DISTINCT_COUNT_USER_ID_DESC
+  BUDGETS_BY_USER_ID_DISTINCT_COUNT_CATEGORY_ID_ASC
+  BUDGETS_BY_USER_ID_DISTINCT_COUNT_CATEGORY_ID_DESC
+  BUDGETS_BY_USER_ID_DISTINCT_COUNT_AMOUNT_ASC
+  BUDGETS_BY_USER_ID_DISTINCT_COUNT_AMOUNT_DESC
+  BUDGETS_BY_USER_ID_DISTINCT_COUNT_MONTH_ASC
+  BUDGETS_BY_USER_ID_DISTINCT_COUNT_MONTH_DESC
+  BUDGETS_BY_USER_ID_DISTINCT_COUNT_ALERT_THRESHOLD_ASC
+  BUDGETS_BY_USER_ID_DISTINCT_COUNT_ALERT_THRESHOLD_DESC
+  BUDGETS_BY_USER_ID_MIN_BUDGET_ID_ASC
+  BUDGETS_BY_USER_ID_MIN_BUDGET_ID_DESC
+  BUDGETS_BY_USER_ID_MIN_USER_ID_ASC
+  BUDGETS_BY_USER_ID_MIN_USER_ID_DESC
+  BUDGETS_BY_USER_ID_MIN_CATEGORY_ID_ASC
+  BUDGETS_BY_USER_ID_MIN_CATEGORY_ID_DESC
+  BUDGETS_BY_USER_ID_MIN_AMOUNT_ASC
+  BUDGETS_BY_USER_ID_MIN_AMOUNT_DESC
+  BUDGETS_BY_USER_ID_MIN_MONTH_ASC
+  BUDGETS_BY_USER_ID_MIN_MONTH_DESC
+  BUDGETS_BY_USER_ID_MIN_ALERT_THRESHOLD_ASC
+  BUDGETS_BY_USER_ID_MIN_ALERT_THRESHOLD_DESC
+  BUDGETS_BY_USER_ID_MAX_BUDGET_ID_ASC
+  BUDGETS_BY_USER_ID_MAX_BUDGET_ID_DESC
+  BUDGETS_BY_USER_ID_MAX_USER_ID_ASC
+  BUDGETS_BY_USER_ID_MAX_USER_ID_DESC
+  BUDGETS_BY_USER_ID_MAX_CATEGORY_ID_ASC
+  BUDGETS_BY_USER_ID_MAX_CATEGORY_ID_DESC
+  BUDGETS_BY_USER_ID_MAX_AMOUNT_ASC
+  BUDGETS_BY_USER_ID_MAX_AMOUNT_DESC
+  BUDGETS_BY_USER_ID_MAX_MONTH_ASC
+  BUDGETS_BY_USER_ID_MAX_MONTH_DESC
+  BUDGETS_BY_USER_ID_MAX_ALERT_THRESHOLD_ASC
+  BUDGETS_BY_USER_ID_MAX_ALERT_THRESHOLD_DESC
+  BUDGETS_BY_USER_ID_AVERAGE_BUDGET_ID_ASC
+  BUDGETS_BY_USER_ID_AVERAGE_BUDGET_ID_DESC
+  BUDGETS_BY_USER_ID_AVERAGE_USER_ID_ASC
+  BUDGETS_BY_USER_ID_AVERAGE_USER_ID_DESC
+  BUDGETS_BY_USER_ID_AVERAGE_CATEGORY_ID_ASC
+  BUDGETS_BY_USER_ID_AVERAGE_CATEGORY_ID_DESC
+  BUDGETS_BY_USER_ID_AVERAGE_AMOUNT_ASC
+  BUDGETS_BY_USER_ID_AVERAGE_AMOUNT_DESC
+  BUDGETS_BY_USER_ID_AVERAGE_MONTH_ASC
+  BUDGETS_BY_USER_ID_AVERAGE_MONTH_DESC
+  BUDGETS_BY_USER_ID_AVERAGE_ALERT_THRESHOLD_ASC
+  BUDGETS_BY_USER_ID_AVERAGE_ALERT_THRESHOLD_DESC
+  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_BUDGET_ID_ASC
+  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_BUDGET_ID_DESC
+  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_USER_ID_ASC
+  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_USER_ID_DESC
+  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_CATEGORY_ID_ASC
+  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_CATEGORY_ID_DESC
+  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_AMOUNT_ASC
+  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_AMOUNT_DESC
+  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_MONTH_ASC
+  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_MONTH_DESC
+  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_ALERT_THRESHOLD_ASC
+  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_ALERT_THRESHOLD_DESC
+  BUDGETS_BY_USER_ID_STDDEV_POPULATION_BUDGET_ID_ASC
+  BUDGETS_BY_USER_ID_STDDEV_POPULATION_BUDGET_ID_DESC
+  BUDGETS_BY_USER_ID_STDDEV_POPULATION_USER_ID_ASC
+  BUDGETS_BY_USER_ID_STDDEV_POPULATION_USER_ID_DESC
+  BUDGETS_BY_USER_ID_STDDEV_POPULATION_CATEGORY_ID_ASC
+  BUDGETS_BY_USER_ID_STDDEV_POPULATION_CATEGORY_ID_DESC
+  BUDGETS_BY_USER_ID_STDDEV_POPULATION_AMOUNT_ASC
+  BUDGETS_BY_USER_ID_STDDEV_POPULATION_AMOUNT_DESC
+  BUDGETS_BY_USER_ID_STDDEV_POPULATION_MONTH_ASC
+  BUDGETS_BY_USER_ID_STDDEV_POPULATION_MONTH_DESC
+  BUDGETS_BY_USER_ID_STDDEV_POPULATION_ALERT_THRESHOLD_ASC
+  BUDGETS_BY_USER_ID_STDDEV_POPULATION_ALERT_THRESHOLD_DESC
+  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_BUDGET_ID_ASC
+  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_BUDGET_ID_DESC
+  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_USER_ID_ASC
+  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_USER_ID_DESC
+  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_CATEGORY_ID_ASC
+  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_CATEGORY_ID_DESC
+  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_AMOUNT_ASC
+  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_AMOUNT_DESC
+  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_MONTH_ASC
+  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_MONTH_DESC
+  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_ALERT_THRESHOLD_ASC
+  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_ALERT_THRESHOLD_DESC
+  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_BUDGET_ID_ASC
+  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_BUDGET_ID_DESC
+  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_USER_ID_ASC
+  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_USER_ID_DESC
+  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_CATEGORY_ID_ASC
+  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_CATEGORY_ID_DESC
+  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_AMOUNT_ASC
+  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_AMOUNT_DESC
+  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_MONTH_ASC
+  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_MONTH_DESC
+  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_ALERT_THRESHOLD_ASC
+  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_ALERT_THRESHOLD_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_COUNT_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_COUNT_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_SUM_ID_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_SUM_ID_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_SUM_USER_ID_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_SUM_USER_ID_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_SUM_OTP_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_SUM_OTP_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_SUM_EXPIRES_AT_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_SUM_EXPIRES_AT_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_SUM_CREATED_AT_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_SUM_CREATED_AT_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_SUM_EMAIL_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_SUM_EMAIL_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_ID_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_ID_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_USER_ID_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_USER_ID_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_OTP_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_OTP_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_EXPIRES_AT_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_EXPIRES_AT_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_CREATED_AT_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_CREATED_AT_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_EMAIL_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_EMAIL_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_MIN_ID_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_MIN_ID_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_MIN_USER_ID_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_MIN_USER_ID_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_MIN_OTP_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_MIN_OTP_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_MIN_EXPIRES_AT_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_MIN_EXPIRES_AT_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_MIN_CREATED_AT_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_MIN_CREATED_AT_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_MIN_EMAIL_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_MIN_EMAIL_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_MAX_ID_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_MAX_ID_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_MAX_USER_ID_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_MAX_USER_ID_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_MAX_OTP_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_MAX_OTP_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_MAX_EXPIRES_AT_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_MAX_EXPIRES_AT_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_MAX_CREATED_AT_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_MAX_CREATED_AT_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_MAX_EMAIL_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_MAX_EMAIL_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_ID_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_ID_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_USER_ID_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_USER_ID_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_OTP_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_OTP_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_EXPIRES_AT_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_EXPIRES_AT_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_CREATED_AT_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_CREATED_AT_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_EMAIL_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_EMAIL_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_ID_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_ID_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_USER_ID_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_USER_ID_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_OTP_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_OTP_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_EXPIRES_AT_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_EXPIRES_AT_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_CREATED_AT_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_CREATED_AT_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_EMAIL_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_EMAIL_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_ID_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_ID_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_USER_ID_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_USER_ID_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_OTP_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_OTP_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_EXPIRES_AT_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_EXPIRES_AT_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_CREATED_AT_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_CREATED_AT_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_EMAIL_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_EMAIL_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_ID_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_ID_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_USER_ID_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_USER_ID_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_OTP_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_OTP_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_EXPIRES_AT_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_EXPIRES_AT_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_CREATED_AT_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_CREATED_AT_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_EMAIL_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_EMAIL_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_ID_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_ID_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_USER_ID_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_USER_ID_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_OTP_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_OTP_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_EXPIRES_AT_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_EXPIRES_AT_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_CREATED_AT_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_CREATED_AT_DESC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_EMAIL_ASC
+  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_EMAIL_DESC
+  REPORTS_BY_USER_ID_COUNT_ASC
+  REPORTS_BY_USER_ID_COUNT_DESC
+  REPORTS_BY_USER_ID_SUM_REPORT_ID_ASC
+  REPORTS_BY_USER_ID_SUM_REPORT_ID_DESC
+  REPORTS_BY_USER_ID_SUM_USER_ID_ASC
+  REPORTS_BY_USER_ID_SUM_USER_ID_DESC
+  REPORTS_BY_USER_ID_SUM_CREATED_AT_ASC
+  REPORTS_BY_USER_ID_SUM_CREATED_AT_DESC
+  REPORTS_BY_USER_ID_SUM_FILE_PATH_ASC
+  REPORTS_BY_USER_ID_SUM_FILE_PATH_DESC
+  REPORTS_BY_USER_ID_DISTINCT_COUNT_REPORT_ID_ASC
+  REPORTS_BY_USER_ID_DISTINCT_COUNT_REPORT_ID_DESC
+  REPORTS_BY_USER_ID_DISTINCT_COUNT_USER_ID_ASC
+  REPORTS_BY_USER_ID_DISTINCT_COUNT_USER_ID_DESC
+  REPORTS_BY_USER_ID_DISTINCT_COUNT_CREATED_AT_ASC
+  REPORTS_BY_USER_ID_DISTINCT_COUNT_CREATED_AT_DESC
+  REPORTS_BY_USER_ID_DISTINCT_COUNT_FILE_PATH_ASC
+  REPORTS_BY_USER_ID_DISTINCT_COUNT_FILE_PATH_DESC
+  REPORTS_BY_USER_ID_MIN_REPORT_ID_ASC
+  REPORTS_BY_USER_ID_MIN_REPORT_ID_DESC
+  REPORTS_BY_USER_ID_MIN_USER_ID_ASC
+  REPORTS_BY_USER_ID_MIN_USER_ID_DESC
+  REPORTS_BY_USER_ID_MIN_CREATED_AT_ASC
+  REPORTS_BY_USER_ID_MIN_CREATED_AT_DESC
+  REPORTS_BY_USER_ID_MIN_FILE_PATH_ASC
+  REPORTS_BY_USER_ID_MIN_FILE_PATH_DESC
+  REPORTS_BY_USER_ID_MAX_REPORT_ID_ASC
+  REPORTS_BY_USER_ID_MAX_REPORT_ID_DESC
+  REPORTS_BY_USER_ID_MAX_USER_ID_ASC
+  REPORTS_BY_USER_ID_MAX_USER_ID_DESC
+  REPORTS_BY_USER_ID_MAX_CREATED_AT_ASC
+  REPORTS_BY_USER_ID_MAX_CREATED_AT_DESC
+  REPORTS_BY_USER_ID_MAX_FILE_PATH_ASC
+  REPORTS_BY_USER_ID_MAX_FILE_PATH_DESC
+  REPORTS_BY_USER_ID_AVERAGE_REPORT_ID_ASC
+  REPORTS_BY_USER_ID_AVERAGE_REPORT_ID_DESC
+  REPORTS_BY_USER_ID_AVERAGE_USER_ID_ASC
+  REPORTS_BY_USER_ID_AVERAGE_USER_ID_DESC
+  REPORTS_BY_USER_ID_AVERAGE_CREATED_AT_ASC
+  REPORTS_BY_USER_ID_AVERAGE_CREATED_AT_DESC
+  REPORTS_BY_USER_ID_AVERAGE_FILE_PATH_ASC
+  REPORTS_BY_USER_ID_AVERAGE_FILE_PATH_DESC
+  REPORTS_BY_USER_ID_STDDEV_SAMPLE_REPORT_ID_ASC
+  REPORTS_BY_USER_ID_STDDEV_SAMPLE_REPORT_ID_DESC
+  REPORTS_BY_USER_ID_STDDEV_SAMPLE_USER_ID_ASC
+  REPORTS_BY_USER_ID_STDDEV_SAMPLE_USER_ID_DESC
+  REPORTS_BY_USER_ID_STDDEV_SAMPLE_CREATED_AT_ASC
+  REPORTS_BY_USER_ID_STDDEV_SAMPLE_CREATED_AT_DESC
+  REPORTS_BY_USER_ID_STDDEV_SAMPLE_FILE_PATH_ASC
+  REPORTS_BY_USER_ID_STDDEV_SAMPLE_FILE_PATH_DESC
+  REPORTS_BY_USER_ID_STDDEV_POPULATION_REPORT_ID_ASC
+  REPORTS_BY_USER_ID_STDDEV_POPULATION_REPORT_ID_DESC
+  REPORTS_BY_USER_ID_STDDEV_POPULATION_USER_ID_ASC
+  REPORTS_BY_USER_ID_STDDEV_POPULATION_USER_ID_DESC
+  REPORTS_BY_USER_ID_STDDEV_POPULATION_CREATED_AT_ASC
+  REPORTS_BY_USER_ID_STDDEV_POPULATION_CREATED_AT_DESC
+  REPORTS_BY_USER_ID_STDDEV_POPULATION_FILE_PATH_ASC
+  REPORTS_BY_USER_ID_STDDEV_POPULATION_FILE_PATH_DESC
+  REPORTS_BY_USER_ID_VARIANCE_SAMPLE_REPORT_ID_ASC
+  REPORTS_BY_USER_ID_VARIANCE_SAMPLE_REPORT_ID_DESC
+  REPORTS_BY_USER_ID_VARIANCE_SAMPLE_USER_ID_ASC
+  REPORTS_BY_USER_ID_VARIANCE_SAMPLE_USER_ID_DESC
+  REPORTS_BY_USER_ID_VARIANCE_SAMPLE_CREATED_AT_ASC
+  REPORTS_BY_USER_ID_VARIANCE_SAMPLE_CREATED_AT_DESC
+  REPORTS_BY_USER_ID_VARIANCE_SAMPLE_FILE_PATH_ASC
+  REPORTS_BY_USER_ID_VARIANCE_SAMPLE_FILE_PATH_DESC
+  REPORTS_BY_USER_ID_VARIANCE_POPULATION_REPORT_ID_ASC
+  REPORTS_BY_USER_ID_VARIANCE_POPULATION_REPORT_ID_DESC
+  REPORTS_BY_USER_ID_VARIANCE_POPULATION_USER_ID_ASC
+  REPORTS_BY_USER_ID_VARIANCE_POPULATION_USER_ID_DESC
+  REPORTS_BY_USER_ID_VARIANCE_POPULATION_CREATED_AT_ASC
+  REPORTS_BY_USER_ID_VARIANCE_POPULATION_CREATED_AT_DESC
+  REPORTS_BY_USER_ID_VARIANCE_POPULATION_FILE_PATH_ASC
+  REPORTS_BY_USER_ID_VARIANCE_POPULATION_FILE_PATH_DESC
   TRANSACTIONS_BY_USER_ID_COUNT_ASC
   TRANSACTIONS_BY_USER_ID_COUNT_DESC
   TRANSACTIONS_BY_USER_ID_SUM_TRANSACTION_ID_ASC
@@ -3559,300 +3797,62 @@ enum UsersOrderBy {
   TRANSACTIONS_BY_USER_ID_VARIANCE_POPULATION_DESCRIPTION_DESC
   TRANSACTIONS_BY_USER_ID_VARIANCE_POPULATION_TYPE_ASC
   TRANSACTIONS_BY_USER_ID_VARIANCE_POPULATION_TYPE_DESC
-  BUDGETS_BY_USER_ID_COUNT_ASC
-  BUDGETS_BY_USER_ID_COUNT_DESC
-  BUDGETS_BY_USER_ID_SUM_BUDGET_ID_ASC
-  BUDGETS_BY_USER_ID_SUM_BUDGET_ID_DESC
-  BUDGETS_BY_USER_ID_SUM_USER_ID_ASC
-  BUDGETS_BY_USER_ID_SUM_USER_ID_DESC
-  BUDGETS_BY_USER_ID_SUM_CATEGORY_ID_ASC
-  BUDGETS_BY_USER_ID_SUM_CATEGORY_ID_DESC
-  BUDGETS_BY_USER_ID_SUM_AMOUNT_ASC
-  BUDGETS_BY_USER_ID_SUM_AMOUNT_DESC
-  BUDGETS_BY_USER_ID_SUM_MONTH_ASC
-  BUDGETS_BY_USER_ID_SUM_MONTH_DESC
-  BUDGETS_BY_USER_ID_SUM_ALERT_THRESHOLD_ASC
-  BUDGETS_BY_USER_ID_SUM_ALERT_THRESHOLD_DESC
-  BUDGETS_BY_USER_ID_DISTINCT_COUNT_BUDGET_ID_ASC
-  BUDGETS_BY_USER_ID_DISTINCT_COUNT_BUDGET_ID_DESC
-  BUDGETS_BY_USER_ID_DISTINCT_COUNT_USER_ID_ASC
-  BUDGETS_BY_USER_ID_DISTINCT_COUNT_USER_ID_DESC
-  BUDGETS_BY_USER_ID_DISTINCT_COUNT_CATEGORY_ID_ASC
-  BUDGETS_BY_USER_ID_DISTINCT_COUNT_CATEGORY_ID_DESC
-  BUDGETS_BY_USER_ID_DISTINCT_COUNT_AMOUNT_ASC
-  BUDGETS_BY_USER_ID_DISTINCT_COUNT_AMOUNT_DESC
-  BUDGETS_BY_USER_ID_DISTINCT_COUNT_MONTH_ASC
-  BUDGETS_BY_USER_ID_DISTINCT_COUNT_MONTH_DESC
-  BUDGETS_BY_USER_ID_DISTINCT_COUNT_ALERT_THRESHOLD_ASC
-  BUDGETS_BY_USER_ID_DISTINCT_COUNT_ALERT_THRESHOLD_DESC
-  BUDGETS_BY_USER_ID_MIN_BUDGET_ID_ASC
-  BUDGETS_BY_USER_ID_MIN_BUDGET_ID_DESC
-  BUDGETS_BY_USER_ID_MIN_USER_ID_ASC
-  BUDGETS_BY_USER_ID_MIN_USER_ID_DESC
-  BUDGETS_BY_USER_ID_MIN_CATEGORY_ID_ASC
-  BUDGETS_BY_USER_ID_MIN_CATEGORY_ID_DESC
-  BUDGETS_BY_USER_ID_MIN_AMOUNT_ASC
-  BUDGETS_BY_USER_ID_MIN_AMOUNT_DESC
-  BUDGETS_BY_USER_ID_MIN_MONTH_ASC
-  BUDGETS_BY_USER_ID_MIN_MONTH_DESC
-  BUDGETS_BY_USER_ID_MIN_ALERT_THRESHOLD_ASC
-  BUDGETS_BY_USER_ID_MIN_ALERT_THRESHOLD_DESC
-  BUDGETS_BY_USER_ID_MAX_BUDGET_ID_ASC
-  BUDGETS_BY_USER_ID_MAX_BUDGET_ID_DESC
-  BUDGETS_BY_USER_ID_MAX_USER_ID_ASC
-  BUDGETS_BY_USER_ID_MAX_USER_ID_DESC
-  BUDGETS_BY_USER_ID_MAX_CATEGORY_ID_ASC
-  BUDGETS_BY_USER_ID_MAX_CATEGORY_ID_DESC
-  BUDGETS_BY_USER_ID_MAX_AMOUNT_ASC
-  BUDGETS_BY_USER_ID_MAX_AMOUNT_DESC
-  BUDGETS_BY_USER_ID_MAX_MONTH_ASC
-  BUDGETS_BY_USER_ID_MAX_MONTH_DESC
-  BUDGETS_BY_USER_ID_MAX_ALERT_THRESHOLD_ASC
-  BUDGETS_BY_USER_ID_MAX_ALERT_THRESHOLD_DESC
-  BUDGETS_BY_USER_ID_AVERAGE_BUDGET_ID_ASC
-  BUDGETS_BY_USER_ID_AVERAGE_BUDGET_ID_DESC
-  BUDGETS_BY_USER_ID_AVERAGE_USER_ID_ASC
-  BUDGETS_BY_USER_ID_AVERAGE_USER_ID_DESC
-  BUDGETS_BY_USER_ID_AVERAGE_CATEGORY_ID_ASC
-  BUDGETS_BY_USER_ID_AVERAGE_CATEGORY_ID_DESC
-  BUDGETS_BY_USER_ID_AVERAGE_AMOUNT_ASC
-  BUDGETS_BY_USER_ID_AVERAGE_AMOUNT_DESC
-  BUDGETS_BY_USER_ID_AVERAGE_MONTH_ASC
-  BUDGETS_BY_USER_ID_AVERAGE_MONTH_DESC
-  BUDGETS_BY_USER_ID_AVERAGE_ALERT_THRESHOLD_ASC
-  BUDGETS_BY_USER_ID_AVERAGE_ALERT_THRESHOLD_DESC
-  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_BUDGET_ID_ASC
-  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_BUDGET_ID_DESC
-  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_USER_ID_ASC
-  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_USER_ID_DESC
-  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_CATEGORY_ID_ASC
-  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_CATEGORY_ID_DESC
-  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_AMOUNT_ASC
-  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_AMOUNT_DESC
-  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_MONTH_ASC
-  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_MONTH_DESC
-  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_ALERT_THRESHOLD_ASC
-  BUDGETS_BY_USER_ID_STDDEV_SAMPLE_ALERT_THRESHOLD_DESC
-  BUDGETS_BY_USER_ID_STDDEV_POPULATION_BUDGET_ID_ASC
-  BUDGETS_BY_USER_ID_STDDEV_POPULATION_BUDGET_ID_DESC
-  BUDGETS_BY_USER_ID_STDDEV_POPULATION_USER_ID_ASC
-  BUDGETS_BY_USER_ID_STDDEV_POPULATION_USER_ID_DESC
-  BUDGETS_BY_USER_ID_STDDEV_POPULATION_CATEGORY_ID_ASC
-  BUDGETS_BY_USER_ID_STDDEV_POPULATION_CATEGORY_ID_DESC
-  BUDGETS_BY_USER_ID_STDDEV_POPULATION_AMOUNT_ASC
-  BUDGETS_BY_USER_ID_STDDEV_POPULATION_AMOUNT_DESC
-  BUDGETS_BY_USER_ID_STDDEV_POPULATION_MONTH_ASC
-  BUDGETS_BY_USER_ID_STDDEV_POPULATION_MONTH_DESC
-  BUDGETS_BY_USER_ID_STDDEV_POPULATION_ALERT_THRESHOLD_ASC
-  BUDGETS_BY_USER_ID_STDDEV_POPULATION_ALERT_THRESHOLD_DESC
-  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_BUDGET_ID_ASC
-  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_BUDGET_ID_DESC
-  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_USER_ID_ASC
-  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_USER_ID_DESC
-  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_CATEGORY_ID_ASC
-  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_CATEGORY_ID_DESC
-  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_AMOUNT_ASC
-  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_AMOUNT_DESC
-  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_MONTH_ASC
-  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_MONTH_DESC
-  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_ALERT_THRESHOLD_ASC
-  BUDGETS_BY_USER_ID_VARIANCE_SAMPLE_ALERT_THRESHOLD_DESC
-  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_BUDGET_ID_ASC
-  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_BUDGET_ID_DESC
-  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_USER_ID_ASC
-  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_USER_ID_DESC
-  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_CATEGORY_ID_ASC
-  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_CATEGORY_ID_DESC
-  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_AMOUNT_ASC
-  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_AMOUNT_DESC
-  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_MONTH_ASC
-  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_MONTH_DESC
-  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_ALERT_THRESHOLD_ASC
-  BUDGETS_BY_USER_ID_VARIANCE_POPULATION_ALERT_THRESHOLD_DESC
-  REPORTS_BY_USER_ID_COUNT_ASC
-  REPORTS_BY_USER_ID_COUNT_DESC
-  REPORTS_BY_USER_ID_SUM_REPORT_ID_ASC
-  REPORTS_BY_USER_ID_SUM_REPORT_ID_DESC
-  REPORTS_BY_USER_ID_SUM_USER_ID_ASC
-  REPORTS_BY_USER_ID_SUM_USER_ID_DESC
-  REPORTS_BY_USER_ID_SUM_CREATED_AT_ASC
-  REPORTS_BY_USER_ID_SUM_CREATED_AT_DESC
-  REPORTS_BY_USER_ID_SUM_FILE_PATH_ASC
-  REPORTS_BY_USER_ID_SUM_FILE_PATH_DESC
-  REPORTS_BY_USER_ID_DISTINCT_COUNT_REPORT_ID_ASC
-  REPORTS_BY_USER_ID_DISTINCT_COUNT_REPORT_ID_DESC
-  REPORTS_BY_USER_ID_DISTINCT_COUNT_USER_ID_ASC
-  REPORTS_BY_USER_ID_DISTINCT_COUNT_USER_ID_DESC
-  REPORTS_BY_USER_ID_DISTINCT_COUNT_CREATED_AT_ASC
-  REPORTS_BY_USER_ID_DISTINCT_COUNT_CREATED_AT_DESC
-  REPORTS_BY_USER_ID_DISTINCT_COUNT_FILE_PATH_ASC
-  REPORTS_BY_USER_ID_DISTINCT_COUNT_FILE_PATH_DESC
-  REPORTS_BY_USER_ID_MIN_REPORT_ID_ASC
-  REPORTS_BY_USER_ID_MIN_REPORT_ID_DESC
-  REPORTS_BY_USER_ID_MIN_USER_ID_ASC
-  REPORTS_BY_USER_ID_MIN_USER_ID_DESC
-  REPORTS_BY_USER_ID_MIN_CREATED_AT_ASC
-  REPORTS_BY_USER_ID_MIN_CREATED_AT_DESC
-  REPORTS_BY_USER_ID_MIN_FILE_PATH_ASC
-  REPORTS_BY_USER_ID_MIN_FILE_PATH_DESC
-  REPORTS_BY_USER_ID_MAX_REPORT_ID_ASC
-  REPORTS_BY_USER_ID_MAX_REPORT_ID_DESC
-  REPORTS_BY_USER_ID_MAX_USER_ID_ASC
-  REPORTS_BY_USER_ID_MAX_USER_ID_DESC
-  REPORTS_BY_USER_ID_MAX_CREATED_AT_ASC
-  REPORTS_BY_USER_ID_MAX_CREATED_AT_DESC
-  REPORTS_BY_USER_ID_MAX_FILE_PATH_ASC
-  REPORTS_BY_USER_ID_MAX_FILE_PATH_DESC
-  REPORTS_BY_USER_ID_AVERAGE_REPORT_ID_ASC
-  REPORTS_BY_USER_ID_AVERAGE_REPORT_ID_DESC
-  REPORTS_BY_USER_ID_AVERAGE_USER_ID_ASC
-  REPORTS_BY_USER_ID_AVERAGE_USER_ID_DESC
-  REPORTS_BY_USER_ID_AVERAGE_CREATED_AT_ASC
-  REPORTS_BY_USER_ID_AVERAGE_CREATED_AT_DESC
-  REPORTS_BY_USER_ID_AVERAGE_FILE_PATH_ASC
-  REPORTS_BY_USER_ID_AVERAGE_FILE_PATH_DESC
-  REPORTS_BY_USER_ID_STDDEV_SAMPLE_REPORT_ID_ASC
-  REPORTS_BY_USER_ID_STDDEV_SAMPLE_REPORT_ID_DESC
-  REPORTS_BY_USER_ID_STDDEV_SAMPLE_USER_ID_ASC
-  REPORTS_BY_USER_ID_STDDEV_SAMPLE_USER_ID_DESC
-  REPORTS_BY_USER_ID_STDDEV_SAMPLE_CREATED_AT_ASC
-  REPORTS_BY_USER_ID_STDDEV_SAMPLE_CREATED_AT_DESC
-  REPORTS_BY_USER_ID_STDDEV_SAMPLE_FILE_PATH_ASC
-  REPORTS_BY_USER_ID_STDDEV_SAMPLE_FILE_PATH_DESC
-  REPORTS_BY_USER_ID_STDDEV_POPULATION_REPORT_ID_ASC
-  REPORTS_BY_USER_ID_STDDEV_POPULATION_REPORT_ID_DESC
-  REPORTS_BY_USER_ID_STDDEV_POPULATION_USER_ID_ASC
-  REPORTS_BY_USER_ID_STDDEV_POPULATION_USER_ID_DESC
-  REPORTS_BY_USER_ID_STDDEV_POPULATION_CREATED_AT_ASC
-  REPORTS_BY_USER_ID_STDDEV_POPULATION_CREATED_AT_DESC
-  REPORTS_BY_USER_ID_STDDEV_POPULATION_FILE_PATH_ASC
-  REPORTS_BY_USER_ID_STDDEV_POPULATION_FILE_PATH_DESC
-  REPORTS_BY_USER_ID_VARIANCE_SAMPLE_REPORT_ID_ASC
-  REPORTS_BY_USER_ID_VARIANCE_SAMPLE_REPORT_ID_DESC
-  REPORTS_BY_USER_ID_VARIANCE_SAMPLE_USER_ID_ASC
-  REPORTS_BY_USER_ID_VARIANCE_SAMPLE_USER_ID_DESC
-  REPORTS_BY_USER_ID_VARIANCE_SAMPLE_CREATED_AT_ASC
-  REPORTS_BY_USER_ID_VARIANCE_SAMPLE_CREATED_AT_DESC
-  REPORTS_BY_USER_ID_VARIANCE_SAMPLE_FILE_PATH_ASC
-  REPORTS_BY_USER_ID_VARIANCE_SAMPLE_FILE_PATH_DESC
-  REPORTS_BY_USER_ID_VARIANCE_POPULATION_REPORT_ID_ASC
-  REPORTS_BY_USER_ID_VARIANCE_POPULATION_REPORT_ID_DESC
-  REPORTS_BY_USER_ID_VARIANCE_POPULATION_USER_ID_ASC
-  REPORTS_BY_USER_ID_VARIANCE_POPULATION_USER_ID_DESC
-  REPORTS_BY_USER_ID_VARIANCE_POPULATION_CREATED_AT_ASC
-  REPORTS_BY_USER_ID_VARIANCE_POPULATION_CREATED_AT_DESC
-  REPORTS_BY_USER_ID_VARIANCE_POPULATION_FILE_PATH_ASC
-  REPORTS_BY_USER_ID_VARIANCE_POPULATION_FILE_PATH_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_COUNT_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_COUNT_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_SUM_ID_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_SUM_ID_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_SUM_USER_ID_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_SUM_USER_ID_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_SUM_OTP_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_SUM_OTP_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_SUM_EXPIRES_AT_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_SUM_EXPIRES_AT_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_SUM_CREATED_AT_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_SUM_CREATED_AT_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_SUM_EMAIL_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_SUM_EMAIL_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_ID_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_ID_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_USER_ID_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_USER_ID_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_OTP_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_OTP_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_EXPIRES_AT_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_EXPIRES_AT_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_CREATED_AT_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_CREATED_AT_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_EMAIL_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_EMAIL_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_MIN_ID_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_MIN_ID_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_MIN_USER_ID_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_MIN_USER_ID_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_MIN_OTP_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_MIN_OTP_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_MIN_EXPIRES_AT_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_MIN_EXPIRES_AT_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_MIN_CREATED_AT_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_MIN_CREATED_AT_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_MIN_EMAIL_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_MIN_EMAIL_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_MAX_ID_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_MAX_ID_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_MAX_USER_ID_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_MAX_USER_ID_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_MAX_OTP_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_MAX_OTP_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_MAX_EXPIRES_AT_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_MAX_EXPIRES_AT_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_MAX_CREATED_AT_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_MAX_CREATED_AT_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_MAX_EMAIL_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_MAX_EMAIL_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_ID_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_ID_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_USER_ID_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_USER_ID_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_OTP_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_OTP_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_EXPIRES_AT_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_EXPIRES_AT_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_CREATED_AT_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_CREATED_AT_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_EMAIL_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_EMAIL_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_ID_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_ID_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_USER_ID_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_USER_ID_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_OTP_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_OTP_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_EXPIRES_AT_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_EXPIRES_AT_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_CREATED_AT_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_CREATED_AT_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_EMAIL_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_EMAIL_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_ID_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_ID_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_USER_ID_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_USER_ID_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_OTP_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_OTP_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_EXPIRES_AT_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_EXPIRES_AT_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_CREATED_AT_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_CREATED_AT_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_EMAIL_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_EMAIL_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_ID_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_ID_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_USER_ID_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_USER_ID_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_OTP_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_OTP_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_EXPIRES_AT_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_EXPIRES_AT_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_CREATED_AT_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_CREATED_AT_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_EMAIL_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_EMAIL_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_ID_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_ID_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_USER_ID_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_USER_ID_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_OTP_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_OTP_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_EXPIRES_AT_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_EXPIRES_AT_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_CREATED_AT_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_CREATED_AT_DESC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_EMAIL_ASC
-  OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_EMAIL_DESC
+  USER_DEVICES_BY_USER_ID_COUNT_ASC
+  USER_DEVICES_BY_USER_ID_COUNT_DESC
+  USER_DEVICES_BY_USER_ID_SUM_USER_ID_ASC
+  USER_DEVICES_BY_USER_ID_SUM_USER_ID_DESC
+  USER_DEVICES_BY_USER_ID_SUM_TOKEN_ASC
+  USER_DEVICES_BY_USER_ID_SUM_TOKEN_DESC
+  USER_DEVICES_BY_USER_ID_SUM_UA_ASC
+  USER_DEVICES_BY_USER_ID_SUM_UA_DESC
+  USER_DEVICES_BY_USER_ID_DISTINCT_COUNT_USER_ID_ASC
+  USER_DEVICES_BY_USER_ID_DISTINCT_COUNT_USER_ID_DESC
+  USER_DEVICES_BY_USER_ID_DISTINCT_COUNT_TOKEN_ASC
+  USER_DEVICES_BY_USER_ID_DISTINCT_COUNT_TOKEN_DESC
+  USER_DEVICES_BY_USER_ID_DISTINCT_COUNT_UA_ASC
+  USER_DEVICES_BY_USER_ID_DISTINCT_COUNT_UA_DESC
+  USER_DEVICES_BY_USER_ID_MIN_USER_ID_ASC
+  USER_DEVICES_BY_USER_ID_MIN_USER_ID_DESC
+  USER_DEVICES_BY_USER_ID_MIN_TOKEN_ASC
+  USER_DEVICES_BY_USER_ID_MIN_TOKEN_DESC
+  USER_DEVICES_BY_USER_ID_MIN_UA_ASC
+  USER_DEVICES_BY_USER_ID_MIN_UA_DESC
+  USER_DEVICES_BY_USER_ID_MAX_USER_ID_ASC
+  USER_DEVICES_BY_USER_ID_MAX_USER_ID_DESC
+  USER_DEVICES_BY_USER_ID_MAX_TOKEN_ASC
+  USER_DEVICES_BY_USER_ID_MAX_TOKEN_DESC
+  USER_DEVICES_BY_USER_ID_MAX_UA_ASC
+  USER_DEVICES_BY_USER_ID_MAX_UA_DESC
+  USER_DEVICES_BY_USER_ID_AVERAGE_USER_ID_ASC
+  USER_DEVICES_BY_USER_ID_AVERAGE_USER_ID_DESC
+  USER_DEVICES_BY_USER_ID_AVERAGE_TOKEN_ASC
+  USER_DEVICES_BY_USER_ID_AVERAGE_TOKEN_DESC
+  USER_DEVICES_BY_USER_ID_AVERAGE_UA_ASC
+  USER_DEVICES_BY_USER_ID_AVERAGE_UA_DESC
+  USER_DEVICES_BY_USER_ID_STDDEV_SAMPLE_USER_ID_ASC
+  USER_DEVICES_BY_USER_ID_STDDEV_SAMPLE_USER_ID_DESC
+  USER_DEVICES_BY_USER_ID_STDDEV_SAMPLE_TOKEN_ASC
+  USER_DEVICES_BY_USER_ID_STDDEV_SAMPLE_TOKEN_DESC
+  USER_DEVICES_BY_USER_ID_STDDEV_SAMPLE_UA_ASC
+  USER_DEVICES_BY_USER_ID_STDDEV_SAMPLE_UA_DESC
+  USER_DEVICES_BY_USER_ID_STDDEV_POPULATION_USER_ID_ASC
+  USER_DEVICES_BY_USER_ID_STDDEV_POPULATION_USER_ID_DESC
+  USER_DEVICES_BY_USER_ID_STDDEV_POPULATION_TOKEN_ASC
+  USER_DEVICES_BY_USER_ID_STDDEV_POPULATION_TOKEN_DESC
+  USER_DEVICES_BY_USER_ID_STDDEV_POPULATION_UA_ASC
+  USER_DEVICES_BY_USER_ID_STDDEV_POPULATION_UA_DESC
+  USER_DEVICES_BY_USER_ID_VARIANCE_SAMPLE_USER_ID_ASC
+  USER_DEVICES_BY_USER_ID_VARIANCE_SAMPLE_USER_ID_DESC
+  USER_DEVICES_BY_USER_ID_VARIANCE_SAMPLE_TOKEN_ASC
+  USER_DEVICES_BY_USER_ID_VARIANCE_SAMPLE_TOKEN_DESC
+  USER_DEVICES_BY_USER_ID_VARIANCE_SAMPLE_UA_ASC
+  USER_DEVICES_BY_USER_ID_VARIANCE_SAMPLE_UA_DESC
+  USER_DEVICES_BY_USER_ID_VARIANCE_POPULATION_USER_ID_ASC
+  USER_DEVICES_BY_USER_ID_VARIANCE_POPULATION_USER_ID_DESC
+  USER_DEVICES_BY_USER_ID_VARIANCE_POPULATION_TOKEN_ASC
+  USER_DEVICES_BY_USER_ID_VARIANCE_POPULATION_TOKEN_DESC
+  USER_DEVICES_BY_USER_ID_VARIANCE_POPULATION_UA_ASC
+  USER_DEVICES_BY_USER_ID_VARIANCE_POPULATION_UA_DESC
 }
 
 """

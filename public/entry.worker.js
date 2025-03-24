@@ -417,32 +417,6 @@ const assets = [
   "/icons/android/android-launchericon-512-512.png",
   "/icons/android/android-launchericon-72-72.png",
   "/icons/android/android-launchericon-96-96.png",
-  "/icons/ios/100.png",
-  "/icons/ios/1024.png",
-  "/icons/ios/114.png",
-  "/icons/ios/120.png",
-  "/icons/ios/128.png",
-  "/icons/ios/144.png",
-  "/icons/ios/152.png",
-  "/icons/ios/16.png",
-  "/icons/ios/167.png",
-  "/icons/ios/180.png",
-  "/icons/ios/192.png",
-  "/icons/ios/20.png",
-  "/icons/ios/256.png",
-  "/icons/ios/29.png",
-  "/icons/ios/32.png",
-  "/icons/ios/40.png",
-  "/icons/ios/50.png",
-  "/icons/ios/512.png",
-  "/icons/ios/57.png",
-  "/icons/ios/58.png",
-  "/icons/ios/60.png",
-  "/icons/ios/64.png",
-  "/icons/ios/72.png",
-  "/icons/ios/76.png",
-  "/icons/ios/80.png",
-  "/icons/ios/87.png",
   "/icons/windows11/LargeTile.scale-100.png",
   "/icons/windows11/LargeTile.scale-125.png",
   "/icons/windows11/LargeTile.scale-150.png",
@@ -522,7 +496,33 @@ const assets = [
   "/icons/windows11/Wide310x150Logo.scale-125.png",
   "/icons/windows11/Wide310x150Logo.scale-150.png",
   "/icons/windows11/Wide310x150Logo.scale-200.png",
-  "/icons/windows11/Wide310x150Logo.scale-400.png"
+  "/icons/windows11/Wide310x150Logo.scale-400.png",
+  "/icons/ios/100.png",
+  "/icons/ios/1024.png",
+  "/icons/ios/114.png",
+  "/icons/ios/120.png",
+  "/icons/ios/128.png",
+  "/icons/ios/144.png",
+  "/icons/ios/152.png",
+  "/icons/ios/16.png",
+  "/icons/ios/167.png",
+  "/icons/ios/180.png",
+  "/icons/ios/192.png",
+  "/icons/ios/20.png",
+  "/icons/ios/256.png",
+  "/icons/ios/29.png",
+  "/icons/ios/32.png",
+  "/icons/ios/40.png",
+  "/icons/ios/50.png",
+  "/icons/ios/512.png",
+  "/icons/ios/57.png",
+  "/icons/ios/58.png",
+  "/icons/ios/60.png",
+  "/icons/ios/64.png",
+  "/icons/ios/72.png",
+  "/icons/ios/76.png",
+  "/icons/ios/80.png",
+  "/icons/ios/87.png"
 ];
 const routes = {
   "root": {
@@ -633,6 +633,18 @@ const routes = {
     hasWorkerAction: false,
     module: route8
   },
+  "routes/_app._index": {
+    id: "routes/_app._index",
+    parentId: "routes/_app",
+    path: void 0,
+    index: true,
+    caseSensitive: void 0,
+    hasLoader: false,
+    hasAction: false,
+    hasWorkerLoader: false,
+    hasWorkerAction: false,
+    module: route9
+  },
   "routes/auth.logout": {
     id: "routes/auth.logout",
     parentId: "root",
@@ -643,7 +655,7 @@ const routes = {
     hasAction: true,
     hasWorkerLoader: false,
     hasWorkerAction: false,
-    module: route9
+    module: route10
   },
   "routes/auth.signin": {
     id: "routes/auth.signin",
@@ -652,18 +664,6 @@ const routes = {
     index: void 0,
     caseSensitive: void 0,
     hasLoader: true,
-    hasAction: false,
-    hasWorkerLoader: false,
-    hasWorkerAction: false,
-    module: route10
-  },
-  "routes/_app._index": {
-    id: "routes/_app._index",
-    parentId: "routes/_app",
-    path: void 0,
-    index: true,
-    caseSensitive: void 0,
-    hasLoader: false,
     hasAction: false,
     hasWorkerLoader: false,
     hasWorkerAction: false,
@@ -744,143 +744,7 @@ const routes = {
 };
 const entry = { module: entryWorker };
 /**
- * @remix-run/router v1.22.0
- *
- * Copyright (c) Remix Software Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.md file in the root directory of this source tree.
- *
- * @license MIT
- */
-var Action$1;
-(function(Action2) {
-  Action2["Pop"] = "POP";
-  Action2["Push"] = "PUSH";
-  Action2["Replace"] = "REPLACE";
-})(Action$1 || (Action$1 = {}));
-function warning$1(cond, message) {
-  if (!cond) {
-    if (typeof console !== "undefined") console.warn(message);
-    try {
-      throw new Error(message);
-    } catch (e) {
-    }
-  }
-}
-var ResultType$1;
-(function(ResultType2) {
-  ResultType2["data"] = "data";
-  ResultType2["deferred"] = "deferred";
-  ResultType2["redirect"] = "redirect";
-  ResultType2["error"] = "error";
-})(ResultType$1 || (ResultType$1 = {}));
-function matchPath$1(pattern, pathname) {
-  if (typeof pattern === "string") {
-    pattern = {
-      path: pattern,
-      caseSensitive: false,
-      end: true
-    };
-  }
-  let [matcher, compiledParams] = compilePath$1(pattern.path, pattern.caseSensitive, pattern.end);
-  let match = pathname.match(matcher);
-  if (!match) return null;
-  let matchedPathname = match[0];
-  let pathnameBase = matchedPathname.replace(/(.)\/+$/, "$1");
-  let captureGroups = match.slice(1);
-  let params = compiledParams.reduce((memo, _ref, index) => {
-    let {
-      paramName,
-      isOptional
-    } = _ref;
-    if (paramName === "*") {
-      let splatValue = captureGroups[index] || "";
-      pathnameBase = matchedPathname.slice(0, matchedPathname.length - splatValue.length).replace(/(.)\/+$/, "$1");
-    }
-    const value = captureGroups[index];
-    if (isOptional && !value) {
-      memo[paramName] = void 0;
-    } else {
-      memo[paramName] = (value || "").replace(/%2F/g, "/");
-    }
-    return memo;
-  }, {});
-  return {
-    params,
-    pathname: matchedPathname,
-    pathnameBase,
-    pattern
-  };
-}
-function compilePath$1(path, caseSensitive, end) {
-  if (caseSensitive === void 0) {
-    caseSensitive = false;
-  }
-  if (end === void 0) {
-    end = true;
-  }
-  warning$1(path === "*" || !path.endsWith("*") || path.endsWith("/*"), 'Route path "' + path + '" will be treated as if it were ' + ('"' + path.replace(/\*$/, "/*") + '" because the `*` character must ') + "always follow a `/` in the pattern. To get rid of this warning, " + ('please change the route path to "' + path.replace(/\*$/, "/*") + '".'));
-  let params = [];
-  let regexpSource = "^" + path.replace(/\/*\*?$/, "").replace(/^\/*/, "/").replace(/[\\.*+^${}|()[\]]/g, "\\$&").replace(/\/:([\w-]+)(\?)?/g, (_, paramName, isOptional) => {
-    params.push({
-      paramName,
-      isOptional: isOptional != null
-    });
-    return isOptional ? "/?([^\\/]+)?" : "/([^\\/]+)";
-  });
-  if (path.endsWith("*")) {
-    params.push({
-      paramName: "*"
-    });
-    regexpSource += path === "*" || path === "/*" ? "(.*)$" : "(?:\\/(.+)|\\/*)$";
-  } else if (end) {
-    regexpSource += "\\/*$";
-  } else if (path !== "" && path !== "/") {
-    regexpSource += "(?:(?=\\/|$))";
-  } else ;
-  let matcher = new RegExp(regexpSource, caseSensitive ? void 0 : "i");
-  return [matcher, params];
-}
-function isRouteErrorResponse$1(error) {
-  return error != null && typeof error.status === "number" && typeof error.statusText === "string" && typeof error.internal === "boolean" && "data" in error;
-}
-const validMutationMethodsArr$1 = ["post", "put", "patch", "delete"];
-new Set(validMutationMethodsArr$1);
-const validRequestMethodsArr$1 = ["get", ...validMutationMethodsArr$1];
-new Set(validRequestMethodsArr$1);
-var mode$2 = {};
-/**
- * @remix-run/server-runtime v2.13.1
- *
- * Copyright (c) Remix Software Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.md file in the root directory of this source tree.
- *
- * @license MIT
- */
-Object.defineProperty(mode$2, "__esModule", { value: true });
-let ServerMode = /* @__PURE__ */ function(ServerMode2) {
-  ServerMode2["Development"] = "development";
-  ServerMode2["Production"] = "production";
-  ServerMode2["Test"] = "test";
-  return ServerMode2;
-}({});
-function isServerMode(value) {
-  return value === ServerMode.Development || value === ServerMode.Production || value === ServerMode.Test;
-}
-var ServerMode_1 = mode$2.ServerMode = ServerMode;
-var isServerMode_1 = mode$2.isServerMode = isServerMode;
-const mode$1 = /* @__PURE__ */ _mergeNamespaces({
-  __proto__: null,
-  ServerMode: ServerMode_1,
-  default: mode$2,
-  isServerMode: isServerMode_1
-}, [mode$2]);
-var responses = {};
-/**
- * @remix-run/router v1.20.0
+ * @remix-run/router v1.23.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -1981,6 +1845,7 @@ function createRouter(init) {
   let getScrollPosition = null;
   let initialScrollRestored = init.hydrationData != null;
   let initialMatches = matchRoutes(dataRoutes, init.history.location, basename);
+  let initialMatchesIsFOW = false;
   let initialErrors = null;
   if (initialMatches == null && !patchRoutesOnNavigationImpl) {
     let error = getInternalRouterError(404, {
@@ -2008,6 +1873,7 @@ function createRouter(init) {
     if (future.v7_partialHydration) {
       let fogOfWar = checkFogOfWar(null, dataRoutes, init.history.location.pathname);
       if (fogOfWar.active && fogOfWar.matches) {
+        initialMatchesIsFOW = true;
         initialMatches = fogOfWar.matches;
       }
     }
@@ -2159,6 +2025,11 @@ function createRouter(init) {
         }
       });
     }
+    deletedFetchers.forEach((key) => {
+      if (!state.fetchers.has(key) && !fetchControllers.has(key)) {
+        deletedFetchersKeys.push(key);
+      }
+    });
     [...subscribers].forEach((subscriber) => subscriber(state, {
       deletedFetchers: deletedFetchersKeys,
       viewTransitionOpts: opts.viewTransitionOpts,
@@ -2167,6 +2038,8 @@ function createRouter(init) {
     if (future.v7_fetcherPersist) {
       completedFetchers.forEach((key) => state.fetchers.delete(key));
       deletedFetchersKeys.forEach((key) => deleteFetcher(key));
+    } else {
+      deletedFetchersKeys.forEach((key) => deletedFetchers.delete(key));
     }
   }
   function completeNavigation(location, newState, _temp) {
@@ -2347,8 +2220,19 @@ function createRouter(init) {
     pendingViewTransitionEnabled = (opts && opts.enableViewTransition) === true;
     let routesToUse = inFlightDataRoutes || dataRoutes;
     let loadingNavigation = opts && opts.overrideNavigation;
-    let matches = matchRoutes(routesToUse, location, basename);
+    let matches = opts != null && opts.initialHydration && state.matches && state.matches.length > 0 && !initialMatchesIsFOW ? (
+      // `matchRoutes()` has already been called if we're in here via `router.initialize()`
+      state.matches
+    ) : matchRoutes(routesToUse, location, basename);
     let flushSync = (opts && opts.flushSync) === true;
+    if (matches && state.initialized && !isRevalidationRequired && isHashChangeOnly(state.location, location) && !(opts && opts.submission && isMutationMethod(opts.submission.formMethod))) {
+      completeNavigation(location, {
+        matches
+      }, {
+        flushSync
+      });
+      return;
+    }
     let fogOfWar = checkFogOfWar(matches, routesToUse, location.pathname);
     if (fogOfWar.active && fogOfWar.matches) {
       matches = fogOfWar.matches;
@@ -2365,14 +2249,6 @@ function createRouter(init) {
         errors: {
           [route.id]: error
         }
-      }, {
-        flushSync
-      });
-      return;
-    }
-    if (state.initialized && !isRevalidationRequired && isHashChangeOnly(state.location, location) && !(opts && opts.submission && isMutationMethod(opts.submission.formMethod))) {
-      completeNavigation(location, {
-        matches
       }, {
         flushSync
       });
@@ -2774,7 +2650,7 @@ function createRouter(init) {
     let abortController = new AbortController();
     let fetchRequest = createClientSideRequest(init.history, path, abortController.signal, submission);
     if (isFogOfWar) {
-      let discoverResult = await discoverRoutes(requestMatches, path, fetchRequest.signal);
+      let discoverResult = await discoverRoutes(requestMatches, new URL(fetchRequest.url).pathname, fetchRequest.signal, key);
       if (discoverResult.type === "aborted") {
         return;
       } else if (discoverResult.type === "error") {
@@ -2921,7 +2797,7 @@ function createRouter(init) {
     let abortController = new AbortController();
     let fetchRequest = createClientSideRequest(init.history, path, abortController.signal);
     if (isFogOfWar) {
-      let discoverResult = await discoverRoutes(matches, path, fetchRequest.signal);
+      let discoverResult = await discoverRoutes(matches, new URL(fetchRequest.url).pathname, fetchRequest.signal, key);
       if (discoverResult.type === "aborted") {
         return;
       } else if (discoverResult.type === "error") {
@@ -3137,11 +3013,9 @@ function createRouter(init) {
     });
   }
   function getFetcher(key) {
-    if (future.v7_fetcherPersist) {
-      activeFetchers.set(key, (activeFetchers.get(key) || 0) + 1);
-      if (deletedFetchers.has(key)) {
-        deletedFetchers.delete(key);
-      }
+    activeFetchers.set(key, (activeFetchers.get(key) || 0) + 1);
+    if (deletedFetchers.has(key)) {
+      deletedFetchers.delete(key);
     }
     return state.fetchers.get(key) || IDLE_FETCHER;
   }
@@ -3153,21 +3027,22 @@ function createRouter(init) {
     fetchLoadMatches.delete(key);
     fetchReloadIds.delete(key);
     fetchRedirectIds.delete(key);
-    deletedFetchers.delete(key);
+    if (future.v7_fetcherPersist) {
+      deletedFetchers.delete(key);
+    }
     cancelledFetcherLoads.delete(key);
     state.fetchers.delete(key);
   }
   function deleteFetcherAndUpdateState(key) {
-    if (future.v7_fetcherPersist) {
-      let count = (activeFetchers.get(key) || 0) - 1;
-      if (count <= 0) {
-        activeFetchers.delete(key);
-        deletedFetchers.add(key);
-      } else {
-        activeFetchers.set(key, count);
+    let count = (activeFetchers.get(key) || 0) - 1;
+    if (count <= 0) {
+      activeFetchers.delete(key);
+      deletedFetchers.add(key);
+      if (!future.v7_fetcherPersist) {
+        deleteFetcher(key);
       }
     } else {
-      deleteFetcher(key);
+      activeFetchers.set(key, count);
     }
     updateState({
       fetchers: new Map(state.fetchers)
@@ -3356,7 +3231,7 @@ function createRouter(init) {
       matches: null
     };
   }
-  async function discoverRoutes(matches, pathname, signal) {
+  async function discoverRoutes(matches, pathname, signal, fetcherKey) {
     if (!patchRoutesOnNavigationImpl) {
       return {
         type: "success",
@@ -3370,8 +3245,10 @@ function createRouter(init) {
       let localManifest = manifest;
       try {
         await patchRoutesOnNavigationImpl({
+          signal,
           path: pathname,
           matches: partialMatches,
+          fetcherKey,
           patch: (routeId, children) => {
             if (signal.aborted) return;
             patchRoutesImpl(routeId, children, routesToUse, localManifest, mapRouteProperties);
@@ -4341,16 +4218,22 @@ async function convertDataStrategyResultToDataResult(dataStrategyResult) {
   }
   if (type === ResultType.error) {
     if (isDataWithResponseInit(result)) {
-      var _result$init2;
+      var _result$init3, _result$init4;
       if (result.data instanceof Error) {
-        var _result$init;
+        var _result$init, _result$init2;
         return {
           type: ResultType.error,
           error: result.data,
-          statusCode: (_result$init = result.init) == null ? void 0 : _result$init.status
+          statusCode: (_result$init = result.init) == null ? void 0 : _result$init.status,
+          headers: (_result$init2 = result.init) != null && _result$init2.headers ? new Headers(result.init.headers) : void 0
         };
       }
-      result = new ErrorResponseImpl(((_result$init2 = result.init) == null ? void 0 : _result$init2.status) || 500, void 0, result.data);
+      return {
+        type: ResultType.error,
+        error: new ErrorResponseImpl(((_result$init3 = result.init) == null ? void 0 : _result$init3.status) || 500, void 0, result.data),
+        statusCode: isRouteErrorResponse(result) ? result.status : void 0,
+        headers: (_result$init4 = result.init) != null && _result$init4.headers ? new Headers(result.init.headers) : void 0
+      };
     }
     return {
       type: ResultType.error,
@@ -4359,21 +4242,21 @@ async function convertDataStrategyResultToDataResult(dataStrategyResult) {
     };
   }
   if (isDeferredData$1(result)) {
-    var _result$init3, _result$init4;
+    var _result$init5, _result$init6;
     return {
       type: ResultType.deferred,
       deferredData: result,
-      statusCode: (_result$init3 = result.init) == null ? void 0 : _result$init3.status,
-      headers: ((_result$init4 = result.init) == null ? void 0 : _result$init4.headers) && new Headers(result.init.headers)
+      statusCode: (_result$init5 = result.init) == null ? void 0 : _result$init5.status,
+      headers: ((_result$init6 = result.init) == null ? void 0 : _result$init6.headers) && new Headers(result.init.headers)
     };
   }
   if (isDataWithResponseInit(result)) {
-    var _result$init5, _result$init6;
+    var _result$init7, _result$init8;
     return {
       type: ResultType.data,
       data: result.data,
-      statusCode: (_result$init5 = result.init) == null ? void 0 : _result$init5.status,
-      headers: (_result$init6 = result.init) != null && _result$init6.headers ? new Headers(result.init.headers) : void 0
+      statusCode: (_result$init7 = result.init) == null ? void 0 : _result$init7.status,
+      headers: (_result$init8 = result.init) != null && _result$init8.headers ? new Headers(result.init.headers) : void 0
     };
   }
   return {
@@ -4994,11 +4877,41 @@ const router$2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   resolveTo,
   stripBasename
 }, Symbol.toStringTag, { value: "Module" }));
+var mode$2 = {};
+/**
+ * @remix-run/server-runtime v2.16.2
+ *
+ * Copyright (c) Remix Software Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.md file in the root directory of this source tree.
+ *
+ * @license MIT
+ */
+Object.defineProperty(mode$2, "__esModule", { value: true });
+let ServerMode = /* @__PURE__ */ function(ServerMode2) {
+  ServerMode2["Development"] = "development";
+  ServerMode2["Production"] = "production";
+  ServerMode2["Test"] = "test";
+  return ServerMode2;
+}({});
+function isServerMode(value) {
+  return value === ServerMode.Development || value === ServerMode.Production || value === ServerMode.Test;
+}
+var ServerMode_1 = mode$2.ServerMode = ServerMode;
+var isServerMode_1 = mode$2.isServerMode = isServerMode;
+const mode$1 = /* @__PURE__ */ _mergeNamespaces({
+  __proto__: null,
+  ServerMode: ServerMode_1,
+  default: mode$2,
+  isServerMode: isServerMode_1
+}, [mode$2]);
+var responses = {};
 const require$$0 = /* @__PURE__ */ getAugmentedNamespace(router$2);
 var errors$2 = {};
 const require$$1$1 = /* @__PURE__ */ getAugmentedNamespace(mode$1);
 /**
- * @remix-run/server-runtime v2.13.1
+ * @remix-run/server-runtime v2.16.2
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -5076,7 +4989,7 @@ const errors$1 = /* @__PURE__ */ _mergeNamespaces({
 }, [errors$2]);
 const require$$1 = /* @__PURE__ */ getAugmentedNamespace(errors$1);
 /**
- * @remix-run/server-runtime v2.13.1
+ * @remix-run/server-runtime v2.16.2
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -5183,7 +5096,7 @@ function clone(_object) {
 }
 function getURLParameters(request, path = "") {
   const url = new URL(request.url);
-  const match = matchPath$1(path, url.pathname);
+  const match = matchPath(path, url.pathname);
   return {
     ...Object.fromEntries(new URL(request.url).searchParams.entries()),
     ...match == null ? void 0 : match.params
@@ -5317,7 +5230,7 @@ function _errorHandler({ error, handler: handleError }) {
     error.headers.set("X-Remix-Catch", "yes");
     return error;
   }
-  if (isRouteErrorResponse$1(error)) {
+  if (isRouteErrorResponse(error)) {
     error.error && handleError(error.error);
     return errorResponseToJson(error);
   }

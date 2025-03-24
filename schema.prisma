@@ -93,6 +93,5 @@ model UserDevice {
   userId String
   token  String @unique
   ua     Json?
-
   @@id([userId, token])
 }

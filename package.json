@@ -12,7 +12,7 @@
     "build:ui": "remix vite:build",
     "build:api": "cd api && vite --config vite.config.ts build",
     "dev": "run-p dev:*",
-    "dev:id": "chokidar \"app/**\" -c 'echo -e \"export const BUILD_ID = \\\"$(tar -cf - ./app",
+    "dev:id": "chokidar \"app/**\" -c 'echo \"export const BUILD_ID = \\\"$(date +%s)\\\";\" > build-id.js'",
     "dev:worker": "esbuild ./app/entry.worker.ts --outfile=./public/entry.worker.js --bundle --platform=node --format=esm --define:process.env.NODE_ENV='\"development\"' --watch",
     "dev:serve": "vite-node ./server.js",
     "dev:schema": "vite-node api/schemawatch.ts",

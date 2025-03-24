@@ -40,20 +40,18 @@ export const action: ActionFunction = async ({ request }) => {
     if (!resp.data?.users?.nodes?.length) {
       return json({ error: "Invalid credentials" }, { status: 401 });
     }
-    
-    console.log('Sending email to:', email);
-     await sendEmail(
-      email, // Recipient's email
+
+    console.log("Sending email to:", email);
+    await sendEmail(
+      "myriam.abdelhamid91@gmail.com", // Recipient's email
       "Login Success", // Subject of the email
-      "You have successfully logged into your account." // Body of the email
+      "You have successfully logged into your account.", // Body of the email
     );
-    
-    
+
     return json({
       success: true,
       user: resp.data.users.nodes[0],
     });
-    
   } catch (error) {
     console.log("error", error);
     return json(
@@ -65,5 +63,3 @@ export const action: ActionFunction = async ({ request }) => {
     );
   }
 };
-
-

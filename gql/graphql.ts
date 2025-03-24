@@ -85,6 +85,45 @@ export type BigIntFilter = {
   notIn?: InputMaybe<Array<Scalars['BigInt']['input']>>;
 };
 
+export type Budget = Node & {
+  __typename?: 'Budget';
+  alertThreshold?: Maybe<Scalars['Int']['output']>;
+  amount?: Maybe<Scalars['Float']['output']>;
+  budgetId: Scalars['String']['output'];
+  /** Reads a single `Category` that is related to this `Budget`. */
+  category?: Maybe<Category>;
+  categoryId?: Maybe<Scalars['String']['output']>;
+  month?: Maybe<Scalars['Datetime']['output']>;
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID']['output'];
+  /** Reads a single `User` that is related to this `Budget`. */
+  user?: Maybe<User>;
+  userId?: Maybe<Scalars['String']['output']>;
+};
+
+export type BudgetAggregates = {
+  __typename?: 'BudgetAggregates';
+  /** Mean average aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  average?: Maybe<BudgetAverageAggregates>;
+  /** Distinct count aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  distinctCount?: Maybe<BudgetDistinctCountAggregates>;
+  keys?: Maybe<Array<Scalars['String']['output']>>;
+  /** Maximum aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  max?: Maybe<BudgetMaxAggregates>;
+  /** Minimum aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  min?: Maybe<BudgetMinAggregates>;
+  /** Population standard deviation aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  stddevPopulation?: Maybe<BudgetStddevPopulationAggregates>;
+  /** Sample standard deviation aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  stddevSample?: Maybe<BudgetStddevSampleAggregates>;
+  /** Sum aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  sum?: Maybe<BudgetSumAggregates>;
+  /** Population variance aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  variancePopulation?: Maybe<BudgetVariancePopulationAggregates>;
+  /** Sample variance aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  varianceSample?: Maybe<BudgetVarianceSampleAggregates>;
+};
+
 /** A filter to be used against aggregates of `Budget` object types. */
 export type BudgetAggregatesFilter = {
   /** Mean average aggregate over matching `Budget` objects. */
@@ -114,6 +153,14 @@ export type BudgetAverageAggregateFilter = {
   amount?: InputMaybe<FloatFilter>;
 };
 
+export type BudgetAverageAggregates = {
+  __typename?: 'BudgetAverageAggregates';
+  /** Mean average of alertThreshold across the matching connection */
+  alertThreshold?: Maybe<Scalars['BigFloat']['output']>;
+  /** Mean average of amount across the matching connection */
+  amount?: Maybe<Scalars['Float']['output']>;
+};
+
 /** A condition to be used against `Budget` object types. All fields are tested for equality and combined with a logical ‘and.’ */
 export type BudgetCondition = {
   /** Checks for equality with the object’s `alertThreshold` field. */
@@ -137,6 +184,22 @@ export type BudgetDistinctCountAggregateFilter = {
   categoryId?: InputMaybe<BigIntFilter>;
   month?: InputMaybe<BigIntFilter>;
   userId?: InputMaybe<BigIntFilter>;
+};
+
+export type BudgetDistinctCountAggregates = {
+  __typename?: 'BudgetDistinctCountAggregates';
+  /** Distinct count of alertThreshold across the matching connection */
+  alertThreshold?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of amount across the matching connection */
+  amount?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of budgetId across the matching connection */
+  budgetId?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of categoryId across the matching connection */
+  categoryId?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of month across the matching connection */
+  month?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of userId across the matching connection */
+  userId?: Maybe<Scalars['BigInt']['output']>;
 };
 
 /** A filter to be used against `Budget` object types. All fields are combined with a logical ‘and.’ */
@@ -264,9 +327,25 @@ export type BudgetMaxAggregateFilter = {
   amount?: InputMaybe<FloatFilter>;
 };
 
+export type BudgetMaxAggregates = {
+  __typename?: 'BudgetMaxAggregates';
+  /** Maximum of alertThreshold across the matching connection */
+  alertThreshold?: Maybe<Scalars['Int']['output']>;
+  /** Maximum of amount across the matching connection */
+  amount?: Maybe<Scalars['Float']['output']>;
+};
+
 export type BudgetMinAggregateFilter = {
   alertThreshold?: InputMaybe<IntFilter>;
   amount?: InputMaybe<FloatFilter>;
+};
+
+export type BudgetMinAggregates = {
+  __typename?: 'BudgetMinAggregates';
+  /** Minimum of alertThreshold across the matching connection */
+  alertThreshold?: Maybe<Scalars['Int']['output']>;
+  /** Minimum of amount across the matching connection */
+  amount?: Maybe<Scalars['Float']['output']>;
 };
 
 /** Represents an update to a `Budget`. Fields that are set will be updated. */
@@ -284,9 +363,25 @@ export type BudgetStddevPopulationAggregateFilter = {
   amount?: InputMaybe<FloatFilter>;
 };
 
+export type BudgetStddevPopulationAggregates = {
+  __typename?: 'BudgetStddevPopulationAggregates';
+  /** Population standard deviation of alertThreshold across the matching connection */
+  alertThreshold?: Maybe<Scalars['BigFloat']['output']>;
+  /** Population standard deviation of amount across the matching connection */
+  amount?: Maybe<Scalars['Float']['output']>;
+};
+
 export type BudgetStddevSampleAggregateFilter = {
   alertThreshold?: InputMaybe<BigFloatFilter>;
   amount?: InputMaybe<FloatFilter>;
+};
+
+export type BudgetStddevSampleAggregates = {
+  __typename?: 'BudgetStddevSampleAggregates';
+  /** Sample standard deviation of alertThreshold across the matching connection */
+  alertThreshold?: Maybe<Scalars['BigFloat']['output']>;
+  /** Sample standard deviation of amount across the matching connection */
+  amount?: Maybe<Scalars['Float']['output']>;
 };
 
 export type BudgetSumAggregateFilter = {
@@ -294,14 +389,71 @@ export type BudgetSumAggregateFilter = {
   amount?: InputMaybe<FloatFilter>;
 };
 
+export type BudgetSumAggregates = {
+  __typename?: 'BudgetSumAggregates';
+  /** Sum of alertThreshold across the matching connection */
+  alertThreshold: Scalars['BigInt']['output'];
+  /** Sum of amount across the matching connection */
+  amount: Scalars['Float']['output'];
+};
+
 export type BudgetVariancePopulationAggregateFilter = {
   alertThreshold?: InputMaybe<BigFloatFilter>;
   amount?: InputMaybe<FloatFilter>;
 };
 
+export type BudgetVariancePopulationAggregates = {
+  __typename?: 'BudgetVariancePopulationAggregates';
+  /** Population variance of alertThreshold across the matching connection */
+  alertThreshold?: Maybe<Scalars['BigFloat']['output']>;
+  /** Population variance of amount across the matching connection */
+  amount?: Maybe<Scalars['Float']['output']>;
+};
+
 export type BudgetVarianceSampleAggregateFilter = {
   alertThreshold?: InputMaybe<BigFloatFilter>;
   amount?: InputMaybe<FloatFilter>;
+};
+
+export type BudgetVarianceSampleAggregates = {
+  __typename?: 'BudgetVarianceSampleAggregates';
+  /** Sample variance of alertThreshold across the matching connection */
+  alertThreshold?: Maybe<Scalars['BigFloat']['output']>;
+  /** Sample variance of amount across the matching connection */
+  amount?: Maybe<Scalars['Float']['output']>;
+};
+
+/** A connection to a list of `Budget` values. */
+export type BudgetsConnection = {
+  __typename?: 'BudgetsConnection';
+  /** Aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  aggregates?: Maybe<BudgetAggregates>;
+  /** A list of edges which contains the `Budget` and cursor to aid in pagination. */
+  edges: Array<BudgetsEdge>;
+  /** Grouped aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  groupedAggregates?: Maybe<Array<BudgetAggregates>>;
+  /** A list of `Budget` objects. */
+  nodes: Array<Budget>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `Budget` you could get from the connection. */
+  totalCount: Scalars['Int']['output'];
+};
+
+
+/** A connection to a list of `Budget` values. */
+export type BudgetsConnectionGroupedAggregatesArgs = {
+  groupBy: Array<BudgetGroupBy>;
+  having?: InputMaybe<BudgetHavingInput>;
+};
+
+/** A `Budget` edge in the connection. */
+export type BudgetsEdge = {
+  __typename?: 'BudgetsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']['output']>;
+  /** The `Budget` at the end of the edge. */
+  node: Budget;
 };
 
 /** Methods to use when ordering `Budget`. */
@@ -322,6 +474,39 @@ export enum BudgetsOrderBy {
   UserIdAsc = 'USER_ID_ASC',
   UserIdDesc = 'USER_ID_DESC'
 }
+
+/** A connection to a list of `Category` values. */
+export type CategoriesConnection = {
+  __typename?: 'CategoriesConnection';
+  /** Aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  aggregates?: Maybe<CategoryAggregates>;
+  /** A list of edges which contains the `Category` and cursor to aid in pagination. */
+  edges: Array<CategoriesEdge>;
+  /** Grouped aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  groupedAggregates?: Maybe<Array<CategoryAggregates>>;
+  /** A list of `Category` objects. */
+  nodes: Array<Category>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `Category` you could get from the connection. */
+  totalCount: Scalars['Int']['output'];
+};
+
+
+/** A connection to a list of `Category` values. */
+export type CategoriesConnectionGroupedAggregatesArgs = {
+  groupBy: Array<CategoryGroupBy>;
+  having?: InputMaybe<CategoryHavingInput>;
+};
+
+/** A `Category` edge in the connection. */
+export type CategoriesEdge = {
+  __typename?: 'CategoriesEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']['output']>;
+  /** The `Category` at the end of the edge. */
+  node: Category;
+};
 
 /** Methods to use when ordering `Category`. */
 export enum CategoriesOrderBy {
@@ -572,6 +757,49 @@ export enum CategoriesOrderBy {
   TransactionsByCategoryIdVarianceSampleUserIdDesc = 'TRANSACTIONS_BY_CATEGORY_ID_VARIANCE_SAMPLE_USER_ID_DESC'
 }
 
+export type Category = Node & {
+  __typename?: 'Category';
+  /** Reads and enables pagination through a set of `Budget`. */
+  budgetsByCategoryId: BudgetsConnection;
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID']['output'];
+  /** Reads and enables pagination through a set of `Transaction`. */
+  transactionsByCategoryId: TransactionsConnection;
+};
+
+
+export type CategoryBudgetsByCategoryIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<BudgetCondition>;
+  filter?: InputMaybe<BudgetFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<BudgetsOrderBy>>;
+};
+
+
+export type CategoryTransactionsByCategoryIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<TransactionCondition>;
+  filter?: InputMaybe<TransactionFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<TransactionsOrderBy>>;
+};
+
+export type CategoryAggregates = {
+  __typename?: 'CategoryAggregates';
+  /** Distinct count aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  distinctCount?: Maybe<CategoryDistinctCountAggregates>;
+  keys?: Maybe<Array<Scalars['String']['output']>>;
+};
+
 /**
  * A condition to be used against `Category` object types. All fields are tested
  * for equality and combined with a logical ‘and.’
@@ -581,6 +809,14 @@ export type CategoryCondition = {
   id?: InputMaybe<Scalars['String']['input']>;
   /** Checks for equality with the object’s `name` field. */
   name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CategoryDistinctCountAggregates = {
+  __typename?: 'CategoryDistinctCountAggregates';
+  /** Distinct count of id across the matching connection */
+  id?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of name across the matching connection */
+  name?: Maybe<Scalars['BigInt']['output']>;
 };
 
 /** A filter to be used against `Category` object types. All fields are combined with a logical ‘and.’ */
@@ -663,6 +899,32 @@ export type CreateBudgetInput = {
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
 };
 
+/** The output of our create `Budget` mutation. */
+export type CreateBudgetPayload = {
+  __typename?: 'CreateBudgetPayload';
+  /** The `Budget` that was created by this mutation. */
+  budget?: Maybe<Budget>;
+  /** An edge for our `Budget`. May be used by Relay 1. */
+  budgetEdge?: Maybe<BudgetsEdge>;
+  /** Reads a single `Category` that is related to this `Budget`. */
+  category?: Maybe<Category>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `Budget`. */
+  user?: Maybe<User>;
+};
+
+
+/** The output of our create `Budget` mutation. */
+export type CreateBudgetPayloadBudgetEdgeArgs = {
+  orderBy?: InputMaybe<Array<BudgetsOrderBy>>;
+};
+
 /** All input for the create `Category` mutation. */
 export type CreateCategoryInput = {
   /** The `Category` to be created by this mutation. */
@@ -672,6 +934,63 @@ export type CreateCategoryInput = {
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The output of our create `Category` mutation. */
+export type CreateCategoryPayload = {
+  __typename?: 'CreateCategoryPayload';
+  /** The `Category` that was created by this mutation. */
+  category?: Maybe<Category>;
+  /** An edge for our `Category`. May be used by Relay 1. */
+  categoryEdge?: Maybe<CategoriesEdge>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+};
+
+
+/** The output of our create `Category` mutation. */
+export type CreateCategoryPayloadCategoryEdgeArgs = {
+  orderBy?: InputMaybe<Array<CategoriesOrderBy>>;
+};
+
+/** All input for the create `OtpVerification` mutation. */
+export type CreateOtpVerificationInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The `OtpVerification` to be created by this mutation. */
+  otpVerification: OtpVerificationInput;
+};
+
+/** The output of our create `OtpVerification` mutation. */
+export type CreateOtpVerificationPayload = {
+  __typename?: 'CreateOtpVerificationPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The `OtpVerification` that was created by this mutation. */
+  otpVerification?: Maybe<OtpVerification>;
+  /** An edge for our `OtpVerification`. May be used by Relay 1. */
+  otpVerificationEdge?: Maybe<OtpVerificationsEdge>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `OtpVerification`. */
+  user?: Maybe<User>;
+};
+
+
+/** The output of our create `OtpVerification` mutation. */
+export type CreateOtpVerificationPayloadOtpVerificationEdgeArgs = {
+  orderBy?: InputMaybe<Array<OtpVerificationsOrderBy>>;
 };
 
 /** All input for the create `Report` mutation. */
@@ -685,6 +1004,30 @@ export type CreateReportInput = {
   report: ReportInput;
 };
 
+/** The output of our create `Report` mutation. */
+export type CreateReportPayload = {
+  __typename?: 'CreateReportPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** The `Report` that was created by this mutation. */
+  report?: Maybe<Report>;
+  /** An edge for our `Report`. May be used by Relay 1. */
+  reportEdge?: Maybe<ReportsEdge>;
+  /** Reads a single `User` that is related to this `Report`. */
+  user?: Maybe<User>;
+};
+
+
+/** The output of our create `Report` mutation. */
+export type CreateReportPayloadReportEdgeArgs = {
+  orderBy?: InputMaybe<Array<ReportsOrderBy>>;
+};
+
 /** All input for the create `Transaction` mutation. */
 export type CreateTransactionInput = {
   /**
@@ -694,6 +1037,32 @@ export type CreateTransactionInput = {
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   /** The `Transaction` to be created by this mutation. */
   transaction: TransactionInput;
+};
+
+/** The output of our create `Transaction` mutation. */
+export type CreateTransactionPayload = {
+  __typename?: 'CreateTransactionPayload';
+  /** Reads a single `Category` that is related to this `Transaction`. */
+  category?: Maybe<Category>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** The `Transaction` that was created by this mutation. */
+  transaction?: Maybe<Transaction>;
+  /** An edge for our `Transaction`. May be used by Relay 1. */
+  transactionEdge?: Maybe<TransactionsEdge>;
+  /** Reads a single `User` that is related to this `Transaction`. */
+  user?: Maybe<User>;
+};
+
+
+/** The output of our create `Transaction` mutation. */
+export type CreateTransactionPayloadTransactionEdgeArgs = {
+  orderBy?: InputMaybe<Array<TransactionsOrderBy>>;
 };
 
 /** All input for the create `UserDevice` mutation. */
@@ -707,6 +1076,30 @@ export type CreateUserDeviceInput = {
   userDevice: UserDeviceInput;
 };
 
+/** The output of our create `UserDevice` mutation. */
+export type CreateUserDevicePayload = {
+  __typename?: 'CreateUserDevicePayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `UserDevice`. */
+  user?: Maybe<User>;
+  /** The `UserDevice` that was created by this mutation. */
+  userDevice?: Maybe<UserDevice>;
+  /** An edge for our `UserDevice`. May be used by Relay 1. */
+  userDeviceEdge?: Maybe<UserDevicesEdge>;
+};
+
+
+/** The output of our create `UserDevice` mutation. */
+export type CreateUserDevicePayloadUserDeviceEdgeArgs = {
+  orderBy?: InputMaybe<Array<UserDevicesOrderBy>>;
+};
+
 /** All input for the create `User` mutation. */
 export type CreateUserInput = {
   /**
@@ -716,6 +1109,28 @@ export type CreateUserInput = {
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   /** The `User` to be created by this mutation. */
   user: UserInput;
+};
+
+/** The output of our create `User` mutation. */
+export type CreateUserPayload = {
+  __typename?: 'CreateUserPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** The `User` that was created by this mutation. */
+  user?: Maybe<User>;
+  /** An edge for our `User`. May be used by Relay 1. */
+  userEdge?: Maybe<UsersEdge>;
+};
+
+
+/** The output of our create `User` mutation. */
+export type CreateUserPayloadUserEdgeArgs = {
+  orderBy?: InputMaybe<Array<UsersOrderBy>>;
 };
 
 /** A filter to be used against Datetime fields. All fields are combined with a logical ‘and.’ */
@@ -765,6 +1180,33 @@ export type DeleteBudgetInput = {
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
 };
 
+/** The output of our delete `Budget` mutation. */
+export type DeleteBudgetPayload = {
+  __typename?: 'DeleteBudgetPayload';
+  /** The `Budget` that was deleted by this mutation. */
+  budget?: Maybe<Budget>;
+  /** An edge for our `Budget`. May be used by Relay 1. */
+  budgetEdge?: Maybe<BudgetsEdge>;
+  /** Reads a single `Category` that is related to this `Budget`. */
+  category?: Maybe<Category>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  deletedBudgetNodeId?: Maybe<Scalars['ID']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `Budget`. */
+  user?: Maybe<User>;
+};
+
+
+/** The output of our delete `Budget` mutation. */
+export type DeleteBudgetPayloadBudgetEdgeArgs = {
+  orderBy?: InputMaybe<Array<BudgetsOrderBy>>;
+};
+
 /** All input for the `deleteCategoryByNodeId` mutation. */
 export type DeleteCategoryByNodeIdInput = {
   /**
@@ -784,6 +1226,75 @@ export type DeleteCategoryInput = {
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   id: Scalars['String']['input'];
+};
+
+/** The output of our delete `Category` mutation. */
+export type DeleteCategoryPayload = {
+  __typename?: 'DeleteCategoryPayload';
+  /** The `Category` that was deleted by this mutation. */
+  category?: Maybe<Category>;
+  /** An edge for our `Category`. May be used by Relay 1. */
+  categoryEdge?: Maybe<CategoriesEdge>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  deletedCategoryNodeId?: Maybe<Scalars['ID']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+};
+
+
+/** The output of our delete `Category` mutation. */
+export type DeleteCategoryPayloadCategoryEdgeArgs = {
+  orderBy?: InputMaybe<Array<CategoriesOrderBy>>;
+};
+
+/** All input for the `deleteOtpVerificationByNodeId` mutation. */
+export type DeleteOtpVerificationByNodeIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The globally unique `ID` which will identify a single `OtpVerification` to be deleted. */
+  nodeId: Scalars['ID']['input'];
+};
+
+/** All input for the `deleteOtpVerification` mutation. */
+export type DeleteOtpVerificationInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['String']['input'];
+};
+
+/** The output of our delete `OtpVerification` mutation. */
+export type DeleteOtpVerificationPayload = {
+  __typename?: 'DeleteOtpVerificationPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  deletedOtpVerificationNodeId?: Maybe<Scalars['ID']['output']>;
+  /** The `OtpVerification` that was deleted by this mutation. */
+  otpVerification?: Maybe<OtpVerification>;
+  /** An edge for our `OtpVerification`. May be used by Relay 1. */
+  otpVerificationEdge?: Maybe<OtpVerificationsEdge>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `OtpVerification`. */
+  user?: Maybe<User>;
+};
+
+
+/** The output of our delete `OtpVerification` mutation. */
+export type DeleteOtpVerificationPayloadOtpVerificationEdgeArgs = {
+  orderBy?: InputMaybe<Array<OtpVerificationsOrderBy>>;
 };
 
 /** All input for the `deleteReportByNodeId` mutation. */
@@ -807,6 +1318,31 @@ export type DeleteReportInput = {
   reportId: Scalars['String']['input'];
 };
 
+/** The output of our delete `Report` mutation. */
+export type DeleteReportPayload = {
+  __typename?: 'DeleteReportPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  deletedReportNodeId?: Maybe<Scalars['ID']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** The `Report` that was deleted by this mutation. */
+  report?: Maybe<Report>;
+  /** An edge for our `Report`. May be used by Relay 1. */
+  reportEdge?: Maybe<ReportsEdge>;
+  /** Reads a single `User` that is related to this `Report`. */
+  user?: Maybe<User>;
+};
+
+
+/** The output of our delete `Report` mutation. */
+export type DeleteReportPayloadReportEdgeArgs = {
+  orderBy?: InputMaybe<Array<ReportsOrderBy>>;
+};
+
 /** All input for the `deleteTransactionByNodeId` mutation. */
 export type DeleteTransactionByNodeIdInput = {
   /**
@@ -826,6 +1362,33 @@ export type DeleteTransactionInput = {
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   transactionId: Scalars['String']['input'];
+};
+
+/** The output of our delete `Transaction` mutation. */
+export type DeleteTransactionPayload = {
+  __typename?: 'DeleteTransactionPayload';
+  /** Reads a single `Category` that is related to this `Transaction`. */
+  category?: Maybe<Category>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  deletedTransactionNodeId?: Maybe<Scalars['ID']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** The `Transaction` that was deleted by this mutation. */
+  transaction?: Maybe<Transaction>;
+  /** An edge for our `Transaction`. May be used by Relay 1. */
+  transactionEdge?: Maybe<TransactionsEdge>;
+  /** Reads a single `User` that is related to this `Transaction`. */
+  user?: Maybe<User>;
+};
+
+
+/** The output of our delete `Transaction` mutation. */
+export type DeleteTransactionPayloadTransactionEdgeArgs = {
+  orderBy?: InputMaybe<Array<TransactionsOrderBy>>;
 };
 
 /** All input for the `deleteUserByNodeId` mutation. */
@@ -871,6 +1434,31 @@ export type DeleteUserDeviceInput = {
   userId: Scalars['String']['input'];
 };
 
+/** The output of our delete `UserDevice` mutation. */
+export type DeleteUserDevicePayload = {
+  __typename?: 'DeleteUserDevicePayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  deletedUserDeviceNodeId?: Maybe<Scalars['ID']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `UserDevice`. */
+  user?: Maybe<User>;
+  /** The `UserDevice` that was deleted by this mutation. */
+  userDevice?: Maybe<UserDevice>;
+  /** An edge for our `UserDevice`. May be used by Relay 1. */
+  userDeviceEdge?: Maybe<UserDevicesEdge>;
+};
+
+
+/** The output of our delete `UserDevice` mutation. */
+export type DeleteUserDevicePayloadUserDeviceEdgeArgs = {
+  orderBy?: InputMaybe<Array<UserDevicesOrderBy>>;
+};
+
 /** All input for the `deleteUser` mutation. */
 export type DeleteUserInput = {
   /**
@@ -879,6 +1467,29 @@ export type DeleteUserInput = {
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   oidcId: Scalars['String']['input'];
+};
+
+/** The output of our delete `User` mutation. */
+export type DeleteUserPayload = {
+  __typename?: 'DeleteUserPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  deletedUserNodeId?: Maybe<Scalars['ID']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** The `User` that was deleted by this mutation. */
+  user?: Maybe<User>;
+  /** An edge for our `User`. May be used by Relay 1. */
+  userEdge?: Maybe<UsersEdge>;
+};
+
+
+/** The output of our delete `User` mutation. */
+export type DeleteUserPayloadUserEdgeArgs = {
+  orderBy?: InputMaybe<Array<UsersOrderBy>>;
 };
 
 /** A filter to be used against Float fields. All fields are combined with a logical ‘and.’ */
@@ -996,6 +1607,888 @@ export type JsonFilter = {
   notIn?: InputMaybe<Array<Scalars['JSON']['input']>>;
 };
 
+/** The root mutation type which contains root level fields which mutate data. */
+export type Mutation = {
+  __typename?: 'Mutation';
+  /** Creates a single `Budget`. */
+  createBudget?: Maybe<CreateBudgetPayload>;
+  /** Creates a single `Category`. */
+  createCategory?: Maybe<CreateCategoryPayload>;
+  /** Creates a single `OtpVerification`. */
+  createOtpVerification?: Maybe<CreateOtpVerificationPayload>;
+  /** Creates a single `Report`. */
+  createReport?: Maybe<CreateReportPayload>;
+  /** Creates a single `Transaction`. */
+  createTransaction?: Maybe<CreateTransactionPayload>;
+  /** Creates a single `User`. */
+  createUser?: Maybe<CreateUserPayload>;
+  /** Creates a single `UserDevice`. */
+  createUserDevice?: Maybe<CreateUserDevicePayload>;
+  /** Deletes a single `Budget` using a unique key. */
+  deleteBudget?: Maybe<DeleteBudgetPayload>;
+  /** Deletes a single `Budget` using its globally unique id. */
+  deleteBudgetByNodeId?: Maybe<DeleteBudgetPayload>;
+  /** Deletes a single `Category` using a unique key. */
+  deleteCategory?: Maybe<DeleteCategoryPayload>;
+  /** Deletes a single `Category` using its globally unique id. */
+  deleteCategoryByNodeId?: Maybe<DeleteCategoryPayload>;
+  /** Deletes a single `OtpVerification` using a unique key. */
+  deleteOtpVerification?: Maybe<DeleteOtpVerificationPayload>;
+  /** Deletes a single `OtpVerification` using its globally unique id. */
+  deleteOtpVerificationByNodeId?: Maybe<DeleteOtpVerificationPayload>;
+  /** Deletes a single `Report` using a unique key. */
+  deleteReport?: Maybe<DeleteReportPayload>;
+  /** Deletes a single `Report` using its globally unique id. */
+  deleteReportByNodeId?: Maybe<DeleteReportPayload>;
+  /** Deletes a single `Transaction` using a unique key. */
+  deleteTransaction?: Maybe<DeleteTransactionPayload>;
+  /** Deletes a single `Transaction` using its globally unique id. */
+  deleteTransactionByNodeId?: Maybe<DeleteTransactionPayload>;
+  /** Deletes a single `User` using a unique key. */
+  deleteUser?: Maybe<DeleteUserPayload>;
+  /** Deletes a single `User` using its globally unique id. */
+  deleteUserByNodeId?: Maybe<DeleteUserPayload>;
+  /** Deletes a single `UserDevice` using a unique key. */
+  deleteUserDevice?: Maybe<DeleteUserDevicePayload>;
+  /** Deletes a single `UserDevice` using its globally unique id. */
+  deleteUserDeviceByNodeId?: Maybe<DeleteUserDevicePayload>;
+  /** Deletes a single `UserDevice` using a unique key. */
+  deleteUserDeviceByToken?: Maybe<DeleteUserDevicePayload>;
+  /** Updates a single `Budget` using a unique key and a patch. */
+  updateBudget?: Maybe<UpdateBudgetPayload>;
+  /** Updates a single `Budget` using its globally unique id and a patch. */
+  updateBudgetByNodeId?: Maybe<UpdateBudgetPayload>;
+  /** Updates a single `Category` using a unique key and a patch. */
+  updateCategory?: Maybe<UpdateCategoryPayload>;
+  /** Updates a single `Category` using its globally unique id and a patch. */
+  updateCategoryByNodeId?: Maybe<UpdateCategoryPayload>;
+  /** Updates a single `OtpVerification` using a unique key and a patch. */
+  updateOtpVerification?: Maybe<UpdateOtpVerificationPayload>;
+  /** Updates a single `OtpVerification` using its globally unique id and a patch. */
+  updateOtpVerificationByNodeId?: Maybe<UpdateOtpVerificationPayload>;
+  /** Updates a single `Report` using a unique key and a patch. */
+  updateReport?: Maybe<UpdateReportPayload>;
+  /** Updates a single `Report` using its globally unique id and a patch. */
+  updateReportByNodeId?: Maybe<UpdateReportPayload>;
+  /** Updates a single `Transaction` using a unique key and a patch. */
+  updateTransaction?: Maybe<UpdateTransactionPayload>;
+  /** Updates a single `Transaction` using its globally unique id and a patch. */
+  updateTransactionByNodeId?: Maybe<UpdateTransactionPayload>;
+  /** Updates a single `User` using a unique key and a patch. */
+  updateUser?: Maybe<UpdateUserPayload>;
+  /** Updates a single `User` using its globally unique id and a patch. */
+  updateUserByNodeId?: Maybe<UpdateUserPayload>;
+  /** Updates a single `UserDevice` using a unique key and a patch. */
+  updateUserDevice?: Maybe<UpdateUserDevicePayload>;
+  /** Updates a single `UserDevice` using its globally unique id and a patch. */
+  updateUserDeviceByNodeId?: Maybe<UpdateUserDevicePayload>;
+  /** Updates a single `UserDevice` using a unique key and a patch. */
+  updateUserDeviceByToken?: Maybe<UpdateUserDevicePayload>;
+  /** Upserts a single `Budget`. */
+  upsertBudget?: Maybe<UpsertBudgetPayload>;
+  /** Upserts a single `Category`. */
+  upsertCategory?: Maybe<UpsertCategoryPayload>;
+  /** Upserts a single `OtpVerification`. */
+  upsertOtpVerification?: Maybe<UpsertOtpVerificationPayload>;
+  /** Upserts a single `Report`. */
+  upsertReport?: Maybe<UpsertReportPayload>;
+  /** Upserts a single `Transaction`. */
+  upsertTransaction?: Maybe<UpsertTransactionPayload>;
+  /** Upserts a single `User`. */
+  upsertUser?: Maybe<UpsertUserPayload>;
+  /** Upserts a single `UserDevice`. */
+  upsertUserDevice?: Maybe<UpsertUserDevicePayload>;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateBudgetArgs = {
+  input: CreateBudgetInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateCategoryArgs = {
+  input: CreateCategoryInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateOtpVerificationArgs = {
+  input: CreateOtpVerificationInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateReportArgs = {
+  input: CreateReportInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateTransactionArgs = {
+  input: CreateTransactionInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateUserArgs = {
+  input: CreateUserInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateUserDeviceArgs = {
+  input: CreateUserDeviceInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteBudgetArgs = {
+  input: DeleteBudgetInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteBudgetByNodeIdArgs = {
+  input: DeleteBudgetByNodeIdInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteCategoryArgs = {
+  input: DeleteCategoryInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteCategoryByNodeIdArgs = {
+  input: DeleteCategoryByNodeIdInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteOtpVerificationArgs = {
+  input: DeleteOtpVerificationInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteOtpVerificationByNodeIdArgs = {
+  input: DeleteOtpVerificationByNodeIdInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteReportArgs = {
+  input: DeleteReportInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteReportByNodeIdArgs = {
+  input: DeleteReportByNodeIdInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteTransactionArgs = {
+  input: DeleteTransactionInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteTransactionByNodeIdArgs = {
+  input: DeleteTransactionByNodeIdInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteUserArgs = {
+  input: DeleteUserInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteUserByNodeIdArgs = {
+  input: DeleteUserByNodeIdInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteUserDeviceArgs = {
+  input: DeleteUserDeviceInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteUserDeviceByNodeIdArgs = {
+  input: DeleteUserDeviceByNodeIdInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteUserDeviceByTokenArgs = {
+  input: DeleteUserDeviceByTokenInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateBudgetArgs = {
+  input: UpdateBudgetInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateBudgetByNodeIdArgs = {
+  input: UpdateBudgetByNodeIdInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateCategoryArgs = {
+  input: UpdateCategoryInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateCategoryByNodeIdArgs = {
+  input: UpdateCategoryByNodeIdInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateOtpVerificationArgs = {
+  input: UpdateOtpVerificationInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateOtpVerificationByNodeIdArgs = {
+  input: UpdateOtpVerificationByNodeIdInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateReportArgs = {
+  input: UpdateReportInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateReportByNodeIdArgs = {
+  input: UpdateReportByNodeIdInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateTransactionArgs = {
+  input: UpdateTransactionInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateTransactionByNodeIdArgs = {
+  input: UpdateTransactionByNodeIdInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateUserArgs = {
+  input: UpdateUserInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateUserByNodeIdArgs = {
+  input: UpdateUserByNodeIdInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateUserDeviceArgs = {
+  input: UpdateUserDeviceInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateUserDeviceByNodeIdArgs = {
+  input: UpdateUserDeviceByNodeIdInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateUserDeviceByTokenArgs = {
+  input: UpdateUserDeviceByTokenInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpsertBudgetArgs = {
+  input: UpsertBudgetInput;
+  where?: InputMaybe<UpsertBudgetWhere>;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpsertCategoryArgs = {
+  input: UpsertCategoryInput;
+  where?: InputMaybe<UpsertCategoryWhere>;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpsertOtpVerificationArgs = {
+  input: UpsertOtpVerificationInput;
+  where?: InputMaybe<UpsertOtpVerificationWhere>;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpsertReportArgs = {
+  input: UpsertReportInput;
+  where?: InputMaybe<UpsertReportWhere>;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpsertTransactionArgs = {
+  input: UpsertTransactionInput;
+  where?: InputMaybe<UpsertTransactionWhere>;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpsertUserArgs = {
+  input: UpsertUserInput;
+  where?: InputMaybe<UpsertUserWhere>;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpsertUserDeviceArgs = {
+  input: UpsertUserDeviceInput;
+  where?: InputMaybe<UpsertUserDeviceWhere>;
+};
+
+/** An object with a globally unique `ID`. */
+export type Node = {
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID']['output'];
+};
+
+export type OtpVerification = Node & {
+  __typename?: 'OtpVerification';
+  createdAt: Scalars['Datetime']['output'];
+  email?: Maybe<Scalars['String']['output']>;
+  expiresAt: Scalars['Datetime']['output'];
+  id: Scalars['String']['output'];
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID']['output'];
+  otp: Scalars['String']['output'];
+  /** Reads a single `User` that is related to this `OtpVerification`. */
+  user?: Maybe<User>;
+  userId: Scalars['String']['output'];
+};
+
+export type OtpVerificationAggregates = {
+  __typename?: 'OtpVerificationAggregates';
+  /** Distinct count aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  distinctCount?: Maybe<OtpVerificationDistinctCountAggregates>;
+  keys?: Maybe<Array<Scalars['String']['output']>>;
+};
+
+/** A filter to be used against aggregates of `OtpVerification` object types. */
+export type OtpVerificationAggregatesFilter = {
+  /** Distinct count aggregate over matching `OtpVerification` objects. */
+  distinctCount?: InputMaybe<OtpVerificationDistinctCountAggregateFilter>;
+  /** A filter that must pass for the relevant `OtpVerification` object to be included within the aggregate. */
+  filter?: InputMaybe<OtpVerificationFilter>;
+};
+
+/**
+ * A condition to be used against `OtpVerification` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type OtpVerificationCondition = {
+  /** Checks for equality with the object’s `createdAt` field. */
+  createdAt?: InputMaybe<Scalars['Datetime']['input']>;
+  /** Checks for equality with the object’s `email` field. */
+  email?: InputMaybe<Scalars['String']['input']>;
+  /** Checks for equality with the object’s `expiresAt` field. */
+  expiresAt?: InputMaybe<Scalars['Datetime']['input']>;
+  /** Checks for equality with the object’s `id` field. */
+  id?: InputMaybe<Scalars['String']['input']>;
+  /** Checks for equality with the object’s `otp` field. */
+  otp?: InputMaybe<Scalars['String']['input']>;
+  /** Checks for equality with the object’s `userId` field. */
+  userId?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type OtpVerificationDistinctCountAggregateFilter = {
+  createdAt?: InputMaybe<BigIntFilter>;
+  email?: InputMaybe<BigIntFilter>;
+  expiresAt?: InputMaybe<BigIntFilter>;
+  id?: InputMaybe<BigIntFilter>;
+  otp?: InputMaybe<BigIntFilter>;
+  userId?: InputMaybe<BigIntFilter>;
+};
+
+export type OtpVerificationDistinctCountAggregates = {
+  __typename?: 'OtpVerificationDistinctCountAggregates';
+  /** Distinct count of createdAt across the matching connection */
+  createdAt?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of email across the matching connection */
+  email?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of expiresAt across the matching connection */
+  expiresAt?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of id across the matching connection */
+  id?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of otp across the matching connection */
+  otp?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of userId across the matching connection */
+  userId?: Maybe<Scalars['BigInt']['output']>;
+};
+
+/** A filter to be used against `OtpVerification` object types. All fields are combined with a logical ‘and.’ */
+export type OtpVerificationFilter = {
+  /** Checks for all expressions in this list. */
+  and?: InputMaybe<Array<OtpVerificationFilter>>;
+  /** Filter by the object’s `createdAt` field. */
+  createdAt?: InputMaybe<DatetimeFilter>;
+  /** Filter by the object’s `email` field. */
+  email?: InputMaybe<StringFilter>;
+  /** Filter by the object’s `expiresAt` field. */
+  expiresAt?: InputMaybe<DatetimeFilter>;
+  /** Filter by the object’s `id` field. */
+  id?: InputMaybe<StringFilter>;
+  /** Negates the expression. */
+  not?: InputMaybe<OtpVerificationFilter>;
+  /** Checks for any expressions in this list. */
+  or?: InputMaybe<Array<OtpVerificationFilter>>;
+  /** Filter by the object’s `otp` field. */
+  otp?: InputMaybe<StringFilter>;
+  /** Filter by the object’s `user` relation. */
+  user?: InputMaybe<UserFilter>;
+  /** Filter by the object’s `userId` field. */
+  userId?: InputMaybe<StringFilter>;
+};
+
+/** Grouping methods for `OtpVerification` for usage during aggregation. */
+export enum OtpVerificationGroupBy {
+  CreatedAt = 'CREATED_AT',
+  CreatedAtTruncatedToDay = 'CREATED_AT_TRUNCATED_TO_DAY',
+  CreatedAtTruncatedToHour = 'CREATED_AT_TRUNCATED_TO_HOUR',
+  Email = 'EMAIL',
+  ExpiresAt = 'EXPIRES_AT',
+  ExpiresAtTruncatedToDay = 'EXPIRES_AT_TRUNCATED_TO_DAY',
+  ExpiresAtTruncatedToHour = 'EXPIRES_AT_TRUNCATED_TO_HOUR',
+  Otp = 'OTP',
+  UserId = 'USER_ID'
+}
+
+export type OtpVerificationHavingAverageInput = {
+  createdAt?: InputMaybe<HavingDatetimeFilter>;
+  expiresAt?: InputMaybe<HavingDatetimeFilter>;
+};
+
+export type OtpVerificationHavingDistinctCountInput = {
+  createdAt?: InputMaybe<HavingDatetimeFilter>;
+  expiresAt?: InputMaybe<HavingDatetimeFilter>;
+};
+
+/** Conditions for `OtpVerification` aggregates. */
+export type OtpVerificationHavingInput = {
+  AND?: InputMaybe<Array<OtpVerificationHavingInput>>;
+  OR?: InputMaybe<Array<OtpVerificationHavingInput>>;
+  average?: InputMaybe<OtpVerificationHavingAverageInput>;
+  distinctCount?: InputMaybe<OtpVerificationHavingDistinctCountInput>;
+  max?: InputMaybe<OtpVerificationHavingMaxInput>;
+  min?: InputMaybe<OtpVerificationHavingMinInput>;
+  stddevPopulation?: InputMaybe<OtpVerificationHavingStddevPopulationInput>;
+  stddevSample?: InputMaybe<OtpVerificationHavingStddevSampleInput>;
+  sum?: InputMaybe<OtpVerificationHavingSumInput>;
+  variancePopulation?: InputMaybe<OtpVerificationHavingVariancePopulationInput>;
+  varianceSample?: InputMaybe<OtpVerificationHavingVarianceSampleInput>;
+};
+
+export type OtpVerificationHavingMaxInput = {
+  createdAt?: InputMaybe<HavingDatetimeFilter>;
+  expiresAt?: InputMaybe<HavingDatetimeFilter>;
+};
+
+export type OtpVerificationHavingMinInput = {
+  createdAt?: InputMaybe<HavingDatetimeFilter>;
+  expiresAt?: InputMaybe<HavingDatetimeFilter>;
+};
+
+export type OtpVerificationHavingStddevPopulationInput = {
+  createdAt?: InputMaybe<HavingDatetimeFilter>;
+  expiresAt?: InputMaybe<HavingDatetimeFilter>;
+};
+
+export type OtpVerificationHavingStddevSampleInput = {
+  createdAt?: InputMaybe<HavingDatetimeFilter>;
+  expiresAt?: InputMaybe<HavingDatetimeFilter>;
+};
+
+export type OtpVerificationHavingSumInput = {
+  createdAt?: InputMaybe<HavingDatetimeFilter>;
+  expiresAt?: InputMaybe<HavingDatetimeFilter>;
+};
+
+export type OtpVerificationHavingVariancePopulationInput = {
+  createdAt?: InputMaybe<HavingDatetimeFilter>;
+  expiresAt?: InputMaybe<HavingDatetimeFilter>;
+};
+
+export type OtpVerificationHavingVarianceSampleInput = {
+  createdAt?: InputMaybe<HavingDatetimeFilter>;
+  expiresAt?: InputMaybe<HavingDatetimeFilter>;
+};
+
+/** An input for mutations affecting `OtpVerification` */
+export type OtpVerificationInput = {
+  createdAt?: InputMaybe<Scalars['Datetime']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  expiresAt: Scalars['Datetime']['input'];
+  id: Scalars['String']['input'];
+  otp: Scalars['String']['input'];
+  userId: Scalars['String']['input'];
+};
+
+/** Represents an update to a `OtpVerification`. Fields that are set will be updated. */
+export type OtpVerificationPatch = {
+  createdAt?: InputMaybe<Scalars['Datetime']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  expiresAt?: InputMaybe<Scalars['Datetime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  otp?: InputMaybe<Scalars['String']['input']>;
+  userId?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** A connection to a list of `OtpVerification` values. */
+export type OtpVerificationsConnection = {
+  __typename?: 'OtpVerificationsConnection';
+  /** Aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  aggregates?: Maybe<OtpVerificationAggregates>;
+  /** A list of edges which contains the `OtpVerification` and cursor to aid in pagination. */
+  edges: Array<OtpVerificationsEdge>;
+  /** Grouped aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  groupedAggregates?: Maybe<Array<OtpVerificationAggregates>>;
+  /** A list of `OtpVerification` objects. */
+  nodes: Array<OtpVerification>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `OtpVerification` you could get from the connection. */
+  totalCount: Scalars['Int']['output'];
+};
+
+
+/** A connection to a list of `OtpVerification` values. */
+export type OtpVerificationsConnectionGroupedAggregatesArgs = {
+  groupBy: Array<OtpVerificationGroupBy>;
+  having?: InputMaybe<OtpVerificationHavingInput>;
+};
+
+/** A `OtpVerification` edge in the connection. */
+export type OtpVerificationsEdge = {
+  __typename?: 'OtpVerificationsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']['output']>;
+  /** The `OtpVerification` at the end of the edge. */
+  node: OtpVerification;
+};
+
+/** Methods to use when ordering `OtpVerification`. */
+export enum OtpVerificationsOrderBy {
+  CreatedAtAsc = 'CREATED_AT_ASC',
+  CreatedAtDesc = 'CREATED_AT_DESC',
+  EmailAsc = 'EMAIL_ASC',
+  EmailDesc = 'EMAIL_DESC',
+  ExpiresAtAsc = 'EXPIRES_AT_ASC',
+  ExpiresAtDesc = 'EXPIRES_AT_DESC',
+  IdAsc = 'ID_ASC',
+  IdDesc = 'ID_DESC',
+  Natural = 'NATURAL',
+  OtpAsc = 'OTP_ASC',
+  OtpDesc = 'OTP_DESC',
+  PrimaryKeyAsc = 'PRIMARY_KEY_ASC',
+  PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
+  UserIdAsc = 'USER_ID_ASC',
+  UserIdDesc = 'USER_ID_DESC'
+}
+
+/** Information about pagination in a connection. */
+export type PageInfo = {
+  __typename?: 'PageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['Cursor']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['Cursor']['output']>;
+};
+
+/** The root query type which gives access points into the data universe. */
+export type Query = Node & {
+  __typename?: 'Query';
+  budget?: Maybe<Budget>;
+  /** Reads a single `Budget` using its globally unique `ID`. */
+  budgetByNodeId?: Maybe<Budget>;
+  /** Reads and enables pagination through a set of `Budget`. */
+  budgets?: Maybe<BudgetsConnection>;
+  /** Reads and enables pagination through a set of `Category`. */
+  categories?: Maybe<CategoriesConnection>;
+  category?: Maybe<Category>;
+  /** Reads a single `Category` using its globally unique `ID`. */
+  categoryByNodeId?: Maybe<Category>;
+  /** Fetches an object given its globally unique `ID`. */
+  node?: Maybe<Node>;
+  /** The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`. */
+  nodeId: Scalars['ID']['output'];
+  otpVerification?: Maybe<OtpVerification>;
+  /** Reads a single `OtpVerification` using its globally unique `ID`. */
+  otpVerificationByNodeId?: Maybe<OtpVerification>;
+  /** Reads and enables pagination through a set of `OtpVerification`. */
+  otpVerifications?: Maybe<OtpVerificationsConnection>;
+  /**
+   * Exposes the root query type nested one level down. This is helpful for Relay 1
+   * which can only query top level fields if they are in a particular form.
+   */
+  query: Query;
+  report?: Maybe<Report>;
+  /** Reads a single `Report` using its globally unique `ID`. */
+  reportByNodeId?: Maybe<Report>;
+  /** Reads and enables pagination through a set of `Report`. */
+  reports?: Maybe<ReportsConnection>;
+  transaction?: Maybe<Transaction>;
+  /** Reads a single `Transaction` using its globally unique `ID`. */
+  transactionByNodeId?: Maybe<Transaction>;
+  /** Reads and enables pagination through a set of `Transaction`. */
+  transactions?: Maybe<TransactionsConnection>;
+  user?: Maybe<User>;
+  /** Reads a single `User` using its globally unique `ID`. */
+  userByNodeId?: Maybe<User>;
+  userDevice?: Maybe<UserDevice>;
+  /** Reads a single `UserDevice` using its globally unique `ID`. */
+  userDeviceByNodeId?: Maybe<UserDevice>;
+  userDeviceByToken?: Maybe<UserDevice>;
+  /** Reads and enables pagination through a set of `UserDevice`. */
+  userDevices?: Maybe<UserDevicesConnection>;
+  /** Reads and enables pagination through a set of `User`. */
+  users?: Maybe<UsersConnection>;
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryBudgetArgs = {
+  budgetId: Scalars['String']['input'];
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryBudgetByNodeIdArgs = {
+  nodeId: Scalars['ID']['input'];
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryBudgetsArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<BudgetCondition>;
+  filter?: InputMaybe<BudgetFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<BudgetsOrderBy>>;
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryCategoriesArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<CategoryCondition>;
+  filter?: InputMaybe<CategoryFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<CategoriesOrderBy>>;
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryCategoryArgs = {
+  id: Scalars['String']['input'];
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryCategoryByNodeIdArgs = {
+  nodeId: Scalars['ID']['input'];
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryNodeArgs = {
+  nodeId: Scalars['ID']['input'];
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryOtpVerificationArgs = {
+  id: Scalars['String']['input'];
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryOtpVerificationByNodeIdArgs = {
+  nodeId: Scalars['ID']['input'];
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryOtpVerificationsArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<OtpVerificationCondition>;
+  filter?: InputMaybe<OtpVerificationFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<OtpVerificationsOrderBy>>;
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryReportArgs = {
+  reportId: Scalars['String']['input'];
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryReportByNodeIdArgs = {
+  nodeId: Scalars['ID']['input'];
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryReportsArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<ReportCondition>;
+  filter?: InputMaybe<ReportFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<ReportsOrderBy>>;
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryTransactionArgs = {
+  transactionId: Scalars['String']['input'];
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryTransactionByNodeIdArgs = {
+  nodeId: Scalars['ID']['input'];
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryTransactionsArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<TransactionCondition>;
+  filter?: InputMaybe<TransactionFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<TransactionsOrderBy>>;
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryUserArgs = {
+  oidcId: Scalars['String']['input'];
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryUserByNodeIdArgs = {
+  nodeId: Scalars['ID']['input'];
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryUserDeviceArgs = {
+  token: Scalars['String']['input'];
+  userId: Scalars['String']['input'];
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryUserDeviceByNodeIdArgs = {
+  nodeId: Scalars['ID']['input'];
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryUserDeviceByTokenArgs = {
+  token: Scalars['String']['input'];
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryUserDevicesArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<UserDeviceCondition>;
+  filter?: InputMaybe<UserDeviceFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<UserDevicesOrderBy>>;
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryUsersArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<UserCondition>;
+  filter?: InputMaybe<UserFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<UsersOrderBy>>;
+};
+
+export type Report = Node & {
+  __typename?: 'Report';
+  createdAt?: Maybe<Scalars['String']['output']>;
+  filePath?: Maybe<Scalars['String']['output']>;
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID']['output'];
+  reportId: Scalars['String']['output'];
+  /** Reads a single `User` that is related to this `Report`. */
+  user?: Maybe<User>;
+  userId?: Maybe<Scalars['String']['output']>;
+};
+
+export type ReportAggregates = {
+  __typename?: 'ReportAggregates';
+  /** Distinct count aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  distinctCount?: Maybe<ReportDistinctCountAggregates>;
+  keys?: Maybe<Array<Scalars['String']['output']>>;
+};
+
 /** A filter to be used against aggregates of `Report` object types. */
 export type ReportAggregatesFilter = {
   /** Distinct count aggregate over matching `Report` objects. */
@@ -1021,6 +2514,18 @@ export type ReportDistinctCountAggregateFilter = {
   filePath?: InputMaybe<BigIntFilter>;
   reportId?: InputMaybe<BigIntFilter>;
   userId?: InputMaybe<BigIntFilter>;
+};
+
+export type ReportDistinctCountAggregates = {
+  __typename?: 'ReportDistinctCountAggregates';
+  /** Distinct count of createdAt across the matching connection */
+  createdAt?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of filePath across the matching connection */
+  filePath?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of reportId across the matching connection */
+  reportId?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of userId across the matching connection */
+  userId?: Maybe<Scalars['BigInt']['output']>;
 };
 
 /** A filter to be used against `Report` object types. All fields are combined with a logical ‘and.’ */
@@ -1072,6 +2577,39 @@ export type ReportPatch = {
   filePath?: InputMaybe<Scalars['String']['input']>;
   reportId?: InputMaybe<Scalars['String']['input']>;
   userId?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** A connection to a list of `Report` values. */
+export type ReportsConnection = {
+  __typename?: 'ReportsConnection';
+  /** Aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  aggregates?: Maybe<ReportAggregates>;
+  /** A list of edges which contains the `Report` and cursor to aid in pagination. */
+  edges: Array<ReportsEdge>;
+  /** Grouped aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  groupedAggregates?: Maybe<Array<ReportAggregates>>;
+  /** A list of `Report` objects. */
+  nodes: Array<Report>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `Report` you could get from the connection. */
+  totalCount: Scalars['Int']['output'];
+};
+
+
+/** A connection to a list of `Report` values. */
+export type ReportsConnectionGroupedAggregatesArgs = {
+  groupBy: Array<ReportGroupBy>;
+  having?: InputMaybe<ReportHavingInput>;
+};
+
+/** A `Report` edge in the connection. */
+export type ReportsEdge = {
+  __typename?: 'ReportsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']['output']>;
+  /** The `Report` at the end of the edge. */
+  node: Report;
 };
 
 /** Methods to use when ordering `Report`. */
@@ -1167,6 +2705,796 @@ export type StringFilter = {
   startsWithInsensitive?: InputMaybe<Scalars['String']['input']>;
 };
 
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type Subscription = {
+  __typename?: 'Subscription';
+  /**  (live) */
+  budget?: Maybe<Budget>;
+  /** Reads a single `Budget` using its globally unique `ID`. (live) */
+  budgetByNodeId?: Maybe<Budget>;
+  /** Reads and enables pagination through a set of `Budget`. (live) */
+  budgets?: Maybe<BudgetsConnection>;
+  /** Reads and enables pagination through a set of `Category`. (live) */
+  categories?: Maybe<CategoriesConnection>;
+  /**  (live) */
+  category?: Maybe<Category>;
+  /** Reads a single `Category` using its globally unique `ID`. (live) */
+  categoryByNodeId?: Maybe<Category>;
+  /** Fetches an object given its globally unique `ID`. (live) */
+  node?: Maybe<Node>;
+  /** The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`. (live) */
+  nodeId: Scalars['ID']['output'];
+  /**  (live) */
+  otpVerification?: Maybe<OtpVerification>;
+  /** Reads a single `OtpVerification` using its globally unique `ID`. (live) */
+  otpVerificationByNodeId?: Maybe<OtpVerification>;
+  /** Reads and enables pagination through a set of `OtpVerification`. (live) */
+  otpVerifications?: Maybe<OtpVerificationsConnection>;
+  /**
+   * Exposes the root query type nested one level down. This is helpful for Relay 1
+   * which can only query top level fields if they are in a particular form. (live)
+   */
+  query: Query;
+  /**  (live) */
+  report?: Maybe<Report>;
+  /** Reads a single `Report` using its globally unique `ID`. (live) */
+  reportByNodeId?: Maybe<Report>;
+  /** Reads and enables pagination through a set of `Report`. (live) */
+  reports?: Maybe<ReportsConnection>;
+  /**  (live) */
+  transaction?: Maybe<Transaction>;
+  /** Reads a single `Transaction` using its globally unique `ID`. (live) */
+  transactionByNodeId?: Maybe<Transaction>;
+  /** Reads and enables pagination through a set of `Transaction`. (live) */
+  transactions?: Maybe<TransactionsConnection>;
+  /**  (live) */
+  user?: Maybe<User>;
+  /** Reads a single `User` using its globally unique `ID`. (live) */
+  userByNodeId?: Maybe<User>;
+  /**  (live) */
+  userDevice?: Maybe<UserDevice>;
+  /** Reads a single `UserDevice` using its globally unique `ID`. (live) */
+  userDeviceByNodeId?: Maybe<UserDevice>;
+  /**  (live) */
+  userDeviceByToken?: Maybe<UserDevice>;
+  /** Reads and enables pagination through a set of `UserDevice`. (live) */
+  userDevices?: Maybe<UserDevicesConnection>;
+  /** Reads and enables pagination through a set of `User`. (live) */
+  users?: Maybe<UsersConnection>;
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionBudgetArgs = {
+  budgetId: Scalars['String']['input'];
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionBudgetByNodeIdArgs = {
+  nodeId: Scalars['ID']['input'];
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionBudgetsArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<BudgetCondition>;
+  filter?: InputMaybe<BudgetFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<BudgetsOrderBy>>;
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionCategoriesArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<CategoryCondition>;
+  filter?: InputMaybe<CategoryFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<CategoriesOrderBy>>;
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionCategoryArgs = {
+  id: Scalars['String']['input'];
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionCategoryByNodeIdArgs = {
+  nodeId: Scalars['ID']['input'];
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionNodeArgs = {
+  nodeId: Scalars['ID']['input'];
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionOtpVerificationArgs = {
+  id: Scalars['String']['input'];
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionOtpVerificationByNodeIdArgs = {
+  nodeId: Scalars['ID']['input'];
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionOtpVerificationsArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<OtpVerificationCondition>;
+  filter?: InputMaybe<OtpVerificationFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<OtpVerificationsOrderBy>>;
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionReportArgs = {
+  reportId: Scalars['String']['input'];
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionReportByNodeIdArgs = {
+  nodeId: Scalars['ID']['input'];
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionReportsArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<ReportCondition>;
+  filter?: InputMaybe<ReportFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<ReportsOrderBy>>;
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionTransactionArgs = {
+  transactionId: Scalars['String']['input'];
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionTransactionByNodeIdArgs = {
+  nodeId: Scalars['ID']['input'];
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionTransactionsArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<TransactionCondition>;
+  filter?: InputMaybe<TransactionFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<TransactionsOrderBy>>;
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionUserArgs = {
+  oidcId: Scalars['String']['input'];
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionUserByNodeIdArgs = {
+  nodeId: Scalars['ID']['input'];
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionUserDeviceArgs = {
+  token: Scalars['String']['input'];
+  userId: Scalars['String']['input'];
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionUserDeviceByNodeIdArgs = {
+  nodeId: Scalars['ID']['input'];
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionUserDeviceByTokenArgs = {
+  token: Scalars['String']['input'];
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionUserDevicesArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<UserDeviceCondition>;
+  filter?: InputMaybe<UserDeviceFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<UserDevicesOrderBy>>;
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionUsersArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<UserCondition>;
+  filter?: InputMaybe<UserFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<UsersOrderBy>>;
+};
+
+export type Transaction = Node & {
+  __typename?: 'Transaction';
+  amount: Scalars['Float']['output'];
+  /** Reads a single `Category` that is related to this `Transaction`. */
+  category?: Maybe<Category>;
+  categoryId?: Maybe<Scalars['String']['output']>;
+  date?: Maybe<Scalars['Datetime']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID']['output'];
+  transactionId: Scalars['String']['output'];
+  type: Typetransaction;
+  /** Reads a single `User` that is related to this `Transaction`. */
+  user?: Maybe<User>;
+  userId?: Maybe<Scalars['String']['output']>;
+};
+
+export type TransactionAggregates = {
+  __typename?: 'TransactionAggregates';
+  /** Mean average aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  average?: Maybe<TransactionAverageAggregates>;
+  /** Distinct count aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  distinctCount?: Maybe<TransactionDistinctCountAggregates>;
+  keys?: Maybe<Array<Scalars['String']['output']>>;
+  /** Maximum aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  max?: Maybe<TransactionMaxAggregates>;
+  /** Minimum aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  min?: Maybe<TransactionMinAggregates>;
+  /** Population standard deviation aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  stddevPopulation?: Maybe<TransactionStddevPopulationAggregates>;
+  /** Sample standard deviation aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  stddevSample?: Maybe<TransactionStddevSampleAggregates>;
+  /** Sum aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  sum?: Maybe<TransactionSumAggregates>;
+  /** Population variance aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  variancePopulation?: Maybe<TransactionVariancePopulationAggregates>;
+  /** Sample variance aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  varianceSample?: Maybe<TransactionVarianceSampleAggregates>;
+};
+
 /** A filter to be used against aggregates of `Transaction` object types. */
 export type TransactionAggregatesFilter = {
   /** Mean average aggregate over matching `Transaction` objects. */
@@ -1193,6 +3521,12 @@ export type TransactionAggregatesFilter = {
 
 export type TransactionAverageAggregateFilter = {
   amount?: InputMaybe<FloatFilter>;
+};
+
+export type TransactionAverageAggregates = {
+  __typename?: 'TransactionAverageAggregates';
+  /** Mean average of amount across the matching connection */
+  amount?: Maybe<Scalars['Float']['output']>;
 };
 
 /**
@@ -1224,6 +3558,24 @@ export type TransactionDistinctCountAggregateFilter = {
   transactionId?: InputMaybe<BigIntFilter>;
   type?: InputMaybe<BigIntFilter>;
   userId?: InputMaybe<BigIntFilter>;
+};
+
+export type TransactionDistinctCountAggregates = {
+  __typename?: 'TransactionDistinctCountAggregates';
+  /** Distinct count of amount across the matching connection */
+  amount?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of categoryId across the matching connection */
+  categoryId?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of date across the matching connection */
+  date?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of description across the matching connection */
+  description?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of transactionId across the matching connection */
+  transactionId?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of type across the matching connection */
+  type?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of userId across the matching connection */
+  userId?: Maybe<Scalars['BigInt']['output']>;
 };
 
 /** A filter to be used against `Transaction` object types. All fields are combined with a logical ‘and.’ */
@@ -1345,8 +3697,20 @@ export type TransactionMaxAggregateFilter = {
   amount?: InputMaybe<FloatFilter>;
 };
 
+export type TransactionMaxAggregates = {
+  __typename?: 'TransactionMaxAggregates';
+  /** Maximum of amount across the matching connection */
+  amount?: Maybe<Scalars['Float']['output']>;
+};
+
 export type TransactionMinAggregateFilter = {
   amount?: InputMaybe<FloatFilter>;
+};
+
+export type TransactionMinAggregates = {
+  __typename?: 'TransactionMinAggregates';
+  /** Minimum of amount across the matching connection */
+  amount?: Maybe<Scalars['Float']['output']>;
 };
 
 /** Represents an update to a `Transaction`. Fields that are set will be updated. */
@@ -1364,20 +3728,83 @@ export type TransactionStddevPopulationAggregateFilter = {
   amount?: InputMaybe<FloatFilter>;
 };
 
+export type TransactionStddevPopulationAggregates = {
+  __typename?: 'TransactionStddevPopulationAggregates';
+  /** Population standard deviation of amount across the matching connection */
+  amount?: Maybe<Scalars['Float']['output']>;
+};
+
 export type TransactionStddevSampleAggregateFilter = {
   amount?: InputMaybe<FloatFilter>;
+};
+
+export type TransactionStddevSampleAggregates = {
+  __typename?: 'TransactionStddevSampleAggregates';
+  /** Sample standard deviation of amount across the matching connection */
+  amount?: Maybe<Scalars['Float']['output']>;
 };
 
 export type TransactionSumAggregateFilter = {
   amount?: InputMaybe<FloatFilter>;
 };
 
+export type TransactionSumAggregates = {
+  __typename?: 'TransactionSumAggregates';
+  /** Sum of amount across the matching connection */
+  amount: Scalars['Float']['output'];
+};
+
 export type TransactionVariancePopulationAggregateFilter = {
   amount?: InputMaybe<FloatFilter>;
 };
 
+export type TransactionVariancePopulationAggregates = {
+  __typename?: 'TransactionVariancePopulationAggregates';
+  /** Population variance of amount across the matching connection */
+  amount?: Maybe<Scalars['Float']['output']>;
+};
+
 export type TransactionVarianceSampleAggregateFilter = {
   amount?: InputMaybe<FloatFilter>;
+};
+
+export type TransactionVarianceSampleAggregates = {
+  __typename?: 'TransactionVarianceSampleAggregates';
+  /** Sample variance of amount across the matching connection */
+  amount?: Maybe<Scalars['Float']['output']>;
+};
+
+/** A connection to a list of `Transaction` values. */
+export type TransactionsConnection = {
+  __typename?: 'TransactionsConnection';
+  /** Aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  aggregates?: Maybe<TransactionAggregates>;
+  /** A list of edges which contains the `Transaction` and cursor to aid in pagination. */
+  edges: Array<TransactionsEdge>;
+  /** Grouped aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  groupedAggregates?: Maybe<Array<TransactionAggregates>>;
+  /** A list of `Transaction` objects. */
+  nodes: Array<Transaction>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `Transaction` you could get from the connection. */
+  totalCount: Scalars['Int']['output'];
+};
+
+
+/** A connection to a list of `Transaction` values. */
+export type TransactionsConnectionGroupedAggregatesArgs = {
+  groupBy: Array<TransactionGroupBy>;
+  having?: InputMaybe<TransactionHavingInput>;
+};
+
+/** A `Transaction` edge in the connection. */
+export type TransactionsEdge = {
+  __typename?: 'TransactionsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']['output']>;
+  /** The `Transaction` at the end of the edge. */
+  node: Transaction;
 };
 
 /** Methods to use when ordering `Transaction`. */
@@ -1457,6 +3884,32 @@ export type UpdateBudgetInput = {
   patch: BudgetPatch;
 };
 
+/** The output of our update `Budget` mutation. */
+export type UpdateBudgetPayload = {
+  __typename?: 'UpdateBudgetPayload';
+  /** The `Budget` that was updated by this mutation. */
+  budget?: Maybe<Budget>;
+  /** An edge for our `Budget`. May be used by Relay 1. */
+  budgetEdge?: Maybe<BudgetsEdge>;
+  /** Reads a single `Category` that is related to this `Budget`. */
+  category?: Maybe<Category>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `Budget`. */
+  user?: Maybe<User>;
+};
+
+
+/** The output of our update `Budget` mutation. */
+export type UpdateBudgetPayloadBudgetEdgeArgs = {
+  orderBy?: InputMaybe<Array<BudgetsOrderBy>>;
+};
+
 /** All input for the `updateCategoryByNodeId` mutation. */
 export type UpdateCategoryByNodeIdInput = {
   /**
@@ -1480,6 +3933,77 @@ export type UpdateCategoryInput = {
   id: Scalars['String']['input'];
   /** An object where the defined keys will be set on the `Category` being updated. */
   patch: CategoryPatch;
+};
+
+/** The output of our update `Category` mutation. */
+export type UpdateCategoryPayload = {
+  __typename?: 'UpdateCategoryPayload';
+  /** The `Category` that was updated by this mutation. */
+  category?: Maybe<Category>;
+  /** An edge for our `Category`. May be used by Relay 1. */
+  categoryEdge?: Maybe<CategoriesEdge>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+};
+
+
+/** The output of our update `Category` mutation. */
+export type UpdateCategoryPayloadCategoryEdgeArgs = {
+  orderBy?: InputMaybe<Array<CategoriesOrderBy>>;
+};
+
+/** All input for the `updateOtpVerificationByNodeId` mutation. */
+export type UpdateOtpVerificationByNodeIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The globally unique `ID` which will identify a single `OtpVerification` to be updated. */
+  nodeId: Scalars['ID']['input'];
+  /** An object where the defined keys will be set on the `OtpVerification` being updated. */
+  patch: OtpVerificationPatch;
+};
+
+/** All input for the `updateOtpVerification` mutation. */
+export type UpdateOtpVerificationInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['String']['input'];
+  /** An object where the defined keys will be set on the `OtpVerification` being updated. */
+  patch: OtpVerificationPatch;
+};
+
+/** The output of our update `OtpVerification` mutation. */
+export type UpdateOtpVerificationPayload = {
+  __typename?: 'UpdateOtpVerificationPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The `OtpVerification` that was updated by this mutation. */
+  otpVerification?: Maybe<OtpVerification>;
+  /** An edge for our `OtpVerification`. May be used by Relay 1. */
+  otpVerificationEdge?: Maybe<OtpVerificationsEdge>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `OtpVerification`. */
+  user?: Maybe<User>;
+};
+
+
+/** The output of our update `OtpVerification` mutation. */
+export type UpdateOtpVerificationPayloadOtpVerificationEdgeArgs = {
+  orderBy?: InputMaybe<Array<OtpVerificationsOrderBy>>;
 };
 
 /** All input for the `updateReportByNodeId` mutation. */
@@ -1507,6 +4031,30 @@ export type UpdateReportInput = {
   reportId: Scalars['String']['input'];
 };
 
+/** The output of our update `Report` mutation. */
+export type UpdateReportPayload = {
+  __typename?: 'UpdateReportPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** The `Report` that was updated by this mutation. */
+  report?: Maybe<Report>;
+  /** An edge for our `Report`. May be used by Relay 1. */
+  reportEdge?: Maybe<ReportsEdge>;
+  /** Reads a single `User` that is related to this `Report`. */
+  user?: Maybe<User>;
+};
+
+
+/** The output of our update `Report` mutation. */
+export type UpdateReportPayloadReportEdgeArgs = {
+  orderBy?: InputMaybe<Array<ReportsOrderBy>>;
+};
+
 /** All input for the `updateTransactionByNodeId` mutation. */
 export type UpdateTransactionByNodeIdInput = {
   /**
@@ -1530,6 +4078,32 @@ export type UpdateTransactionInput = {
   /** An object where the defined keys will be set on the `Transaction` being updated. */
   patch: TransactionPatch;
   transactionId: Scalars['String']['input'];
+};
+
+/** The output of our update `Transaction` mutation. */
+export type UpdateTransactionPayload = {
+  __typename?: 'UpdateTransactionPayload';
+  /** Reads a single `Category` that is related to this `Transaction`. */
+  category?: Maybe<Category>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** The `Transaction` that was updated by this mutation. */
+  transaction?: Maybe<Transaction>;
+  /** An edge for our `Transaction`. May be used by Relay 1. */
+  transactionEdge?: Maybe<TransactionsEdge>;
+  /** Reads a single `User` that is related to this `Transaction`. */
+  user?: Maybe<User>;
+};
+
+
+/** The output of our update `Transaction` mutation. */
+export type UpdateTransactionPayloadTransactionEdgeArgs = {
+  orderBy?: InputMaybe<Array<TransactionsOrderBy>>;
 };
 
 /** All input for the `updateUserByNodeId` mutation. */
@@ -1583,6 +4157,30 @@ export type UpdateUserDeviceInput = {
   userId: Scalars['String']['input'];
 };
 
+/** The output of our update `UserDevice` mutation. */
+export type UpdateUserDevicePayload = {
+  __typename?: 'UpdateUserDevicePayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `UserDevice`. */
+  user?: Maybe<User>;
+  /** The `UserDevice` that was updated by this mutation. */
+  userDevice?: Maybe<UserDevice>;
+  /** An edge for our `UserDevice`. May be used by Relay 1. */
+  userDeviceEdge?: Maybe<UserDevicesEdge>;
+};
+
+
+/** The output of our update `UserDevice` mutation. */
+export type UpdateUserDevicePayloadUserDeviceEdgeArgs = {
+  orderBy?: InputMaybe<Array<UserDevicesOrderBy>>;
+};
+
 /** All input for the `updateUser` mutation. */
 export type UpdateUserInput = {
   /**
@@ -1595,12 +4193,57 @@ export type UpdateUserInput = {
   patch: UserPatch;
 };
 
+/** The output of our update `User` mutation. */
+export type UpdateUserPayload = {
+  __typename?: 'UpdateUserPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** The `User` that was updated by this mutation. */
+  user?: Maybe<User>;
+  /** An edge for our `User`. May be used by Relay 1. */
+  userEdge?: Maybe<UsersEdge>;
+};
+
+
+/** The output of our update `User` mutation. */
+export type UpdateUserPayloadUserEdgeArgs = {
+  orderBy?: InputMaybe<Array<UsersOrderBy>>;
+};
+
 /** All input for the upsert `Budget` mutation. */
 export type UpsertBudgetInput = {
   /** The `Budget` to be upserted by this mutation. */
   budget: BudgetInput;
   /** An arbitrary string value with no semantic meaning. Will be included in the payload verbatim. May be used to track mutations by the client. */
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The output of our upsert `Budget` mutation. */
+export type UpsertBudgetPayload = {
+  __typename?: 'UpsertBudgetPayload';
+  /** The `Budget` that was upserted by this mutation. */
+  budget?: Maybe<Budget>;
+  /** An edge for our `Budget`. May be used by Relay 1. */
+  budgetEdge?: Maybe<BudgetsEdge>;
+  /** Reads a single `Category` that is related to this `Budget`. */
+  category?: Maybe<Category>;
+  /** The exact same `clientMutationId` that was provided in the mutation input, unchanged and unused. May be used by a client to track mutations. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `Budget`. */
+  user?: Maybe<User>;
+};
+
+
+/** The output of our upsert `Budget` mutation. */
+export type UpsertBudgetPayloadBudgetEdgeArgs = {
+  orderBy?: InputMaybe<Array<BudgetsOrderBy>>;
 };
 
 /** Where conditions for the upsert `Budget` mutation. */
@@ -1616,8 +4259,61 @@ export type UpsertCategoryInput = {
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
 };
 
+/** The output of our upsert `Category` mutation. */
+export type UpsertCategoryPayload = {
+  __typename?: 'UpsertCategoryPayload';
+  /** The `Category` that was upserted by this mutation. */
+  category?: Maybe<Category>;
+  /** An edge for our `Category`. May be used by Relay 1. */
+  categoryEdge?: Maybe<CategoriesEdge>;
+  /** The exact same `clientMutationId` that was provided in the mutation input, unchanged and unused. May be used by a client to track mutations. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+};
+
+
+/** The output of our upsert `Category` mutation. */
+export type UpsertCategoryPayloadCategoryEdgeArgs = {
+  orderBy?: InputMaybe<Array<CategoriesOrderBy>>;
+};
+
 /** Where conditions for the upsert `Category` mutation. */
 export type UpsertCategoryWhere = {
+  id?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** All input for the upsert `OtpVerification` mutation. */
+export type UpsertOtpVerificationInput = {
+  /** An arbitrary string value with no semantic meaning. Will be included in the payload verbatim. May be used to track mutations by the client. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The `OtpVerification` to be upserted by this mutation. */
+  otpVerification: OtpVerificationInput;
+};
+
+/** The output of our upsert `OtpVerification` mutation. */
+export type UpsertOtpVerificationPayload = {
+  __typename?: 'UpsertOtpVerificationPayload';
+  /** The exact same `clientMutationId` that was provided in the mutation input, unchanged and unused. May be used by a client to track mutations. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The `OtpVerification` that was upserted by this mutation. */
+  otpVerification?: Maybe<OtpVerification>;
+  /** An edge for our `OtpVerification`. May be used by Relay 1. */
+  otpVerificationEdge?: Maybe<OtpVerificationsEdge>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `OtpVerification`. */
+  user?: Maybe<User>;
+};
+
+
+/** The output of our upsert `OtpVerification` mutation. */
+export type UpsertOtpVerificationPayloadOtpVerificationEdgeArgs = {
+  orderBy?: InputMaybe<Array<OtpVerificationsOrderBy>>;
+};
+
+/** Where conditions for the upsert `OtpVerification` mutation. */
+export type UpsertOtpVerificationWhere = {
   id?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -1627,6 +4323,27 @@ export type UpsertReportInput = {
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   /** The `Report` to be upserted by this mutation. */
   report: ReportInput;
+};
+
+/** The output of our upsert `Report` mutation. */
+export type UpsertReportPayload = {
+  __typename?: 'UpsertReportPayload';
+  /** The exact same `clientMutationId` that was provided in the mutation input, unchanged and unused. May be used by a client to track mutations. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** The `Report` that was upserted by this mutation. */
+  report?: Maybe<Report>;
+  /** An edge for our `Report`. May be used by Relay 1. */
+  reportEdge?: Maybe<ReportsEdge>;
+  /** Reads a single `User` that is related to this `Report`. */
+  user?: Maybe<User>;
+};
+
+
+/** The output of our upsert `Report` mutation. */
+export type UpsertReportPayloadReportEdgeArgs = {
+  orderBy?: InputMaybe<Array<ReportsOrderBy>>;
 };
 
 /** Where conditions for the upsert `Report` mutation. */
@@ -1642,6 +4359,29 @@ export type UpsertTransactionInput = {
   transaction: TransactionInput;
 };
 
+/** The output of our upsert `Transaction` mutation. */
+export type UpsertTransactionPayload = {
+  __typename?: 'UpsertTransactionPayload';
+  /** Reads a single `Category` that is related to this `Transaction`. */
+  category?: Maybe<Category>;
+  /** The exact same `clientMutationId` that was provided in the mutation input, unchanged and unused. May be used by a client to track mutations. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** The `Transaction` that was upserted by this mutation. */
+  transaction?: Maybe<Transaction>;
+  /** An edge for our `Transaction`. May be used by Relay 1. */
+  transactionEdge?: Maybe<TransactionsEdge>;
+  /** Reads a single `User` that is related to this `Transaction`. */
+  user?: Maybe<User>;
+};
+
+
+/** The output of our upsert `Transaction` mutation. */
+export type UpsertTransactionPayloadTransactionEdgeArgs = {
+  orderBy?: InputMaybe<Array<TransactionsOrderBy>>;
+};
+
 /** Where conditions for the upsert `Transaction` mutation. */
 export type UpsertTransactionWhere = {
   transactionId?: InputMaybe<Scalars['String']['input']>;
@@ -1653,6 +4393,27 @@ export type UpsertUserDeviceInput = {
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   /** The `UserDevice` to be upserted by this mutation. */
   userDevice: UserDeviceInput;
+};
+
+/** The output of our upsert `UserDevice` mutation. */
+export type UpsertUserDevicePayload = {
+  __typename?: 'UpsertUserDevicePayload';
+  /** The exact same `clientMutationId` that was provided in the mutation input, unchanged and unused. May be used by a client to track mutations. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `UserDevice`. */
+  user?: Maybe<User>;
+  /** The `UserDevice` that was upserted by this mutation. */
+  userDevice?: Maybe<UserDevice>;
+  /** An edge for our `UserDevice`. May be used by Relay 1. */
+  userDeviceEdge?: Maybe<UserDevicesEdge>;
+};
+
+
+/** The output of our upsert `UserDevice` mutation. */
+export type UpsertUserDevicePayloadUserDeviceEdgeArgs = {
+  orderBy?: InputMaybe<Array<UserDevicesOrderBy>>;
 };
 
 /** Where conditions for the upsert `UserDevice` mutation. */
@@ -1669,9 +4430,120 @@ export type UpsertUserInput = {
   user: UserInput;
 };
 
+/** The output of our upsert `User` mutation. */
+export type UpsertUserPayload = {
+  __typename?: 'UpsertUserPayload';
+  /** The exact same `clientMutationId` that was provided in the mutation input, unchanged and unused. May be used by a client to track mutations. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** The `User` that was upserted by this mutation. */
+  user?: Maybe<User>;
+  /** An edge for our `User`. May be used by Relay 1. */
+  userEdge?: Maybe<UsersEdge>;
+};
+
+
+/** The output of our upsert `User` mutation. */
+export type UpsertUserPayloadUserEdgeArgs = {
+  orderBy?: InputMaybe<Array<UsersOrderBy>>;
+};
+
 /** Where conditions for the upsert `User` mutation. */
 export type UpsertUserWhere = {
   oidcId?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type User = Node & {
+  __typename?: 'User';
+  /** Reads and enables pagination through a set of `Budget`. */
+  budgetsByUserId: BudgetsConnection;
+  date?: Maybe<Scalars['Datetime']['output']>;
+  email?: Maybe<Scalars['String']['output']>;
+  firstName?: Maybe<Scalars['String']['output']>;
+  gender?: Maybe<UserGender>;
+  lastName?: Maybe<Scalars['String']['output']>;
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID']['output'];
+  oidcId: Scalars['String']['output'];
+  /** Reads and enables pagination through a set of `OtpVerification`. */
+  otpVerificationsByUserId: OtpVerificationsConnection;
+  password?: Maybe<Scalars['String']['output']>;
+  picture?: Maybe<Scalars['String']['output']>;
+  /** Reads and enables pagination through a set of `Report`. */
+  reportsByUserId: ReportsConnection;
+  tel?: Maybe<Scalars['String']['output']>;
+  /** Reads and enables pagination through a set of `Transaction`. */
+  transactionsByUserId: TransactionsConnection;
+  /** Reads and enables pagination through a set of `UserDevice`. */
+  userDevicesByUserId: UserDevicesConnection;
+};
+
+
+export type UserBudgetsByUserIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<BudgetCondition>;
+  filter?: InputMaybe<BudgetFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<BudgetsOrderBy>>;
+};
+
+
+export type UserOtpVerificationsByUserIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<OtpVerificationCondition>;
+  filter?: InputMaybe<OtpVerificationFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<OtpVerificationsOrderBy>>;
+};
+
+
+export type UserReportsByUserIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<ReportCondition>;
+  filter?: InputMaybe<ReportFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<ReportsOrderBy>>;
+};
+
+
+export type UserTransactionsByUserIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<TransactionCondition>;
+  filter?: InputMaybe<TransactionFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<TransactionsOrderBy>>;
+};
+
+
+export type UserUserDevicesByUserIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<UserDeviceCondition>;
+  filter?: InputMaybe<UserDeviceFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<UserDevicesOrderBy>>;
+};
+
+export type UserAggregates = {
+  __typename?: 'UserAggregates';
+  /** Distinct count aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  distinctCount?: Maybe<UserDistinctCountAggregates>;
+  keys?: Maybe<Array<Scalars['String']['output']>>;
 };
 
 /** A condition to be used against `User` object types. All fields are tested for equality and combined with a logical ‘and.’ */
@@ -1694,6 +4566,24 @@ export type UserCondition = {
   picture?: InputMaybe<Scalars['String']['input']>;
   /** Checks for equality with the object’s `tel` field. */
   tel?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserDevice = Node & {
+  __typename?: 'UserDevice';
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID']['output'];
+  token: Scalars['String']['output'];
+  ua?: Maybe<Scalars['JSON']['output']>;
+  /** Reads a single `User` that is related to this `UserDevice`. */
+  user?: Maybe<User>;
+  userId: Scalars['String']['output'];
+};
+
+export type UserDeviceAggregates = {
+  __typename?: 'UserDeviceAggregates';
+  /** Distinct count aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  distinctCount?: Maybe<UserDeviceDistinctCountAggregates>;
+  keys?: Maybe<Array<Scalars['String']['output']>>;
 };
 
 /** A filter to be used against aggregates of `UserDevice` object types. */
@@ -1721,6 +4611,16 @@ export type UserDeviceDistinctCountAggregateFilter = {
   token?: InputMaybe<BigIntFilter>;
   ua?: InputMaybe<BigIntFilter>;
   userId?: InputMaybe<BigIntFilter>;
+};
+
+export type UserDeviceDistinctCountAggregates = {
+  __typename?: 'UserDeviceDistinctCountAggregates';
+  /** Distinct count of token across the matching connection */
+  token?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of ua across the matching connection */
+  ua?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of userId across the matching connection */
+  userId?: Maybe<Scalars['BigInt']['output']>;
 };
 
 /** A filter to be used against `UserDevice` object types. All fields are combined with a logical ‘and.’ */
@@ -1767,6 +4667,39 @@ export type UserDevicePatch = {
   userId?: InputMaybe<Scalars['String']['input']>;
 };
 
+/** A connection to a list of `UserDevice` values. */
+export type UserDevicesConnection = {
+  __typename?: 'UserDevicesConnection';
+  /** Aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  aggregates?: Maybe<UserDeviceAggregates>;
+  /** A list of edges which contains the `UserDevice` and cursor to aid in pagination. */
+  edges: Array<UserDevicesEdge>;
+  /** Grouped aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  groupedAggregates?: Maybe<Array<UserDeviceAggregates>>;
+  /** A list of `UserDevice` objects. */
+  nodes: Array<UserDevice>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `UserDevice` you could get from the connection. */
+  totalCount: Scalars['Int']['output'];
+};
+
+
+/** A connection to a list of `UserDevice` values. */
+export type UserDevicesConnectionGroupedAggregatesArgs = {
+  groupBy: Array<UserDeviceGroupBy>;
+  having?: InputMaybe<UserDeviceHavingInput>;
+};
+
+/** A `UserDevice` edge in the connection. */
+export type UserDevicesEdge = {
+  __typename?: 'UserDevicesEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']['output']>;
+  /** The `UserDevice` at the end of the edge. */
+  node: UserDevice;
+};
+
 /** Methods to use when ordering `UserDevice`. */
 export enum UserDevicesOrderBy {
   Natural = 'NATURAL',
@@ -1779,6 +4712,28 @@ export enum UserDevicesOrderBy {
   UserIdAsc = 'USER_ID_ASC',
   UserIdDesc = 'USER_ID_DESC'
 }
+
+export type UserDistinctCountAggregates = {
+  __typename?: 'UserDistinctCountAggregates';
+  /** Distinct count of date across the matching connection */
+  date?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of email across the matching connection */
+  email?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of firstName across the matching connection */
+  firstName?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of gender across the matching connection */
+  gender?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of lastName across the matching connection */
+  lastName?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of oidcId across the matching connection */
+  oidcId?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of password across the matching connection */
+  password?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of picture across the matching connection */
+  picture?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of tel across the matching connection */
+  tel?: Maybe<Scalars['BigInt']['output']>;
+};
 
 /** A filter to be used against `User` object types. All fields are combined with a logical ‘and.’ */
 export type UserFilter = {
@@ -1804,6 +4759,10 @@ export type UserFilter = {
   oidcId?: InputMaybe<StringFilter>;
   /** Checks for any expressions in this list. */
   or?: InputMaybe<Array<UserFilter>>;
+  /** Filter by the object’s `otpVerificationsByUserId` relation. */
+  otpVerificationsByUserId?: InputMaybe<UserToManyOtpVerificationFilter>;
+  /** Some related `otpVerificationsByUserId` exist. */
+  otpVerificationsByUserIdExist?: InputMaybe<Scalars['Boolean']['input']>;
   /** Filter by the object’s `password` field. */
   password?: InputMaybe<StringFilter>;
   /** Filter by the object’s `picture` field. */
@@ -1958,6 +4917,18 @@ export type UserToManyBudgetFilter = {
   some?: InputMaybe<BudgetFilter>;
 };
 
+/** A filter to be used against many `OtpVerification` object types. All fields are combined with a logical ‘and.’ */
+export type UserToManyOtpVerificationFilter = {
+  /** Aggregates across related `OtpVerification` match the filter criteria. */
+  aggregates?: InputMaybe<OtpVerificationAggregatesFilter>;
+  /** Every related `OtpVerification` matches the filter criteria. All fields are combined with a logical ‘and.’ */
+  every?: InputMaybe<OtpVerificationFilter>;
+  /** No related `OtpVerification` matches the filter criteria. All fields are combined with a logical ‘and.’ */
+  none?: InputMaybe<OtpVerificationFilter>;
+  /** Some related `OtpVerification` matches the filter criteria. All fields are combined with a logical ‘and.’ */
+  some?: InputMaybe<OtpVerificationFilter>;
+};
+
 /** A filter to be used against many `Report` object types. All fields are combined with a logical ‘and.’ */
 export type UserToManyReportFilter = {
   /** Aggregates across related `Report` match the filter criteria. */
@@ -1992,6 +4963,39 @@ export type UserToManyUserDeviceFilter = {
   none?: InputMaybe<UserDeviceFilter>;
   /** Some related `UserDevice` matches the filter criteria. All fields are combined with a logical ‘and.’ */
   some?: InputMaybe<UserDeviceFilter>;
+};
+
+/** A connection to a list of `User` values. */
+export type UsersConnection = {
+  __typename?: 'UsersConnection';
+  /** Aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  aggregates?: Maybe<UserAggregates>;
+  /** A list of edges which contains the `User` and cursor to aid in pagination. */
+  edges: Array<UsersEdge>;
+  /** Grouped aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  groupedAggregates?: Maybe<Array<UserAggregates>>;
+  /** A list of `User` objects. */
+  nodes: Array<User>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `User` you could get from the connection. */
+  totalCount: Scalars['Int']['output'];
+};
+
+
+/** A connection to a list of `User` values. */
+export type UsersConnectionGroupedAggregatesArgs = {
+  groupBy: Array<UserGroupBy>;
+  having?: InputMaybe<UserHavingInput>;
+};
+
+/** A `User` edge in the connection. */
+export type UsersEdge = {
+  __typename?: 'UsersEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']['output']>;
+  /** The `User` at the end of the edge. */
+  node: User;
 };
 
 /** Methods to use when ordering `User`. */
@@ -2119,6 +5123,116 @@ export enum UsersOrderBy {
   Natural = 'NATURAL',
   OidcIdAsc = 'OIDC_ID_ASC',
   OidcIdDesc = 'OIDC_ID_DESC',
+  OtpVerificationsByUserIdAverageCreatedAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_CREATED_AT_ASC',
+  OtpVerificationsByUserIdAverageCreatedAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_CREATED_AT_DESC',
+  OtpVerificationsByUserIdAverageEmailAsc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_EMAIL_ASC',
+  OtpVerificationsByUserIdAverageEmailDesc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_EMAIL_DESC',
+  OtpVerificationsByUserIdAverageExpiresAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_EXPIRES_AT_ASC',
+  OtpVerificationsByUserIdAverageExpiresAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_EXPIRES_AT_DESC',
+  OtpVerificationsByUserIdAverageIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_ID_ASC',
+  OtpVerificationsByUserIdAverageIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_ID_DESC',
+  OtpVerificationsByUserIdAverageOtpAsc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_OTP_ASC',
+  OtpVerificationsByUserIdAverageOtpDesc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_OTP_DESC',
+  OtpVerificationsByUserIdAverageUserIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_USER_ID_ASC',
+  OtpVerificationsByUserIdAverageUserIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_USER_ID_DESC',
+  OtpVerificationsByUserIdCountAsc = 'OTP_VERIFICATIONS_BY_USER_ID_COUNT_ASC',
+  OtpVerificationsByUserIdCountDesc = 'OTP_VERIFICATIONS_BY_USER_ID_COUNT_DESC',
+  OtpVerificationsByUserIdDistinctCountCreatedAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_CREATED_AT_ASC',
+  OtpVerificationsByUserIdDistinctCountCreatedAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_CREATED_AT_DESC',
+  OtpVerificationsByUserIdDistinctCountEmailAsc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_EMAIL_ASC',
+  OtpVerificationsByUserIdDistinctCountEmailDesc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_EMAIL_DESC',
+  OtpVerificationsByUserIdDistinctCountExpiresAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_EXPIRES_AT_ASC',
+  OtpVerificationsByUserIdDistinctCountExpiresAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_EXPIRES_AT_DESC',
+  OtpVerificationsByUserIdDistinctCountIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_ID_ASC',
+  OtpVerificationsByUserIdDistinctCountIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_ID_DESC',
+  OtpVerificationsByUserIdDistinctCountOtpAsc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_OTP_ASC',
+  OtpVerificationsByUserIdDistinctCountOtpDesc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_OTP_DESC',
+  OtpVerificationsByUserIdDistinctCountUserIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_USER_ID_ASC',
+  OtpVerificationsByUserIdDistinctCountUserIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_USER_ID_DESC',
+  OtpVerificationsByUserIdMaxCreatedAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_CREATED_AT_ASC',
+  OtpVerificationsByUserIdMaxCreatedAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_CREATED_AT_DESC',
+  OtpVerificationsByUserIdMaxEmailAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_EMAIL_ASC',
+  OtpVerificationsByUserIdMaxEmailDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_EMAIL_DESC',
+  OtpVerificationsByUserIdMaxExpiresAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_EXPIRES_AT_ASC',
+  OtpVerificationsByUserIdMaxExpiresAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_EXPIRES_AT_DESC',
+  OtpVerificationsByUserIdMaxIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_ID_ASC',
+  OtpVerificationsByUserIdMaxIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_ID_DESC',
+  OtpVerificationsByUserIdMaxOtpAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_OTP_ASC',
+  OtpVerificationsByUserIdMaxOtpDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_OTP_DESC',
+  OtpVerificationsByUserIdMaxUserIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_USER_ID_ASC',
+  OtpVerificationsByUserIdMaxUserIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_USER_ID_DESC',
+  OtpVerificationsByUserIdMinCreatedAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_CREATED_AT_ASC',
+  OtpVerificationsByUserIdMinCreatedAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_CREATED_AT_DESC',
+  OtpVerificationsByUserIdMinEmailAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_EMAIL_ASC',
+  OtpVerificationsByUserIdMinEmailDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_EMAIL_DESC',
+  OtpVerificationsByUserIdMinExpiresAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_EXPIRES_AT_ASC',
+  OtpVerificationsByUserIdMinExpiresAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_EXPIRES_AT_DESC',
+  OtpVerificationsByUserIdMinIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_ID_ASC',
+  OtpVerificationsByUserIdMinIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_ID_DESC',
+  OtpVerificationsByUserIdMinOtpAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_OTP_ASC',
+  OtpVerificationsByUserIdMinOtpDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_OTP_DESC',
+  OtpVerificationsByUserIdMinUserIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_USER_ID_ASC',
+  OtpVerificationsByUserIdMinUserIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_USER_ID_DESC',
+  OtpVerificationsByUserIdStddevPopulationCreatedAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_CREATED_AT_ASC',
+  OtpVerificationsByUserIdStddevPopulationCreatedAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_CREATED_AT_DESC',
+  OtpVerificationsByUserIdStddevPopulationEmailAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_EMAIL_ASC',
+  OtpVerificationsByUserIdStddevPopulationEmailDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_EMAIL_DESC',
+  OtpVerificationsByUserIdStddevPopulationExpiresAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_EXPIRES_AT_ASC',
+  OtpVerificationsByUserIdStddevPopulationExpiresAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_EXPIRES_AT_DESC',
+  OtpVerificationsByUserIdStddevPopulationIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_ID_ASC',
+  OtpVerificationsByUserIdStddevPopulationIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_ID_DESC',
+  OtpVerificationsByUserIdStddevPopulationOtpAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_OTP_ASC',
+  OtpVerificationsByUserIdStddevPopulationOtpDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_OTP_DESC',
+  OtpVerificationsByUserIdStddevPopulationUserIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_USER_ID_ASC',
+  OtpVerificationsByUserIdStddevPopulationUserIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_USER_ID_DESC',
+  OtpVerificationsByUserIdStddevSampleCreatedAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_CREATED_AT_ASC',
+  OtpVerificationsByUserIdStddevSampleCreatedAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_CREATED_AT_DESC',
+  OtpVerificationsByUserIdStddevSampleEmailAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_EMAIL_ASC',
+  OtpVerificationsByUserIdStddevSampleEmailDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_EMAIL_DESC',
+  OtpVerificationsByUserIdStddevSampleExpiresAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_EXPIRES_AT_ASC',
+  OtpVerificationsByUserIdStddevSampleExpiresAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_EXPIRES_AT_DESC',
+  OtpVerificationsByUserIdStddevSampleIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_ID_ASC',
+  OtpVerificationsByUserIdStddevSampleIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_ID_DESC',
+  OtpVerificationsByUserIdStddevSampleOtpAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_OTP_ASC',
+  OtpVerificationsByUserIdStddevSampleOtpDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_OTP_DESC',
+  OtpVerificationsByUserIdStddevSampleUserIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_USER_ID_ASC',
+  OtpVerificationsByUserIdStddevSampleUserIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_USER_ID_DESC',
+  OtpVerificationsByUserIdSumCreatedAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_CREATED_AT_ASC',
+  OtpVerificationsByUserIdSumCreatedAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_CREATED_AT_DESC',
+  OtpVerificationsByUserIdSumEmailAsc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_EMAIL_ASC',
+  OtpVerificationsByUserIdSumEmailDesc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_EMAIL_DESC',
+  OtpVerificationsByUserIdSumExpiresAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_EXPIRES_AT_ASC',
+  OtpVerificationsByUserIdSumExpiresAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_EXPIRES_AT_DESC',
+  OtpVerificationsByUserIdSumIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_ID_ASC',
+  OtpVerificationsByUserIdSumIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_ID_DESC',
+  OtpVerificationsByUserIdSumOtpAsc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_OTP_ASC',
+  OtpVerificationsByUserIdSumOtpDesc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_OTP_DESC',
+  OtpVerificationsByUserIdSumUserIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_USER_ID_ASC',
+  OtpVerificationsByUserIdSumUserIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_USER_ID_DESC',
+  OtpVerificationsByUserIdVariancePopulationCreatedAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_CREATED_AT_ASC',
+  OtpVerificationsByUserIdVariancePopulationCreatedAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_CREATED_AT_DESC',
+  OtpVerificationsByUserIdVariancePopulationEmailAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_EMAIL_ASC',
+  OtpVerificationsByUserIdVariancePopulationEmailDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_EMAIL_DESC',
+  OtpVerificationsByUserIdVariancePopulationExpiresAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_EXPIRES_AT_ASC',
+  OtpVerificationsByUserIdVariancePopulationExpiresAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_EXPIRES_AT_DESC',
+  OtpVerificationsByUserIdVariancePopulationIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_ID_ASC',
+  OtpVerificationsByUserIdVariancePopulationIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_ID_DESC',
+  OtpVerificationsByUserIdVariancePopulationOtpAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_OTP_ASC',
+  OtpVerificationsByUserIdVariancePopulationOtpDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_OTP_DESC',
+  OtpVerificationsByUserIdVariancePopulationUserIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_USER_ID_ASC',
+  OtpVerificationsByUserIdVariancePopulationUserIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_USER_ID_DESC',
+  OtpVerificationsByUserIdVarianceSampleCreatedAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_CREATED_AT_ASC',
+  OtpVerificationsByUserIdVarianceSampleCreatedAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_CREATED_AT_DESC',
+  OtpVerificationsByUserIdVarianceSampleEmailAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_EMAIL_ASC',
+  OtpVerificationsByUserIdVarianceSampleEmailDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_EMAIL_DESC',
+  OtpVerificationsByUserIdVarianceSampleExpiresAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_EXPIRES_AT_ASC',
+  OtpVerificationsByUserIdVarianceSampleExpiresAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_EXPIRES_AT_DESC',
+  OtpVerificationsByUserIdVarianceSampleIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_ID_ASC',
+  OtpVerificationsByUserIdVarianceSampleIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_ID_DESC',
+  OtpVerificationsByUserIdVarianceSampleOtpAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_OTP_ASC',
+  OtpVerificationsByUserIdVarianceSampleOtpDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_OTP_DESC',
+  OtpVerificationsByUserIdVarianceSampleUserIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_USER_ID_ASC',
+  OtpVerificationsByUserIdVarianceSampleUserIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_USER_ID_DESC',
   PasswordAsc = 'PASSWORD_ASC',
   PasswordDesc = 'PASSWORD_DESC',
   PictureAsc = 'PICTURE_ASC',
@@ -2417,19 +5531,6 @@ export type AddTransactionMutationVariables = Exact<{
 
 export type AddTransactionMutation = { __typename?: 'Mutation', createTransaction?: { __typename?: 'CreateTransactionPayload', clientMutationId?: string | null } | null };
 
-export type Edit_TransactionMutationVariables = Exact<{
-  id: Scalars['String']['input'];
-  amount: Scalars['Float']['input'];
-  categoryId: Scalars['String']['input'];
-  date: Scalars['Datetime']['input'];
-  description: Scalars['String']['input'];
-  type: Typetransaction;
-  clientMutationId: Scalars['String']['input'];
-}>;
-
-
-export type Edit_TransactionMutation = { __typename?: 'Mutation', updateTransaction?: { __typename?: 'UpdateTransactionPayload', transaction?: { __typename?: 'Transaction', transactionId: string, type: Typetransaction, categoryId?: string | null, date?: any | null, description?: string | null, amount: number } | null } | null };
-
 export type ProfileFragment = { __typename?: 'User', firstName?: string | null, lastName?: string | null, gender?: UserGender | null, email?: string | null, tel?: string | null, picture?: string | null, date?: any | null } & { ' $fragmentName'?: 'ProfileFragment' };
 
 export type GetProfileQueryVariables = Exact<{
@@ -2477,6 +5578,19 @@ export type Delete_TransactionMutationVariables = Exact<{
 
 export type Delete_TransactionMutation = { __typename?: 'Mutation', deleteTransaction?: { __typename?: 'DeleteTransactionPayload', clientMutationId?: string | null } | null };
 
+export type Edit_TransactionMutationVariables = Exact<{
+  id: Scalars['String']['input'];
+  amount: Scalars['Float']['input'];
+  categoryId: Scalars['String']['input'];
+  date: Scalars['Datetime']['input'];
+  description: Scalars['String']['input'];
+  type: Typetransaction;
+  clientMutationId: Scalars['String']['input'];
+}>;
+
+
+export type Edit_TransactionMutation = { __typename?: 'Mutation', updateTransaction?: { __typename?: 'UpdateTransactionPayload', transaction?: { __typename?: 'Transaction', transactionId: string, type: Typetransaction, categoryId?: string | null, date?: any | null, description?: string | null, amount: number } | null } | null };
+
 export type Login_UserQueryVariables = Exact<{
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
@@ -2500,13 +5614,13 @@ export const ProfileFragmentDoc = {"kind":"Document","definitions":[{"kind":"Fra
 export const InitProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"InitProfile"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"oidcId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"firstName"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"lastName"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"tel"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"picture"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"user"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"oidcId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"oidcId"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"firstName"},"value":{"kind":"Variable","name":{"kind":"Name","value":"firstName"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"lastName"},"value":{"kind":"Variable","name":{"kind":"Name","value":"lastName"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"tel"},"value":{"kind":"Variable","name":{"kind":"Name","value":"tel"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"picture"},"value":{"kind":"Variable","name":{"kind":"Name","value":"picture"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<InitProfileMutation, InitProfileMutationVariables>;
 export const CategorySubscriptionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"CategorySubscription"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<CategorySubscriptionSubscription, CategorySubscriptionSubscriptionVariables>;
 export const AddTransactionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"AddTransaction"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"user_id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"category_id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"amount"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Float"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"date"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Datetime"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"description"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"transaction_id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"type"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Typetransaction"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createTransaction"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"transaction"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"userId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"user_id"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"categoryId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"category_id"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"amount"},"value":{"kind":"Variable","name":{"kind":"Name","value":"amount"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"date"},"value":{"kind":"Variable","name":{"kind":"Name","value":"date"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"description"},"value":{"kind":"Variable","name":{"kind":"Name","value":"description"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"transactionId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"transaction_id"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"type"},"value":{"kind":"Variable","name":{"kind":"Name","value":"type"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<AddTransactionMutation, AddTransactionMutationVariables>;
-export const Edit_TransactionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"EDIT_TRANSACTION"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"amount"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Float"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"categoryId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"date"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Datetime"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"description"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"type"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Typetransaction"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"clientMutationId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateTransaction"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"patch"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"amount"},"value":{"kind":"Variable","name":{"kind":"Name","value":"amount"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"categoryId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"categoryId"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"date"},"value":{"kind":"Variable","name":{"kind":"Name","value":"date"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"description"},"value":{"kind":"Variable","name":{"kind":"Name","value":"description"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"type"},"value":{"kind":"Variable","name":{"kind":"Name","value":"type"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"transactionId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"clientMutationId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"clientMutationId"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"transaction"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"transactionId"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"categoryId"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"amount"}}]}}]}}]}}]} as unknown as DocumentNode<Edit_TransactionMutation, Edit_TransactionMutationVariables>;
 export const GetProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetProfile"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"oidcId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"user"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"oidcId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"oidcId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Profile"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Profile"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"gender"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"tel"}},{"kind":"Field","name":{"kind":"Name","value":"picture"}},{"kind":"Field","name":{"kind":"Name","value":"date"}}]}}]} as unknown as DocumentNode<GetProfileQuery, GetProfileQueryVariables>;
 export const ProfileSubDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"ProfileSub"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"oidcId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"user"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"oidcId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"oidcId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Profile"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Profile"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"gender"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"tel"}},{"kind":"Field","name":{"kind":"Name","value":"picture"}},{"kind":"Field","name":{"kind":"Name","value":"date"}}]}}]} as unknown as DocumentNode<ProfileSubSubscription, ProfileSubSubscriptionVariables>;
 export const Add_CategoryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"ADD_CATEGORY"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"name"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createCategory"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"category"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"name"},"value":{"kind":"Variable","name":{"kind":"Name","value":"name"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<Add_CategoryMutation, Add_CategoryMutationVariables>;
 export const Get_CategoriesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_CATEGORIES"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<Get_CategoriesQuery, Get_CategoriesQueryVariables>;
 export const Get_TransactionsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_TRANSACTIONS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"transactions"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"orderBy"},"value":{"kind":"EnumValue","value":"DATE_DESC"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"transactionId"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"categoryId"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]} as unknown as DocumentNode<Get_TransactionsQuery, Get_TransactionsQueryVariables>;
 export const Delete_TransactionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DELETE_TRANSACTION"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteTransaction"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"transactionId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<Delete_TransactionMutation, Delete_TransactionMutationVariables>;
+export const Edit_TransactionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"EDIT_TRANSACTION"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"amount"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Float"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"categoryId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"date"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Datetime"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"description"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"type"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Typetransaction"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"clientMutationId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateTransaction"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"patch"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"amount"},"value":{"kind":"Variable","name":{"kind":"Name","value":"amount"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"categoryId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"categoryId"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"date"},"value":{"kind":"Variable","name":{"kind":"Name","value":"date"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"description"},"value":{"kind":"Variable","name":{"kind":"Name","value":"description"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"type"},"value":{"kind":"Variable","name":{"kind":"Name","value":"type"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"transactionId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"clientMutationId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"clientMutationId"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"transaction"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"transactionId"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"categoryId"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"amount"}}]}}]}}]}}]} as unknown as DocumentNode<Edit_TransactionMutation, Edit_TransactionMutationVariables>;
 export const Login_UserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"LOGIN_USER"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"email"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equalTo"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"password"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equalTo"},"value":{"kind":"Variable","name":{"kind":"Name","value":"password"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"password"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"oidcId"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"gender"}}]}}]}}]}}]} as unknown as DocumentNode<Login_UserQuery, Login_UserQueryVariables>;
 export const SignupDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"signup"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"firstName"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"lastName"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"user"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"oidcId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"firstName"},"value":{"kind":"Variable","name":{"kind":"Name","value":"firstName"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"lastName"},"value":{"kind":"Variable","name":{"kind":"Name","value":"lastName"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"password"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"clientMutationId"}}]}}]}}]} as unknown as DocumentNode<SignupMutation, SignupMutationVariables>;
 /** All built-in and custom scalars, mapped to their actual values */
@@ -3460,6 +6574,41 @@ export type CreateCategoryPayloadCategoryEdgeArgs = {
   orderBy?: InputMaybe<Array<CategoriesOrderBy>>;
 };
 
+/** All input for the create `OtpVerification` mutation. */
+export type CreateOtpVerificationInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The `OtpVerification` to be created by this mutation. */
+  otpVerification: OtpVerificationInput;
+};
+
+/** The output of our create `OtpVerification` mutation. */
+export type CreateOtpVerificationPayload = {
+  __typename?: 'CreateOtpVerificationPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The `OtpVerification` that was created by this mutation. */
+  otpVerification?: Maybe<OtpVerification>;
+  /** An edge for our `OtpVerification`. May be used by Relay 1. */
+  otpVerificationEdge?: Maybe<OtpVerificationsEdge>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `OtpVerification`. */
+  user?: Maybe<User>;
+};
+
+
+/** The output of our create `OtpVerification` mutation. */
+export type CreateOtpVerificationPayloadOtpVerificationEdgeArgs = {
+  orderBy?: InputMaybe<Array<OtpVerificationsOrderBy>>;
+};
+
 /** All input for the create `Report` mutation. */
 export type CreateReportInput = {
   /**
@@ -3716,6 +6865,52 @@ export type DeleteCategoryPayload = {
 /** The output of our delete `Category` mutation. */
 export type DeleteCategoryPayloadCategoryEdgeArgs = {
   orderBy?: InputMaybe<Array<CategoriesOrderBy>>;
+};
+
+/** All input for the `deleteOtpVerificationByNodeId` mutation. */
+export type DeleteOtpVerificationByNodeIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The globally unique `ID` which will identify a single `OtpVerification` to be deleted. */
+  nodeId: Scalars['ID']['input'];
+};
+
+/** All input for the `deleteOtpVerification` mutation. */
+export type DeleteOtpVerificationInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['String']['input'];
+};
+
+/** The output of our delete `OtpVerification` mutation. */
+export type DeleteOtpVerificationPayload = {
+  __typename?: 'DeleteOtpVerificationPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  deletedOtpVerificationNodeId?: Maybe<Scalars['ID']['output']>;
+  /** The `OtpVerification` that was deleted by this mutation. */
+  otpVerification?: Maybe<OtpVerification>;
+  /** An edge for our `OtpVerification`. May be used by Relay 1. */
+  otpVerificationEdge?: Maybe<OtpVerificationsEdge>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `OtpVerification`. */
+  user?: Maybe<User>;
+};
+
+
+/** The output of our delete `OtpVerification` mutation. */
+export type DeleteOtpVerificationPayloadOtpVerificationEdgeArgs = {
+  orderBy?: InputMaybe<Array<OtpVerificationsOrderBy>>;
 };
 
 /** All input for the `deleteReportByNodeId` mutation. */
@@ -4035,6 +7230,8 @@ export type Mutation = {
   createBudget?: Maybe<CreateBudgetPayload>;
   /** Creates a single `Category`. */
   createCategory?: Maybe<CreateCategoryPayload>;
+  /** Creates a single `OtpVerification`. */
+  createOtpVerification?: Maybe<CreateOtpVerificationPayload>;
   /** Creates a single `Report`. */
   createReport?: Maybe<CreateReportPayload>;
   /** Creates a single `Transaction`. */
@@ -4051,6 +7248,10 @@ export type Mutation = {
   deleteCategory?: Maybe<DeleteCategoryPayload>;
   /** Deletes a single `Category` using its globally unique id. */
   deleteCategoryByNodeId?: Maybe<DeleteCategoryPayload>;
+  /** Deletes a single `OtpVerification` using a unique key. */
+  deleteOtpVerification?: Maybe<DeleteOtpVerificationPayload>;
+  /** Deletes a single `OtpVerification` using its globally unique id. */
+  deleteOtpVerificationByNodeId?: Maybe<DeleteOtpVerificationPayload>;
   /** Deletes a single `Report` using a unique key. */
   deleteReport?: Maybe<DeleteReportPayload>;
   /** Deletes a single `Report` using its globally unique id. */
@@ -4077,6 +7278,10 @@ export type Mutation = {
   updateCategory?: Maybe<UpdateCategoryPayload>;
   /** Updates a single `Category` using its globally unique id and a patch. */
   updateCategoryByNodeId?: Maybe<UpdateCategoryPayload>;
+  /** Updates a single `OtpVerification` using a unique key and a patch. */
+  updateOtpVerification?: Maybe<UpdateOtpVerificationPayload>;
+  /** Updates a single `OtpVerification` using its globally unique id and a patch. */
+  updateOtpVerificationByNodeId?: Maybe<UpdateOtpVerificationPayload>;
   /** Updates a single `Report` using a unique key and a patch. */
   updateReport?: Maybe<UpdateReportPayload>;
   /** Updates a single `Report` using its globally unique id and a patch. */
@@ -4099,6 +7304,8 @@ export type Mutation = {
   upsertBudget?: Maybe<UpsertBudgetPayload>;
   /** Upserts a single `Category`. */
   upsertCategory?: Maybe<UpsertCategoryPayload>;
+  /** Upserts a single `OtpVerification`. */
+  upsertOtpVerification?: Maybe<UpsertOtpVerificationPayload>;
   /** Upserts a single `Report`. */
   upsertReport?: Maybe<UpsertReportPayload>;
   /** Upserts a single `Transaction`. */
@@ -4119,6 +7326,12 @@ export type MutationCreateBudgetArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateCategoryArgs = {
   input: CreateCategoryInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateOtpVerificationArgs = {
+  input: CreateOtpVerificationInput;
 };
 
 
@@ -4167,6 +7380,18 @@ export type MutationDeleteCategoryArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteCategoryByNodeIdArgs = {
   input: DeleteCategoryByNodeIdInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteOtpVerificationArgs = {
+  input: DeleteOtpVerificationInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteOtpVerificationByNodeIdArgs = {
+  input: DeleteOtpVerificationByNodeIdInput;
 };
 
 
@@ -4249,6 +7474,18 @@ export type MutationUpdateCategoryByNodeIdArgs = {
 
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateOtpVerificationArgs = {
+  input: UpdateOtpVerificationInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateOtpVerificationByNodeIdArgs = {
+  input: UpdateOtpVerificationByNodeIdInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateReportArgs = {
   input: UpdateReportInput;
 };
@@ -4317,6 +7554,13 @@ export type MutationUpsertCategoryArgs = {
 
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpsertOtpVerificationArgs = {
+  input: UpsertOtpVerificationInput;
+  where?: InputMaybe<UpsertOtpVerificationWhere>;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpsertReportArgs = {
   input: UpsertReportInput;
   where?: InputMaybe<UpsertReportWhere>;
@@ -4349,6 +7593,248 @@ export type Node = {
   nodeId: Scalars['ID']['output'];
 };
 
+export type OtpVerification = Node & {
+  __typename?: 'OtpVerification';
+  createdAt: Scalars['Datetime']['output'];
+  email?: Maybe<Scalars['String']['output']>;
+  expiresAt: Scalars['Datetime']['output'];
+  id: Scalars['String']['output'];
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID']['output'];
+  otp: Scalars['String']['output'];
+  /** Reads a single `User` that is related to this `OtpVerification`. */
+  user?: Maybe<User>;
+  userId: Scalars['String']['output'];
+};
+
+export type OtpVerificationAggregates = {
+  __typename?: 'OtpVerificationAggregates';
+  /** Distinct count aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  distinctCount?: Maybe<OtpVerificationDistinctCountAggregates>;
+  keys?: Maybe<Array<Scalars['String']['output']>>;
+};
+
+/** A filter to be used against aggregates of `OtpVerification` object types. */
+export type OtpVerificationAggregatesFilter = {
+  /** Distinct count aggregate over matching `OtpVerification` objects. */
+  distinctCount?: InputMaybe<OtpVerificationDistinctCountAggregateFilter>;
+  /** A filter that must pass for the relevant `OtpVerification` object to be included within the aggregate. */
+  filter?: InputMaybe<OtpVerificationFilter>;
+};
+
+/**
+ * A condition to be used against `OtpVerification` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type OtpVerificationCondition = {
+  /** Checks for equality with the object’s `createdAt` field. */
+  createdAt?: InputMaybe<Scalars['Datetime']['input']>;
+  /** Checks for equality with the object’s `email` field. */
+  email?: InputMaybe<Scalars['String']['input']>;
+  /** Checks for equality with the object’s `expiresAt` field. */
+  expiresAt?: InputMaybe<Scalars['Datetime']['input']>;
+  /** Checks for equality with the object’s `id` field. */
+  id?: InputMaybe<Scalars['String']['input']>;
+  /** Checks for equality with the object’s `otp` field. */
+  otp?: InputMaybe<Scalars['String']['input']>;
+  /** Checks for equality with the object’s `userId` field. */
+  userId?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type OtpVerificationDistinctCountAggregateFilter = {
+  createdAt?: InputMaybe<BigIntFilter>;
+  email?: InputMaybe<BigIntFilter>;
+  expiresAt?: InputMaybe<BigIntFilter>;
+  id?: InputMaybe<BigIntFilter>;
+  otp?: InputMaybe<BigIntFilter>;
+  userId?: InputMaybe<BigIntFilter>;
+};
+
+export type OtpVerificationDistinctCountAggregates = {
+  __typename?: 'OtpVerificationDistinctCountAggregates';
+  /** Distinct count of createdAt across the matching connection */
+  createdAt?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of email across the matching connection */
+  email?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of expiresAt across the matching connection */
+  expiresAt?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of id across the matching connection */
+  id?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of otp across the matching connection */
+  otp?: Maybe<Scalars['BigInt']['output']>;
+  /** Distinct count of userId across the matching connection */
+  userId?: Maybe<Scalars['BigInt']['output']>;
+};
+
+/** A filter to be used against `OtpVerification` object types. All fields are combined with a logical ‘and.’ */
+export type OtpVerificationFilter = {
+  /** Checks for all expressions in this list. */
+  and?: InputMaybe<Array<OtpVerificationFilter>>;
+  /** Filter by the object’s `createdAt` field. */
+  createdAt?: InputMaybe<DatetimeFilter>;
+  /** Filter by the object’s `email` field. */
+  email?: InputMaybe<StringFilter>;
+  /** Filter by the object’s `expiresAt` field. */
+  expiresAt?: InputMaybe<DatetimeFilter>;
+  /** Filter by the object’s `id` field. */
+  id?: InputMaybe<StringFilter>;
+  /** Negates the expression. */
+  not?: InputMaybe<OtpVerificationFilter>;
+  /** Checks for any expressions in this list. */
+  or?: InputMaybe<Array<OtpVerificationFilter>>;
+  /** Filter by the object’s `otp` field. */
+  otp?: InputMaybe<StringFilter>;
+  /** Filter by the object’s `user` relation. */
+  user?: InputMaybe<UserFilter>;
+  /** Filter by the object’s `userId` field. */
+  userId?: InputMaybe<StringFilter>;
+};
+
+/** Grouping methods for `OtpVerification` for usage during aggregation. */
+export enum OtpVerificationGroupBy {
+  CreatedAt = 'CREATED_AT',
+  CreatedAtTruncatedToDay = 'CREATED_AT_TRUNCATED_TO_DAY',
+  CreatedAtTruncatedToHour = 'CREATED_AT_TRUNCATED_TO_HOUR',
+  Email = 'EMAIL',
+  ExpiresAt = 'EXPIRES_AT',
+  ExpiresAtTruncatedToDay = 'EXPIRES_AT_TRUNCATED_TO_DAY',
+  ExpiresAtTruncatedToHour = 'EXPIRES_AT_TRUNCATED_TO_HOUR',
+  Otp = 'OTP',
+  UserId = 'USER_ID'
+}
+
+export type OtpVerificationHavingAverageInput = {
+  createdAt?: InputMaybe<HavingDatetimeFilter>;
+  expiresAt?: InputMaybe<HavingDatetimeFilter>;
+};
+
+export type OtpVerificationHavingDistinctCountInput = {
+  createdAt?: InputMaybe<HavingDatetimeFilter>;
+  expiresAt?: InputMaybe<HavingDatetimeFilter>;
+};
+
+/** Conditions for `OtpVerification` aggregates. */
+export type OtpVerificationHavingInput = {
+  AND?: InputMaybe<Array<OtpVerificationHavingInput>>;
+  OR?: InputMaybe<Array<OtpVerificationHavingInput>>;
+  average?: InputMaybe<OtpVerificationHavingAverageInput>;
+  distinctCount?: InputMaybe<OtpVerificationHavingDistinctCountInput>;
+  max?: InputMaybe<OtpVerificationHavingMaxInput>;
+  min?: InputMaybe<OtpVerificationHavingMinInput>;
+  stddevPopulation?: InputMaybe<OtpVerificationHavingStddevPopulationInput>;
+  stddevSample?: InputMaybe<OtpVerificationHavingStddevSampleInput>;
+  sum?: InputMaybe<OtpVerificationHavingSumInput>;
+  variancePopulation?: InputMaybe<OtpVerificationHavingVariancePopulationInput>;
+  varianceSample?: InputMaybe<OtpVerificationHavingVarianceSampleInput>;
+};
+
+export type OtpVerificationHavingMaxInput = {
+  createdAt?: InputMaybe<HavingDatetimeFilter>;
+  expiresAt?: InputMaybe<HavingDatetimeFilter>;
+};
+
+export type OtpVerificationHavingMinInput = {
+  createdAt?: InputMaybe<HavingDatetimeFilter>;
+  expiresAt?: InputMaybe<HavingDatetimeFilter>;
+};
+
+export type OtpVerificationHavingStddevPopulationInput = {
+  createdAt?: InputMaybe<HavingDatetimeFilter>;
+  expiresAt?: InputMaybe<HavingDatetimeFilter>;
+};
+
+export type OtpVerificationHavingStddevSampleInput = {
+  createdAt?: InputMaybe<HavingDatetimeFilter>;
+  expiresAt?: InputMaybe<HavingDatetimeFilter>;
+};
+
+export type OtpVerificationHavingSumInput = {
+  createdAt?: InputMaybe<HavingDatetimeFilter>;
+  expiresAt?: InputMaybe<HavingDatetimeFilter>;
+};
+
+export type OtpVerificationHavingVariancePopulationInput = {
+  createdAt?: InputMaybe<HavingDatetimeFilter>;
+  expiresAt?: InputMaybe<HavingDatetimeFilter>;
+};
+
+export type OtpVerificationHavingVarianceSampleInput = {
+  createdAt?: InputMaybe<HavingDatetimeFilter>;
+  expiresAt?: InputMaybe<HavingDatetimeFilter>;
+};
+
+/** An input for mutations affecting `OtpVerification` */
+export type OtpVerificationInput = {
+  createdAt?: InputMaybe<Scalars['Datetime']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  expiresAt: Scalars['Datetime']['input'];
+  id: Scalars['String']['input'];
+  otp: Scalars['String']['input'];
+  userId: Scalars['String']['input'];
+};
+
+/** Represents an update to a `OtpVerification`. Fields that are set will be updated. */
+export type OtpVerificationPatch = {
+  createdAt?: InputMaybe<Scalars['Datetime']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  expiresAt?: InputMaybe<Scalars['Datetime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  otp?: InputMaybe<Scalars['String']['input']>;
+  userId?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** A connection to a list of `OtpVerification` values. */
+export type OtpVerificationsConnection = {
+  __typename?: 'OtpVerificationsConnection';
+  /** Aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  aggregates?: Maybe<OtpVerificationAggregates>;
+  /** A list of edges which contains the `OtpVerification` and cursor to aid in pagination. */
+  edges: Array<OtpVerificationsEdge>;
+  /** Grouped aggregates across the matching connection (ignoring before/after/first/last/offset) */
+  groupedAggregates?: Maybe<Array<OtpVerificationAggregates>>;
+  /** A list of `OtpVerification` objects. */
+  nodes: Array<OtpVerification>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The count of *all* `OtpVerification` you could get from the connection. */
+  totalCount: Scalars['Int']['output'];
+};
+
+
+/** A connection to a list of `OtpVerification` values. */
+export type OtpVerificationsConnectionGroupedAggregatesArgs = {
+  groupBy: Array<OtpVerificationGroupBy>;
+  having?: InputMaybe<OtpVerificationHavingInput>;
+};
+
+/** A `OtpVerification` edge in the connection. */
+export type OtpVerificationsEdge = {
+  __typename?: 'OtpVerificationsEdge';
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']['output']>;
+  /** The `OtpVerification` at the end of the edge. */
+  node: OtpVerification;
+};
+
+/** Methods to use when ordering `OtpVerification`. */
+export enum OtpVerificationsOrderBy {
+  CreatedAtAsc = 'CREATED_AT_ASC',
+  CreatedAtDesc = 'CREATED_AT_DESC',
+  EmailAsc = 'EMAIL_ASC',
+  EmailDesc = 'EMAIL_DESC',
+  ExpiresAtAsc = 'EXPIRES_AT_ASC',
+  ExpiresAtDesc = 'EXPIRES_AT_DESC',
+  IdAsc = 'ID_ASC',
+  IdDesc = 'ID_DESC',
+  Natural = 'NATURAL',
+  OtpAsc = 'OTP_ASC',
+  OtpDesc = 'OTP_DESC',
+  PrimaryKeyAsc = 'PRIMARY_KEY_ASC',
+  PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
+  UserIdAsc = 'USER_ID_ASC',
+  UserIdDesc = 'USER_ID_DESC'
+}
+
 /** Information about pagination in a connection. */
 export type PageInfo = {
   __typename?: 'PageInfo';
@@ -4379,6 +7865,11 @@ export type Query = Node & {
   node?: Maybe<Node>;
   /** The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`. */
   nodeId: Scalars['ID']['output'];
+  otpVerification?: Maybe<OtpVerification>;
+  /** Reads a single `OtpVerification` using its globally unique `ID`. */
+  otpVerificationByNodeId?: Maybe<OtpVerification>;
+  /** Reads and enables pagination through a set of `OtpVerification`. */
+  otpVerifications?: Maybe<OtpVerificationsConnection>;
   /**
    * Exposes the root query type nested one level down. This is helpful for Relay 1
    * which can only query top level fields if they are in a particular form.
@@ -4461,6 +7952,31 @@ export type QueryCategoryByNodeIdArgs = {
 /** The root query type which gives access points into the data universe. */
 export type QueryNodeArgs = {
   nodeId: Scalars['ID']['input'];
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryOtpVerificationArgs = {
+  id: Scalars['String']['input'];
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryOtpVerificationByNodeIdArgs = {
+  nodeId: Scalars['ID']['input'];
+};
+
+
+/** The root query type which gives access points into the data universe. */
+export type QueryOtpVerificationsArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<OtpVerificationCondition>;
+  filter?: InputMaybe<OtpVerificationFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<OtpVerificationsOrderBy>>;
 };
 
 
@@ -4845,6 +8361,12 @@ export type Subscription = {
   node?: Maybe<Node>;
   /** The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`. (live) */
   nodeId: Scalars['ID']['output'];
+  /**  (live) */
+  otpVerification?: Maybe<OtpVerification>;
+  /** Reads a single `OtpVerification` using its globally unique `ID`. (live) */
+  otpVerificationByNodeId?: Maybe<OtpVerification>;
+  /** Reads and enables pagination through a set of `OtpVerification`. (live) */
+  otpVerifications?: Maybe<OtpVerificationsConnection>;
   /**
    * Exposes the root query type nested one level down. This is helpful for Relay 1
    * which can only query top level fields if they are in a particular form. (live)
@@ -5079,6 +8601,94 @@ export type SubscriptionCategoryByNodeIdArgs = {
  */
 export type SubscriptionNodeArgs = {
   nodeId: Scalars['ID']['input'];
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionOtpVerificationArgs = {
+  id: Scalars['String']['input'];
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionOtpVerificationByNodeIdArgs = {
+  nodeId: Scalars['ID']['input'];
+};
+
+
+/**
+ * The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+ *
+ * #### Live Queries
+ *
+ * Live query fields are differentiated by containing `(live)` at the end of their
+ * description, they are added for each field in the `Query` type. When you
+ * subscribe to a live query field, the selection set will be evaluated and sent to
+ * the client, and then most things\* that would cause the output of the selection
+ * set to change will trigger the selection set to be re-evaluated and the results
+ * to be re-sent to the client.
+ *
+ * _(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+ *
+ * Live queries can be very expensive, so try and keep them small and focussed.
+ *
+ * #### Events
+ *
+ * Event fields will run their selection set when, and only when, the specified
+ * server-side event occurs. This makes them a lot more efficient than Live
+ * Queries, but it is still recommended that you keep payloads fairly small.
+ */
+export type SubscriptionOtpVerificationsArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<OtpVerificationCondition>;
+  filter?: InputMaybe<OtpVerificationFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<OtpVerificationsOrderBy>>;
 };
 
 
@@ -5963,6 +9573,55 @@ export type UpdateCategoryPayloadCategoryEdgeArgs = {
   orderBy?: InputMaybe<Array<CategoriesOrderBy>>;
 };
 
+/** All input for the `updateOtpVerificationByNodeId` mutation. */
+export type UpdateOtpVerificationByNodeIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The globally unique `ID` which will identify a single `OtpVerification` to be updated. */
+  nodeId: Scalars['ID']['input'];
+  /** An object where the defined keys will be set on the `OtpVerification` being updated. */
+  patch: OtpVerificationPatch;
+};
+
+/** All input for the `updateOtpVerification` mutation. */
+export type UpdateOtpVerificationInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['String']['input'];
+  /** An object where the defined keys will be set on the `OtpVerification` being updated. */
+  patch: OtpVerificationPatch;
+};
+
+/** The output of our update `OtpVerification` mutation. */
+export type UpdateOtpVerificationPayload = {
+  __typename?: 'UpdateOtpVerificationPayload';
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The `OtpVerification` that was updated by this mutation. */
+  otpVerification?: Maybe<OtpVerification>;
+  /** An edge for our `OtpVerification`. May be used by Relay 1. */
+  otpVerificationEdge?: Maybe<OtpVerificationsEdge>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `OtpVerification`. */
+  user?: Maybe<User>;
+};
+
+
+/** The output of our update `OtpVerification` mutation. */
+export type UpdateOtpVerificationPayloadOtpVerificationEdgeArgs = {
+  orderBy?: InputMaybe<Array<OtpVerificationsOrderBy>>;
+};
+
 /** All input for the `updateReportByNodeId` mutation. */
 export type UpdateReportByNodeIdInput = {
   /**
@@ -6240,6 +9899,40 @@ export type UpsertCategoryWhere = {
   id?: InputMaybe<Scalars['String']['input']>;
 };
 
+/** All input for the upsert `OtpVerification` mutation. */
+export type UpsertOtpVerificationInput = {
+  /** An arbitrary string value with no semantic meaning. Will be included in the payload verbatim. May be used to track mutations by the client. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The `OtpVerification` to be upserted by this mutation. */
+  otpVerification: OtpVerificationInput;
+};
+
+/** The output of our upsert `OtpVerification` mutation. */
+export type UpsertOtpVerificationPayload = {
+  __typename?: 'UpsertOtpVerificationPayload';
+  /** The exact same `clientMutationId` that was provided in the mutation input, unchanged and unused. May be used by a client to track mutations. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The `OtpVerification` that was upserted by this mutation. */
+  otpVerification?: Maybe<OtpVerification>;
+  /** An edge for our `OtpVerification`. May be used by Relay 1. */
+  otpVerificationEdge?: Maybe<OtpVerificationsEdge>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `OtpVerification`. */
+  user?: Maybe<User>;
+};
+
+
+/** The output of our upsert `OtpVerification` mutation. */
+export type UpsertOtpVerificationPayloadOtpVerificationEdgeArgs = {
+  orderBy?: InputMaybe<Array<OtpVerificationsOrderBy>>;
+};
+
+/** Where conditions for the upsert `OtpVerification` mutation. */
+export type UpsertOtpVerificationWhere = {
+  id?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** All input for the upsert `Report` mutation. */
 export type UpsertReportInput = {
   /** An arbitrary string value with no semantic meaning. Will be included in the payload verbatim. May be used to track mutations by the client. */
@@ -6389,6 +10082,8 @@ export type User = Node & {
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
   nodeId: Scalars['ID']['output'];
   oidcId: Scalars['String']['output'];
+  /** Reads and enables pagination through a set of `OtpVerification`. */
+  otpVerificationsByUserId: OtpVerificationsConnection;
   password?: Maybe<Scalars['String']['output']>;
   picture?: Maybe<Scalars['String']['output']>;
   /** Reads and enables pagination through a set of `Report`. */
@@ -6410,6 +10105,18 @@ export type UserBudgetsByUserIdArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   orderBy?: InputMaybe<Array<BudgetsOrderBy>>;
+};
+
+
+export type UserOtpVerificationsByUserIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>;
+  before?: InputMaybe<Scalars['Cursor']['input']>;
+  condition?: InputMaybe<OtpVerificationCondition>;
+  filter?: InputMaybe<OtpVerificationFilter>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<OtpVerificationsOrderBy>>;
 };
 
 
@@ -6668,6 +10375,10 @@ export type UserFilter = {
   oidcId?: InputMaybe<StringFilter>;
   /** Checks for any expressions in this list. */
   or?: InputMaybe<Array<UserFilter>>;
+  /** Filter by the object’s `otpVerificationsByUserId` relation. */
+  otpVerificationsByUserId?: InputMaybe<UserToManyOtpVerificationFilter>;
+  /** Some related `otpVerificationsByUserId` exist. */
+  otpVerificationsByUserIdExist?: InputMaybe<Scalars['Boolean']['input']>;
   /** Filter by the object’s `password` field. */
   password?: InputMaybe<StringFilter>;
   /** Filter by the object’s `picture` field. */
@@ -6820,6 +10531,18 @@ export type UserToManyBudgetFilter = {
   none?: InputMaybe<BudgetFilter>;
   /** Some related `Budget` matches the filter criteria. All fields are combined with a logical ‘and.’ */
   some?: InputMaybe<BudgetFilter>;
+};
+
+/** A filter to be used against many `OtpVerification` object types. All fields are combined with a logical ‘and.’ */
+export type UserToManyOtpVerificationFilter = {
+  /** Aggregates across related `OtpVerification` match the filter criteria. */
+  aggregates?: InputMaybe<OtpVerificationAggregatesFilter>;
+  /** Every related `OtpVerification` matches the filter criteria. All fields are combined with a logical ‘and.’ */
+  every?: InputMaybe<OtpVerificationFilter>;
+  /** No related `OtpVerification` matches the filter criteria. All fields are combined with a logical ‘and.’ */
+  none?: InputMaybe<OtpVerificationFilter>;
+  /** Some related `OtpVerification` matches the filter criteria. All fields are combined with a logical ‘and.’ */
+  some?: InputMaybe<OtpVerificationFilter>;
 };
 
 /** A filter to be used against many `Report` object types. All fields are combined with a logical ‘and.’ */
@@ -7016,6 +10739,116 @@ export enum UsersOrderBy {
   Natural = 'NATURAL',
   OidcIdAsc = 'OIDC_ID_ASC',
   OidcIdDesc = 'OIDC_ID_DESC',
+  OtpVerificationsByUserIdAverageCreatedAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_CREATED_AT_ASC',
+  OtpVerificationsByUserIdAverageCreatedAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_CREATED_AT_DESC',
+  OtpVerificationsByUserIdAverageEmailAsc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_EMAIL_ASC',
+  OtpVerificationsByUserIdAverageEmailDesc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_EMAIL_DESC',
+  OtpVerificationsByUserIdAverageExpiresAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_EXPIRES_AT_ASC',
+  OtpVerificationsByUserIdAverageExpiresAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_EXPIRES_AT_DESC',
+  OtpVerificationsByUserIdAverageIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_ID_ASC',
+  OtpVerificationsByUserIdAverageIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_ID_DESC',
+  OtpVerificationsByUserIdAverageOtpAsc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_OTP_ASC',
+  OtpVerificationsByUserIdAverageOtpDesc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_OTP_DESC',
+  OtpVerificationsByUserIdAverageUserIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_USER_ID_ASC',
+  OtpVerificationsByUserIdAverageUserIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_AVERAGE_USER_ID_DESC',
+  OtpVerificationsByUserIdCountAsc = 'OTP_VERIFICATIONS_BY_USER_ID_COUNT_ASC',
+  OtpVerificationsByUserIdCountDesc = 'OTP_VERIFICATIONS_BY_USER_ID_COUNT_DESC',
+  OtpVerificationsByUserIdDistinctCountCreatedAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_CREATED_AT_ASC',
+  OtpVerificationsByUserIdDistinctCountCreatedAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_CREATED_AT_DESC',
+  OtpVerificationsByUserIdDistinctCountEmailAsc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_EMAIL_ASC',
+  OtpVerificationsByUserIdDistinctCountEmailDesc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_EMAIL_DESC',
+  OtpVerificationsByUserIdDistinctCountExpiresAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_EXPIRES_AT_ASC',
+  OtpVerificationsByUserIdDistinctCountExpiresAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_EXPIRES_AT_DESC',
+  OtpVerificationsByUserIdDistinctCountIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_ID_ASC',
+  OtpVerificationsByUserIdDistinctCountIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_ID_DESC',
+  OtpVerificationsByUserIdDistinctCountOtpAsc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_OTP_ASC',
+  OtpVerificationsByUserIdDistinctCountOtpDesc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_OTP_DESC',
+  OtpVerificationsByUserIdDistinctCountUserIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_USER_ID_ASC',
+  OtpVerificationsByUserIdDistinctCountUserIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_DISTINCT_COUNT_USER_ID_DESC',
+  OtpVerificationsByUserIdMaxCreatedAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_CREATED_AT_ASC',
+  OtpVerificationsByUserIdMaxCreatedAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_CREATED_AT_DESC',
+  OtpVerificationsByUserIdMaxEmailAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_EMAIL_ASC',
+  OtpVerificationsByUserIdMaxEmailDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_EMAIL_DESC',
+  OtpVerificationsByUserIdMaxExpiresAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_EXPIRES_AT_ASC',
+  OtpVerificationsByUserIdMaxExpiresAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_EXPIRES_AT_DESC',
+  OtpVerificationsByUserIdMaxIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_ID_ASC',
+  OtpVerificationsByUserIdMaxIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_ID_DESC',
+  OtpVerificationsByUserIdMaxOtpAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_OTP_ASC',
+  OtpVerificationsByUserIdMaxOtpDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_OTP_DESC',
+  OtpVerificationsByUserIdMaxUserIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_USER_ID_ASC',
+  OtpVerificationsByUserIdMaxUserIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MAX_USER_ID_DESC',
+  OtpVerificationsByUserIdMinCreatedAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_CREATED_AT_ASC',
+  OtpVerificationsByUserIdMinCreatedAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_CREATED_AT_DESC',
+  OtpVerificationsByUserIdMinEmailAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_EMAIL_ASC',
+  OtpVerificationsByUserIdMinEmailDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_EMAIL_DESC',
+  OtpVerificationsByUserIdMinExpiresAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_EXPIRES_AT_ASC',
+  OtpVerificationsByUserIdMinExpiresAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_EXPIRES_AT_DESC',
+  OtpVerificationsByUserIdMinIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_ID_ASC',
+  OtpVerificationsByUserIdMinIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_ID_DESC',
+  OtpVerificationsByUserIdMinOtpAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_OTP_ASC',
+  OtpVerificationsByUserIdMinOtpDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_OTP_DESC',
+  OtpVerificationsByUserIdMinUserIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_USER_ID_ASC',
+  OtpVerificationsByUserIdMinUserIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_MIN_USER_ID_DESC',
+  OtpVerificationsByUserIdStddevPopulationCreatedAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_CREATED_AT_ASC',
+  OtpVerificationsByUserIdStddevPopulationCreatedAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_CREATED_AT_DESC',
+  OtpVerificationsByUserIdStddevPopulationEmailAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_EMAIL_ASC',
+  OtpVerificationsByUserIdStddevPopulationEmailDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_EMAIL_DESC',
+  OtpVerificationsByUserIdStddevPopulationExpiresAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_EXPIRES_AT_ASC',
+  OtpVerificationsByUserIdStddevPopulationExpiresAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_EXPIRES_AT_DESC',
+  OtpVerificationsByUserIdStddevPopulationIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_ID_ASC',
+  OtpVerificationsByUserIdStddevPopulationIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_ID_DESC',
+  OtpVerificationsByUserIdStddevPopulationOtpAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_OTP_ASC',
+  OtpVerificationsByUserIdStddevPopulationOtpDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_OTP_DESC',
+  OtpVerificationsByUserIdStddevPopulationUserIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_USER_ID_ASC',
+  OtpVerificationsByUserIdStddevPopulationUserIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_POPULATION_USER_ID_DESC',
+  OtpVerificationsByUserIdStddevSampleCreatedAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_CREATED_AT_ASC',
+  OtpVerificationsByUserIdStddevSampleCreatedAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_CREATED_AT_DESC',
+  OtpVerificationsByUserIdStddevSampleEmailAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_EMAIL_ASC',
+  OtpVerificationsByUserIdStddevSampleEmailDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_EMAIL_DESC',
+  OtpVerificationsByUserIdStddevSampleExpiresAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_EXPIRES_AT_ASC',
+  OtpVerificationsByUserIdStddevSampleExpiresAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_EXPIRES_AT_DESC',
+  OtpVerificationsByUserIdStddevSampleIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_ID_ASC',
+  OtpVerificationsByUserIdStddevSampleIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_ID_DESC',
+  OtpVerificationsByUserIdStddevSampleOtpAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_OTP_ASC',
+  OtpVerificationsByUserIdStddevSampleOtpDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_OTP_DESC',
+  OtpVerificationsByUserIdStddevSampleUserIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_USER_ID_ASC',
+  OtpVerificationsByUserIdStddevSampleUserIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_STDDEV_SAMPLE_USER_ID_DESC',
+  OtpVerificationsByUserIdSumCreatedAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_CREATED_AT_ASC',
+  OtpVerificationsByUserIdSumCreatedAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_CREATED_AT_DESC',
+  OtpVerificationsByUserIdSumEmailAsc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_EMAIL_ASC',
+  OtpVerificationsByUserIdSumEmailDesc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_EMAIL_DESC',
+  OtpVerificationsByUserIdSumExpiresAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_EXPIRES_AT_ASC',
+  OtpVerificationsByUserIdSumExpiresAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_EXPIRES_AT_DESC',
+  OtpVerificationsByUserIdSumIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_ID_ASC',
+  OtpVerificationsByUserIdSumIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_ID_DESC',
+  OtpVerificationsByUserIdSumOtpAsc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_OTP_ASC',
+  OtpVerificationsByUserIdSumOtpDesc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_OTP_DESC',
+  OtpVerificationsByUserIdSumUserIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_USER_ID_ASC',
+  OtpVerificationsByUserIdSumUserIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_SUM_USER_ID_DESC',
+  OtpVerificationsByUserIdVariancePopulationCreatedAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_CREATED_AT_ASC',
+  OtpVerificationsByUserIdVariancePopulationCreatedAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_CREATED_AT_DESC',
+  OtpVerificationsByUserIdVariancePopulationEmailAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_EMAIL_ASC',
+  OtpVerificationsByUserIdVariancePopulationEmailDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_EMAIL_DESC',
+  OtpVerificationsByUserIdVariancePopulationExpiresAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_EXPIRES_AT_ASC',
+  OtpVerificationsByUserIdVariancePopulationExpiresAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_EXPIRES_AT_DESC',
+  OtpVerificationsByUserIdVariancePopulationIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_ID_ASC',
+  OtpVerificationsByUserIdVariancePopulationIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_ID_DESC',
+  OtpVerificationsByUserIdVariancePopulationOtpAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_OTP_ASC',
+  OtpVerificationsByUserIdVariancePopulationOtpDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_OTP_DESC',
+  OtpVerificationsByUserIdVariancePopulationUserIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_USER_ID_ASC',
+  OtpVerificationsByUserIdVariancePopulationUserIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_POPULATION_USER_ID_DESC',
+  OtpVerificationsByUserIdVarianceSampleCreatedAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_CREATED_AT_ASC',
+  OtpVerificationsByUserIdVarianceSampleCreatedAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_CREATED_AT_DESC',
+  OtpVerificationsByUserIdVarianceSampleEmailAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_EMAIL_ASC',
+  OtpVerificationsByUserIdVarianceSampleEmailDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_EMAIL_DESC',
+  OtpVerificationsByUserIdVarianceSampleExpiresAtAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_EXPIRES_AT_ASC',
+  OtpVerificationsByUserIdVarianceSampleExpiresAtDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_EXPIRES_AT_DESC',
+  OtpVerificationsByUserIdVarianceSampleIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_ID_ASC',
+  OtpVerificationsByUserIdVarianceSampleIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_ID_DESC',
+  OtpVerificationsByUserIdVarianceSampleOtpAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_OTP_ASC',
+  OtpVerificationsByUserIdVarianceSampleOtpDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_OTP_DESC',
+  OtpVerificationsByUserIdVarianceSampleUserIdAsc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_USER_ID_ASC',
+  OtpVerificationsByUserIdVarianceSampleUserIdDesc = 'OTP_VERIFICATIONS_BY_USER_ID_VARIANCE_SAMPLE_USER_ID_DESC',
   PasswordAsc = 'PASSWORD_ASC',
   PasswordDesc = 'PASSWORD_DESC',
   PictureAsc = 'PICTURE_ASC',
@@ -7314,19 +11147,6 @@ export type AddTransactionMutationVariables = Exact<{
 
 export type AddTransactionMutation = { __typename?: 'Mutation', createTransaction?: { __typename?: 'CreateTransactionPayload', clientMutationId?: string | null } | null };
 
-export type Edit_TransactionMutationVariables = Exact<{
-  id: Scalars['String']['input'];
-  amount: Scalars['Float']['input'];
-  categoryId: Scalars['String']['input'];
-  date: Scalars['Datetime']['input'];
-  description: Scalars['String']['input'];
-  type: Typetransaction;
-  clientMutationId: Scalars['String']['input'];
-}>;
-
-
-export type Edit_TransactionMutation = { __typename?: 'Mutation', updateTransaction?: { __typename?: 'UpdateTransactionPayload', transaction?: { __typename?: 'Transaction', transactionId: string, type: Typetransaction, categoryId?: string | null, date?: any | null, description?: string | null, amount: number } | null } | null };
-
 export type ProfileFragment = { __typename?: 'User', firstName?: string | null, lastName?: string | null, gender?: UserGender | null, email?: string | null, tel?: string | null, picture?: string | null, date?: any | null } & { ' $fragmentName'?: 'ProfileFragment' };
 
 export type GetProfileQueryVariables = Exact<{
@@ -7373,6 +11193,19 @@ export type Delete_TransactionMutationVariables = Exact<{
 
 
 export type Delete_TransactionMutation = { __typename?: 'Mutation', deleteTransaction?: { __typename?: 'DeleteTransactionPayload', clientMutationId?: string | null } | null };
+
+export type Edit_TransactionMutationVariables = Exact<{
+  id: Scalars['String']['input'];
+  amount: Scalars['Float']['input'];
+  categoryId: Scalars['String']['input'];
+  date: Scalars['Datetime']['input'];
+  description: Scalars['String']['input'];
+  type: Typetransaction;
+  clientMutationId: Scalars['String']['input'];
+}>;
+
+
+export type Edit_TransactionMutation = { __typename?: 'Mutation', updateTransaction?: { __typename?: 'UpdateTransactionPayload', transaction?: { __typename?: 'Transaction', transactionId: string, type: Typetransaction, categoryId?: string | null, date?: any | null, description?: string | null, amount: number } | null } | null };
 
 export type Login_UserQueryVariables = Exact<{
   email: Scalars['String']['input'];
