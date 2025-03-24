@@ -1,7 +1,7 @@
 import { IconPlus } from "@tabler/icons-react";
 import { useState } from "react";
 import { gql, useMutation, useQuery } from "urql";
-
+import { motion } from "framer-motion"; // Animation library
 // Subscription to listen for categories (we'll keep it but not rely on it)
 const CATEGORY_SUBSCRIPTION = gql`
   subscription CategorySubscription {
@@ -76,20 +76,20 @@ const CategoriesPage = () => {
       <h1 className="mb-4 mt-10 text-xl font-semibold">Categories</h1>
 
       {/* Add Category Form */}
-      <div className="mb-4">
+      <div className="mb-6 flex items-center space-x-4">
         <input
           type="text"
           placeholder="Category Name"
           value={categoryName}
           onChange={(e) => setCategoryName(e.target.value)}
-          className="rounded border p-2"
+          className="flex-1 rounded-lg border border-gray-300 p-3 shadow-sm focus:border-blue-500 focus:outline-none"
         />
         <button
           onClick={handleAddCategory}
-          className="ml-2 flex items-center rounded bg-blue-500 p-2 text-white"
+          className="flex items-center rounded-lg bg-blue-600 px-4 py-3 text-white hover:bg-blue-700"
         >
-          <IconPlus size={18} />
-          <span className="ml-1">Add Category</span>
+          <IconPlus size={22} />
+          <span className="ml-2">Add Category</span>
         </button>
       </div>
 
@@ -99,13 +99,18 @@ const CategoriesPage = () => {
       ) : error ? (
         <p>Error: {error.message}</p>
       ) : (
-        <div className="category-list">
-          {data?.categories?.nodes?.map((category: any) => (
-            <div key={category.id} className="category-item">
-              <p>{category.name}</p>
-            </div>
-          ))}
-        </div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+        {data?.categories?.nodes?.map((category: any) => (
+          <motion.div
+            key={category.id}
+            className="rounded-lg border border-gray-200 bg-white p-4 shadow hover:shadow-lg"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <p className="text-lg font-semibold text-gray-800">{category.name}</p>
+          </motion.div>
+        ))}
+      </div>
       )}
     </div>
   );
