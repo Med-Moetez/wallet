@@ -4,14 +4,11 @@ import { gql } from "@urql/core";
 import { gqlSsrClient } from "~/utils/gql_ssr_client";
 import { sendEmail } from "./mailer";
 
-// GraphQL query to authenticate the user
-
-const LOGIN = gql(`  query LOGIN_USER($email: String!, $password: String!) {
+const GET_USER = gql(`  query GET_USER($email: String!) {
     users(
-      filter: { email: { equalTo: $email }, password: { equalTo: $password } }
+      filter: { email: { equalTo: $email } } 
     ) {
       nodes {
-        password
         email
         oidcId
         firstName
@@ -33,6 +30,15 @@ const CREATE_OTP_VERIFICATION =
     }
   }
 `);
+// Mutation to delete OTP verification
+const DELETE_OTP = gql`
+  mutation MyMutation($id: String!) {
+    deleteOtpVerification(input: { id: $id }) {
+      clientMutationId
+      deletedOtpVerificationNodeId
+    }
+  }
+`;
 
 // Generate a 4-digit OTP
 const generateOtp = (): string => {
@@ -44,18 +50,15 @@ export const action: ActionFunction = async ({ request }) => {
     const formData = await request.formData();
 
     const email = formData.get("email")?.toString();
-    const password = formData.get("password")?.toString();
 
-    if (!email || !password) {
-      throw new Error("Email and password are required");
+    if (!email) {
+      throw new Error("Email is required");
     }
 
     const client = gqlSsrClient();
 
-    // Check user credentials
-    const resp = await client.query(LOGIN, { email, password });
+    const resp = await client.query(GET_USER, { email });
 
-    console.log("login response", resp?.data?.users?.nodes[0]);
     if (resp.error) {
       return json({ error: resp.error.message }, { status: 400 });
     }
@@ -66,11 +69,9 @@ export const action: ActionFunction = async ({ request }) => {
 
     const user = resp?.data?.users?.nodes[0];
 
-    // Generate OTP and expiration time
     const otp = generateOtp();
     const expiresAt = new Date(Date.now() + 5 * 60 * 1000); // OTP expires in 5 minutes
 
-    // Create OTP verification entry
     const otpResp = await client
       .mutation(CREATE_OTP_VERIFICATION, {
         input: {
@@ -80,7 +81,7 @@ export const action: ActionFunction = async ({ request }) => {
             otp,
             expiresAt: expiresAt.toISOString(),
             email: user.email,
-            createdAt: new Date().toISOString(),
+            createdAt: new Date().toISOString(), // Timestamp when OTP is created
           },
         },
       })
@@ -104,7 +105,6 @@ export const action: ActionFunction = async ({ request }) => {
 
     return json({
       success: true,
-      user: resp.data.users.nodes[0],
     });
   } catch (error) {
     console.log("Error:", error);

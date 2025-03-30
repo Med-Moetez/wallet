@@ -34,6 +34,7 @@ export default function ProfilePage() {
 
       // ✅ Remove user from localStorage
       localStorage.removeItem("connected_user");
+      localStorage.removeItem("validOtp");
 
       // ✅ Force a full reload to clear client-side state
       window.location.href = "/login";

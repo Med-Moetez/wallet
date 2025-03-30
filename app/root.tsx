@@ -137,7 +137,12 @@ export default function App() {
 
   useEffect(() => {
     const usr = localStorage?.getItem("connected_user");
-    if (!usr) navigate("/login");
+    const validOtp = localStorage.getItem("validOtp");
+
+    if (!usr) return navigate("/login");
+    if (validOtp !== "true") {
+      return navigate("/otp");
+    }
   }, []);
 
   const [, setProfile] = useAtom(profileAtom);
