@@ -43,7 +43,7 @@ export const action: ActionFunction = async ({ request }) => {
 
     console.log("Sending email to:", email);
     await sendEmail(
-      "myriam.abdelhamid91@gmail.com", // Recipient's email
+      "yosrymlika@gmail.com", // Recipient's email
       "Login Success", // Subject of the email
       "You have successfully logged into your account.", // Body of the email
     );

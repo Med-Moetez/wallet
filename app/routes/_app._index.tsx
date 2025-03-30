@@ -1,9 +1,8 @@
- 
-import { useState } from 'react';
+import { useState } from "react";
 //import { LoaderFunction } from "@remix-run/node";
-import { Fab } from "konsta/react";
 import { IconPlus } from "@tabler/icons-react";
-import TransactionModal from '~/components/TransactionModal';
+import { Fab } from "konsta/react";
+import TransactionModal from "~/components/TransactionModal";
 
 /*export const loader: LoaderFunction = async () => {
   return new Response(
@@ -33,14 +32,14 @@ export default function HomePage() {
         icon={<IconPlus />}
       />
       {basicOpened && (
-        <TransactionModal 
-          basicOpened={basicOpened} 
-          setBasicOpened={setBasicOpened} 
-          isEditing={isEditing} 
+        <TransactionModal
+          basicOpened={basicOpened}
+          setBasicOpened={setBasicOpened}
+          isEditing={isEditing}
           setIsEditing={setIsEditing}
-          setEditData={() => {}} 
-          handleEdit={async () => {}} 
-          onSuccess={() => {}} 
+          setEditData={() => {}}
+          handleEdit={async () => {}}
+          onSuccess={() => {}}
         />
       )}
     </div>

@@ -1,7 +1,7 @@
 import { IconPlus } from "@tabler/icons-react";
+import { motion } from "framer-motion"; // Animation library
 import { useState } from "react";
 import { gql, useMutation, useQuery } from "urql";
-import { motion } from "framer-motion"; // Animation library
 // Subscription to listen for categories (we'll keep it but not rely on it)
 const CATEGORY_SUBSCRIPTION = gql`
   subscription CategorySubscription {
@@ -37,10 +37,10 @@ const GET_CATEGORIES = gql`
 
 const CategoriesPage = () => {
   const [categoryName, setCategoryName] = useState("");
-  
+
   // Mutation hook to add a category
   const [, addCategory] = useMutation(ADD_CATEGORY);
-  
+
   // Query hook to fetch categories
   const [{ data, error, fetching }, refetch] = useQuery({
     query: GET_CATEGORIES,
@@ -100,17 +100,19 @@ const CategoriesPage = () => {
         <p>Error: {error.message}</p>
       ) : (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-        {data?.categories?.nodes?.map((category: any) => (
-          <motion.div
-            key={category.id}
-            className="rounded-lg border border-gray-200 bg-white p-4 shadow hover:shadow-lg"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <p className="text-lg font-semibold text-gray-800">{category.name}</p>
-          </motion.div>
-        ))}
-      </div>
+          {data?.categories?.nodes?.map((category: any) => (
+            <motion.div
+              key={category.id}
+              className="rounded-lg border border-gray-200 bg-white p-4 shadow hover:shadow-lg"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <p className="text-lg font-semibold text-gray-800">
+                {category.name}
+              </p>
+            </motion.div>
+          ))}
+        </div>
       )}
     </div>
   );

@@ -130,9 +130,7 @@ export default function App() {
 
   // force reload all pages on the same session when user changed
   const [currUser] = useAtom(currUserAtom);
-  const [
-    user
-  ] = useAtom(userAtom);
+  const [user] = useAtom(userAtom);
   useEffect(() => {
     if (currUser !== (auth?.sub || null)) window.location.reload();
   }, [auth?.sub, currUser]);
